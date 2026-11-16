@@ -1,0 +1,190 @@
+:root { --meadow: #a5cd89; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--meadow);
+  overflow: hidden;
+}
+
+#scene {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+#scene svg,
+#scene img,
+#home svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 🏡 The Home is painted out of sight behind the splash and comes on stage when the clouds cover the screen. */
+#home {
+  position: fixed;
+  inset: 0;
+  visibility: hidden;
+}
+#home.shown, #home-lifted.shown { visibility: visible; }
+#home-lifted { visibility: hidden; }
+
+/* 🪶 Big moving pictures (front trees, clouds) ride above the painting on their own layers. */
+#lifted, #home-lifted {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+#lifted canvas, #home-lifted canvas {
+  position: absolute;
+  display: block;
+  max-width: none;
+  will-change: transform;
+}
+
+/* 🚪 The way in: the round mark and the words House of Helios are the door; splash.js lays it over them. */
+#enter, .ware-door {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: transparent;
+  font-size: 0;
+  cursor: pointer;
+}
+#enter[hidden], .ware-door[hidden] { display: none; }
+#enter:focus { outline: none; }
+.ware-door:focus-visible { outline: 2px dashed #fdf6b8; outline-offset: 2px; }
+
+/* Every moving part turns about its own box. */
+.sway, .breathe, .bob {
+  transform-box: fill-box;
+  animation: var(--name) var(--dur, 6s) ease-in-out var(--delay, 0s) infinite alternate;
+  will-change: transform;
+}
+
+/* 🌾 Plants bend from the root. */
+.sway { --name: sway; transform-origin: 50% 100%; }
+@keyframes sway {
+  from { transform: skewX(calc(var(--bend) * -0.6)); }
+  to   { transform: skewX(var(--bend)); }
+}
+
+/* 🌿 Bushes swell a little, like a slow breath. */
+.breathe { --name: breathe; transform-origin: 50% 100%; }
+@keyframes breathe {
+  from { transform: scale(1, 1); }
+  to   { transform: scale(1.012, 1.025); }
+}
+
+/* 🪷 Lotuses rock on the current. */
+.bob { --name: bob; transform-origin: 50% 50%; }
+@keyframes bob {
+  from { transform: translate(0.35px, -0.2px) rotate(-4deg); }
+  to   { transform: translate(-0.35px, 0.2px) rotate(4deg); }
+}
+
+/* 🦆 A duck blinks: its lid slides down over the eye and back. */
+.blink {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  animation: blink var(--dur, 5s) linear var(--delay, 0s) infinite;
+}
+@keyframes blink {
+  0%, 87%, 100% { transform: scaleY(0); }
+  91%, 95% { transform: scaleY(1); }
+}
+
+/* 🦆 Water laps at a duck's waterline, breathing slowly. */
+.lap {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: lap var(--dur, 4s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+@keyframes lap {
+  from { transform: translateX(0.5%) scale(0.98, 0.94); }
+  to   { transform: translateX(-0.5%) scale(1.01, 1.04); }
+}
+
+/* 💧 Light on the water: short dashes sliding downstream. */
+.shimmer path {
+  fill: none;
+  stroke: #fdf6b8;
+  stroke-width: 0.45;
+  stroke-linecap: round;
+  stroke-dasharray: 3 37;
+  opacity: 0.45;
+  animation: shimmer var(--dur, 18s) linear var(--delay, 0s) infinite;
+}
+@keyframes shimmer {
+  to { stroke-dashoffset: -160; }
+}
+
+/* 🧪 Test switch (HOLD_SCENE in home.js): the clearing holds still while a big banner is open. */
+body.held #home *, body.held #home-lifted canvas { animation-play-state: paused !important; }
+
+/* 🌫️ The grey behind a big banner: one solid colour, see-through by opacity, on a compositor layer of its own. */
+#ware-shade {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  background: rgb(38 60 30);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* 🪟 A ware opened: its painted banner, scaled up, unrolls over the clearing with the words laid on its cloth. */
+#ware {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: start center;
+  padding: max(4vh, 16px) 16px 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10;
+}
+.ware-banner {
+  position: relative;
+  width: min(36rem, 100%);
+  font: 1rem/1.5 Georgia, 'Times New Roman', serif;
+  color: #30383f;
+}
+.ware-art { display: block; width: 100%; overflow: visible; }   /* rolled, the hem and the roll sit above the rod's top */
+.ware-text { position: absolute; text-align: center; }
+.ware-banner h2 {
+  margin: 0 0 0.3rem;
+  font: 700 2.1rem/1.1 Fraunces, Georgia, serif;
+  color: var(--dark);
+}
+.ware-line { margin: 0 auto 1rem; }
+.ware-banner ul { list-style: none; margin: 0; padding: 0; text-align: left; }
+.ware-banner li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;   /* each room's round mark (site/rooms/, from ../_Graphics), then its words */
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-top: 1px dashed rgb(48 56 63 / 0.2);
+}
+.ware-banner li img { display: block; width: 3rem; height: 3rem; border-radius: 50%; }
+.ware-banner li b { display: block; font: 700 1.05rem/1.3 Fraunces, Georgia, serif; color: var(--dark); }
+.ware-close {
+  position: absolute;
+  z-index: 2;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--dark);
+  font: 1.8rem/1 Georgia, serif;
+  cursor: pointer;
+}
+.ware-close:hover, .ware-close:focus-visible { background: rgb(255 255 255 / 0.5); outline: none; }

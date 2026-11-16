@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Home · House of Helios</title>
+<meta name="description" content="House of Helios makes things for the public good: tools that help, data drawn for people who learn by seeing, sites that make a life a little larger, games and worlds to wander in.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="splash.css">
+</head>
+<body>
+<main id="home" aria-label="The Home: a clearing by the river where three banners hang, software, netware and codeware"></main>
+<div id="home-lifted" aria-hidden="true"></div>
+<script src="kit.js"></script>
+<script src="home.js"></script>
+<script>
+// Come straight to The Home: it shows at once and its banners drop a moment later.
+Home.build({ scene: document.getElementById('home'), lifted: document.getElementById('home-lifted') })
+  .then(h => { h.show(); setTimeout(h.drop, 100); });
+</script>
+</body>
+</html>
