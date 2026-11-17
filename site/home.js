@@ -30,7 +30,7 @@ window.Home = (() => {
     bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'Local-first accounting.',
       about: ['Bookkeeper keeps your holdings without ever touching a wallet key, reads the CSV your bank already lets you export, and draws the answers as rings you can touch.',
         'It makes no account, takes no fee and sends no analytics. Every price lookup goes through Tor, and your bank lines never leave your Mac.'],
-      shot: ['docs/bookkeeper/img/spending.png', 1440, 1150],   // the Banking screen (Helios)
+      shot: ['docs/bookkeeper/img/spending-light.png', 1440, 1150], dark: ['docs/bookkeeper/img/spending-dark.png', 1440, 1150],   // the Banking screen (Helios)
       repo: 'House-of-Helios/bookkeeper', arch: 'Apple silicon · macOS 14+', docs: 'docs/bookkeeper/' },
     xmrange: { mark: 'xmrange', name: 'XMRange', tag: "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.",
       about: ['It measures instead of guessing: trials try each setup on your own Mac and record the hashes per watt, and XMRange shows the electricity next to the earnings, so you can judge for yourself.',
