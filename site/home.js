@@ -28,7 +28,7 @@ window.Home = (() => {
     scriptorium: { mark: 'scriptorium', name: 'Scriptorium', tag: 'The most well-indexed quote database on the planet.',
       about: ['Every quote is verified against its real source, carries its full context (the sentence before and after), is scored across two sets of dimensions, and is tagged with exactly two tones.'] },
     bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'Local-first accounting.',
-      about: ['Bookkeeper keeps your holdings without ever touching a wallet key, reads the CSV your bank already lets you export, and draws the answers as rings you can touch.',
+      about: ['Bookkeeper reads the CSV your bank already lets you export and draws your income and spending as rings you can touch. It never connects to your bank. It also keeps your crypto holdings, without ever touching a wallet key.',
         'It makes no account, takes no fee and sends no analytics. Every price lookup goes through Tor, and your bank lines never leave your Mac.'],
       shot: ['docs/bookkeeper/img/spending-light.png', 1440, 1150], dark: ['docs/bookkeeper/img/spending-dark.png', 1440, 1150],   // the Banking screen (Helios)
       repo: 'House-of-Helios/bookkeeper', arch: 'Apple silicon · macOS 14+', docs: 'docs/bookkeeper/' },
