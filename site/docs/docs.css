@@ -68,9 +68,9 @@ main h2 { font-size: 1.45rem; margin: 2.2rem 0 0.6rem; padding-top: 1rem; border
 main h3 { font-size: 1.15rem; margin: 1.6rem 0 0.4rem; }
 main img { max-width: 100%; height: auto; }
 /* 🖼️ A screenshot as a little Mac window; click for full size. */
-main .shot { display: block; margin: 1.2rem 0; border-radius: 0.7rem; overflow: hidden; background: #1d2126; box-shadow: 0 8px 24px rgb(0 0 0 / 0.18); cursor: zoom-in; }
+main .shot { display: block; margin: 1.2rem 0; border-radius: 0.7rem; overflow: hidden; background: #fff; box-shadow: 8px 10px 20px rgb(40 30 10 / 0.25); cursor: zoom-in; }
 main .shot img { display: block; width: 100%; }
-.shot-bar { display: flex; gap: 0.42rem; padding: 0.55rem 0.7rem; background: #2a2f35; }
+.shot-bar { display: flex; gap: 0.42rem; padding: 0.55rem 0.7rem; background: #ece8e1; }
 .shot-bar i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #ff5f57; }
 .shot-bar i:nth-child(2) { background: #febc2e; }
 .shot-bar i:nth-child(3) { background: #28c840; }

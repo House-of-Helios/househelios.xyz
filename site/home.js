@@ -35,7 +35,7 @@ window.Home = (() => {
     xmrange: { mark: 'xmrange', name: 'XMRange', tag: "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.",
       about: ['It measures instead of guessing: trials try each setup on your own Mac and record the hashes per watt, and XMRange shows the electricity next to the earnings, so you can judge for yourself.',
         'It runs on Apple silicon Macs, with a separate build for Intel. Everything stays on your Mac, and it never asks for an administrator password.'],
-      shot: ['docs/xmrange/img/card.png', 1440, 900], repo: 'House-of-Helios/xmrange', docs: 'docs/xmrange/' },
+      shot: ['docs/xmrange/img/card-light.png', 1440, 900], dark: ['docs/xmrange/img/card.png', 1440, 900], repo: 'House-of-Helios/xmrange', docs: 'docs/xmrange/' },
     workbench: { mark: 'workbench', name: 'Workbench', tag: 'The one host app on both Macs.', about: ["Every room's machinery plugs in as an app."] },
     house: { mark: 'house', name: 'The House', tag: 'A native Mac HUD for the Claude agents.',
       about: ['It shows the agents, healer loops and Deep Thought vault activity running across House of Helios. Light, native SwiftUI. No web app.'] },
@@ -429,10 +429,13 @@ window.Home = (() => {
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   // 🖼️ A screenshot sits in a little Mac window (the red, yellow and green lights in its bar); click it to see it big.
   const WINDOW = '<span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span>';
+  // The light app in front; its dark twin, when the room gives one, peeks out behind and below (dojonode's way).
+  const win = (side, [src, w, h], alt) => `<span class="win ${side}">${WINDOW}<img src="${src}" width="${w}" height="${h}" alt="${alt}"></span>`;
+  const shotHtml = c => `<button class="shot${c.dark ? ' pair' : ''}" type="button" aria-label="See ${esc(c.name)} bigger">${c.dark ? win('back', c.dark, '') : ''}${win('front', c.shot, `${esc(c.name)} on screen`)}</button>`;
   const enlarge = btn => {
     const view = document.createElement('div');
     view.id = 'shot-view';
-    view.innerHTML = `<figure class="shot big">${WINDOW}${btn.querySelector('img').outerHTML}</figure>`;
+    view.innerHTML = `<figure class="big">${btn.querySelector('.front').outerHTML}</figure>`;
     document.body.appendChild(view);
     const shut = () => { view.remove(); removeEventListener('keydown', key, true); btn.focus({ preventScroll: true }); };
     const key = e => { if (e.key === 'Escape') { e.stopImmediatePropagation(); shut(); } };   // Escape closes the picture, not the banner
@@ -469,7 +472,7 @@ window.Home = (() => {
     <h2 tabindex="-1">${esc(c.name)}</h2>
     <p class="card-tag">${esc(c.tag)}</p>
     ${(c.about || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
-    ${c.shot ? `<button class="shot" type="button" aria-label="See ${esc(c.name)} bigger">${WINDOW}<img src="${c.shot[0]}" width="${c.shot[1]}" height="${c.shot[2]}" alt="${esc(c.name)} on screen"></button>` : ''}
+    ${c.shot ? shotHtml(c) : ''}
     ${c.repo ? getHtml(c) : ''}
     ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
     ${back ? '<button class="card-back" type="button">‹ back</button>' : ''}`;
