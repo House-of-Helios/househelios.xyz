@@ -185,7 +185,6 @@ body.held #home *, body.held #home-lifted canvas { animation-play-state: paused 
 .ware-banner li button:hover, .ware-banner li button:focus-visible { background: rgb(255 255 255 / 0.45); outline: none; }
 .ware-banner li img { display: block; width: 3rem; height: 3rem; border-radius: 50%; }
 .ware-banner li b { display: block; font: 700 1.05rem/1.3 Fraunces, Georgia, serif; color: var(--dark); }
-.ware-banner li i { font: 1.6rem/1 Georgia, serif; font-style: normal; color: var(--dark); opacity: 0.6; }
 
 /* 🔄 The card inside the banner turns over (home.js steps the turn); a room's side, or About. */
 .ware-card { transform-origin: 50% 50%; }
@@ -207,40 +206,42 @@ body.held #home *, body.held #home-lifted canvas { animation-play-state: paused 
 .shot-bar i:nth-child(3) { background: #28c840; }
 #shot-view { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 16px; background: rgb(20 24 20 / 0.72); cursor: zoom-out; }
 .big { margin: 0; width: min(92vw, 1200px, calc((100vh - 64px) * 1.45)); }
-/* ⬇️ The download box: GitHub's mark, the latest version and date, one button per zip. */
-.get { margin: 0.4rem 0 0.9rem; padding: 0.7rem; border-radius: 0.7rem; background: rgb(255 255 255 / 0.55); text-align: left; }
-.get-head { display: flex; align-items: center; gap: 0.6rem; color: #30383f; text-decoration: none; }
-.get-head img { width: 1.6rem; height: 1.6rem; flex: none; }
-.get-head b { font: 700 1.05rem/1.2 Fraunces, Georgia, serif; color: var(--dark); }
-.get-ver { font-size: 0.88rem; color: rgb(48 56 63 / 0.62); }
-.get-files { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.5rem; }
-.get-files li { min-height: 3.1rem; }
-.get-files a { display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 0.45rem 0.7rem; border-radius: 0.5rem; background: var(--dark); color: #fff; font: 700 0.98rem/1.25 Fraunces, Georgia, serif; text-decoration: none; }
-.get-files a:hover, .get-files a:focus-visible { filter: brightness(1.12); outline: none; }
-.get-files small { font: 0.78rem/1.3 Georgia, serif; opacity: 0.85; }
-.card-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 0 auto 0.8rem; }
-.card-links a {
-  padding: 0.35rem 0.95rem;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.6);
-  border: 1px solid rgb(48 56 63 / 0.15);
-  color: var(--dark);
-  font: 700 0.98rem/1.2 Fraunces, Georgia, serif;
-  text-decoration: none;
-}
-.card-links a:hover, .card-links a:focus-visible { background: #fff; outline: none; }
-.card h2:focus { outline: none; }
+/* 🧩 The House's small parts, in Scriptorium's grammar: mono lowercase labels, round chevron cues, pills. */
+.ware-banner { --mono: ui-monospace, "SF Mono", Menlo, monospace; }
+.face.card { position: relative; }
 .card-back {
-  margin: 0.2rem auto 0.4rem;
-  padding: 0.35rem 0.9rem;
-  border: 1px dashed rgb(48 56 63 / 0.3);
-  border-radius: 999px;
-  background: none;
-  font: 0.95rem/1.2 Georgia, serif;
-  color: var(--dark);
-  cursor: pointer;
+  position: absolute; top: 0; left: 0;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  font: 0.68rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: rgb(48 56 63 / 0.6);
+  transition: color 0.15s ease;
 }
-.card-back:hover, .card-back:focus-visible { background: rgb(255 255 255 / 0.45); outline: none; }
+.card-back:hover, .card-back:focus-visible { color: var(--dark); outline: none; }
+.cue {
+  display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 999px;
+  background: rgb(255 255 255 / 0.55); color: var(--dark); border: 1px solid rgb(48 56 63 / 0.14);
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.ware-banner li button:hover .cue { background: var(--dark); color: #fff; transform: translateX(1px); }
+.pill {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.45rem 0.85rem; border-radius: 999px;
+  background: rgb(255 255 255 / 0.55); border: 1px solid rgb(48 56 63 / 0.16); color: var(--dark);
+  font: 0.72rem/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.pill:hover, .pill:focus-visible { background: #fff; outline: none; }
+.pill.solid { background: var(--dark); border-color: var(--dark); color: #fff; }
+.pill.solid:hover, .pill.solid:focus-visible { filter: brightness(1.12); }
+.pill small { font: inherit; opacity: 0.72; letter-spacing: 0.04em; }
+.card-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 0.2rem auto 0.8rem; }
+/* ⬇️ Download: a mono label (GitHub's mark, version and date), then one solid pill per zip. No box. */
+.get { margin: 0.2rem 0 1rem; padding-top: 0.8rem; border-top: 1px dashed rgb(48 56 63 / 0.2); }
+.get-label { display: flex; align-items: center; justify-content: center; gap: 0.45rem; margin: 0 0 0.6rem; font: 0.68rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: rgb(48 56 63 / 0.6); }
+.get-label img { width: 1rem; height: 1rem; opacity: 0.75; }
+.get-ver { color: inherit; text-decoration: none; }
+.get-ver:hover { color: var(--dark); }
+.get-files { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; min-height: 2.1rem; margin: 0; }
 .ware-close {
   position: absolute;
   z-index: 2;

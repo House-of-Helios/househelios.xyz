@@ -24,7 +24,7 @@ window.Home = (() => {
   const ROOMS = {
     artline: { mark: 'artline', name: 'Art Line NYC', tag: "All the city's art, in one place.",
       about: ['New York art events from about a thousand venues, posted daily.'],
-      links: [['📷 Instagram', 'https://www.instagram.com/artline.nyc/']] },
+      links: [['📷 instagram', 'https://www.instagram.com/artline.nyc/']] },
     scriptorium: { mark: 'scriptorium', name: 'Scriptorium', tag: 'The most well-indexed quote database on the planet.',
       about: ['Every quote is verified against its real source, carries its full context (the sentence before and after), is scored across two sets of dimensions, and is tagged with exactly two tones.'] },
     bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'Local-first accounting.',
@@ -449,9 +449,10 @@ window.Home = (() => {
   // answers, or if it never does, it still links to the releases page.
   const getHtml = c => `
     <div class="get" data-repo="${c.repo}" data-arch="${c.arch || ''}">
-      <a class="get-head" href="https://github.com/${c.repo}/releases/latest" target="_blank" rel="noopener">${GITHUB}<span><b>Download</b> <span class="get-ver">latest release on GitHub</span></span></a>
-      <ul class="get-files"><li></li><li></li></ul>
+      <p class="get-label">${GITHUB}<span>download</span><a class="get-ver" href="https://github.com/${c.repo}/releases/latest" target="_blank" rel="noopener">latest release</a></p>
+      <p class="get-files"><a class="pill solid" href="https://github.com/${c.repo}/releases/latest" target="_blank" rel="noopener">${DOWN} GitHub releases</a></p>
     </div>`;
+  const DOWN = '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 2v9M4 7.5 8 11.5l4-4M3 14h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const fill = async el => {
     const repo = el.dataset.repo, sizeMb = n => `${(n / 1048576).toFixed(1)} MB`;
     try {
@@ -461,21 +462,21 @@ window.Home = (() => {
       const zips = rel.assets.filter(a => a.name.endsWith('.zip'));
       const label = n => (/apple-silicon|arm64/i.test(n) ? 'Apple silicon' : /intel|x86/i.test(n) ? 'Intel' : el.dataset.arch || 'Mac');
       el.querySelector('.get-ver').textContent = `${rel.tag_name} · ${new Date(rel.published_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
-      el.querySelector('.get-files').innerHTML = zips.map(a => `<li><a href="${a.browser_download_url}">${esc(label(a.name))}<small>${sizeMb(a.size)} · zip</small></a></li>`).join('');
+      el.querySelector('.get-files').innerHTML = zips.map(a => `<a class="pill solid" href="${a.browser_download_url}">${DOWN} ${esc(label(a.name))} <small>${sizeMb(a.size)}</small></a>`).join('');
     } catch { /* offline or rate-limited: the head still links to the releases page */ }
   };
   // A room's card (or About's): its mark at the head, name, tagline, its fuller account, screenshot, download, links.
   const cardHtml = (c, back) => {
-    const links = [...(c.docs ? [['📚 Docs', c.docs]] : []), ...(c.links || [])];
-    return `
+    const links = [...(c.docs ? [['📚 docs', c.docs]] : []), ...(c.links || [])];
+    return `${back ? `<button class="card-back" type="button" aria-label="Back to the list"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>back</button>` : ''}
     <img class="card-mark" src="rooms/${c.mark}.png" alt="">
     <h2 tabindex="-1">${esc(c.name)}</h2>
     <p class="card-tag">${esc(c.tag)}</p>
     ${(c.about || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
     ${c.shot ? shotHtml(c) : ''}
     ${c.repo ? getHtml(c) : ''}
-    ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
-    ${back ? '<button class="card-back" type="button">‹ back</button>' : ''}`;
+    ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a class="pill" href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
+`;
   };
   const unroll = b => {
     if (document.getElementById('ware')) return;
@@ -490,7 +491,7 @@ window.Home = (() => {
           <section class="face front">
             <h2>${ware.title}</h2>
             <p class="ware-line">${ware.line}</p>
-            <ul>${ware.rooms.map(k => ROOMS[k]).map((r, i) => `<li><button type="button" data-room="${i}"><img src="rooms/${r.mark}.png" alt="" width="48" height="48"><span><b>${esc(r.name)}</b> ${esc(r.tag)}</span><i aria-hidden="true">›</i></button></li>`).join('')}</ul>
+            <ul>${ware.rooms.map(k => ROOMS[k]).map((r, i) => `<li><button type="button" data-room="${i}"><img src="rooms/${r.mark}.png" alt="" width="48" height="48"><span><b>${esc(r.name)}</b> ${esc(r.tag)}</span><i class="cue"><svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i></button></li>`).join('')}</ul>
           </section>
           <section class="face card" hidden></section>`}
         </div></div>
