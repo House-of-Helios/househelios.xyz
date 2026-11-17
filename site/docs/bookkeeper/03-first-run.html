@@ -26,36 +26,47 @@
 <li><a href="01-overview.html">Overview</a></li>
 <li><a href="02-install.html">Install</a></li>
 <li><a href="03-first-run.html" aria-current="page">First run</a></li>
-<li><a href="04-holdings.html">Holdings (Crypto)</a></li>
-<li><a href="05-spending.html">Spending (Banking)</a></li>
-<li><a href="06-privacy.html">Privacy</a></li>
-<li><a href="07-updates.html">Updates</a></li>
+<li><a href="04-banking.html">Banking</a></li>
+<li><a href="05-crypto.html">Crypto</a></li>
+<li><a href="06-stocks.html">Stocks</a></li>
+<li><a href="07-privacy.html">Privacy</a></li>
+<li><a href="08-updates.html">Updates</a></li>
     </ol></details>
   </nav>
   <main>
 <h1 id="first-run">First run</h1>
-<p>Here is what happens the first time you open Bookkeeper.</p>
-<ol>
-<li><strong>A beat of the mark.</strong> The window is see-through for a few seconds while a ring draws itself around the Bookkeeper mark. It is not loading anything; it is the old-fashioned way of saying hello.</li>
-<li><strong>The landing.</strong> The name, big, and three doors beneath it.</li>
-</ol>
+<h2 id="the-landing">The landing</h2>
+<p>Bookkeeper opens with a short intro: the window is see-through for a few seconds while a ring draws itself around the Bookkeeper mark. Nothing loads during it. Then the landing appears: the name, and three doors.</p>
 <ul>
-<li><strong>Banking</strong> opens the spending side. See <a href="05-spending.html">Spending</a>.</li>
-<li><strong>Crypto</strong> opens your holdings. See <a href="04-holdings.html">Holdings</a>.</li>
-<li><strong>Stocks</strong> is dimmed and says "Coming soon". It does not open.</li>
+<li><strong>Banking</strong> opens your bank data. See <a href="04-banking.html">Banking</a>.</li>
+<li><strong>Crypto</strong> opens your holdings. See <a href="05-crypto.html">Crypto</a>.</li>
+<li><strong>Stocks</strong> is dimmed and says "Coming soon". It does not open. See <a href="06-stocks.html">Stocks</a>.</li>
 </ul>
-<p><a class="shot" href="img/first-wallet.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="A first wallet in Crypto: no history yet, one ring of tokens, and a Log portfolio button at the top" src="img/first-wallet.png" /></a></p>
+<p>A fresh install is empty.</p>
+<h2 id="1-start-with-a-bank-file">1. Start with a bank file</h2>
+<ol>
+<li>On your bank's website, export your transactions as a CSV.</li>
+<li>Open <strong>Banking</strong>. It says "Drop a bank CSV here".</li>
+<li>Drop the file anywhere on the window. Or choose File, then <strong>Import CSV…</strong>, or press Shift-Command-I.</li>
+</ol>
+<p>If Bookkeeper knows your bank, the rings appear. If not, it asks you once which column is which.</p>
+<p><a class="shot" href="img/teach.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The teaching screen for a bank Bookkeeper does not know yet: each column of the file is given a role, with a live preview below" src="img/teach.png" /></a></p>
+<p>The full walk-through is in <a href="04-banking.html">Banking</a>.</p>
+<h2 id="2-or-start-with-crypto">2. Or start with crypto</h2>
+<p>Open <strong>Crypto</strong>, add a wallet by name, then enter what it holds. See <a href="05-crypto.html">Crypto</a>.</p>
 <h2 id="tor-starts-in-the-background">Tor starts in the background</h2>
-<p>Prices and logos are fetched through Tor, which is bundled inside the app. On a first start Tor has to download its directory, which usually takes a few seconds and can take a minute. Bookkeeper waits for it before asking for anything. While it connects, Settings shows "Connecting to Tor · a first start can take a minute". When it is ready, it shows "Connected through Tor".</p>
-<p>Nothing is fetched until Tor is up. See <a href="06-privacy.html">Privacy</a>.</p>
+<p>Prices and logos for Crypto are fetched through Tor, which is bundled inside the app. On a first start Tor has to download its directory, which usually takes a few seconds and can take a minute. Bookkeeper waits for it before asking for anything. While it connects, Settings shows "Connecting to Tor · a first start can take a minute". When it is ready, it shows "Connected through Tor".</p>
+<p>Banking never goes online, so it does not wait for Tor. See <a href="07-privacy.html">Privacy</a>.</p>
 <h2 id="where-your-data-lives">Where your data lives</h2>
 <p>Everything is stored on your Mac, in:</p>
 <p><code>~/Library/Application Support/Bookkeeper/</code></p>
-<p>These are plain files you can read and back up. The crypto side keeps <code>wallets.txt</code>, <code>history.csv</code> and <code>quotes.json</code> there; spending lives in a <code>spending</code> folder beside them. Nothing is stored anywhere else.</p>
-<p>A fresh install is empty. Crypto starts with no wallets and Banking waits for its first file.</p>
-    <footer class="turn"><a class="prev" href="02-install.html">‹ Install</a><a class="next" href="04-holdings.html">Holdings (Crypto) ›</a></footer>
+<p>These are plain files you can read and back up. Crypto keeps <code>wallets.txt</code>, <code>history.csv</code> and <code>quotes.json</code> there. Banking lives in a <code>spending</code> folder beside them. Nothing is stored anywhere else.</p>
+    <footer class="turn"><a class="prev" href="02-install.html">‹ Install</a><a class="next" href="04-banking.html">Banking ›</a></footer>
   </main>
-  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#tor-starts-in-the-background">Tor starts in the background</a></li>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#the-landing">The landing</a></li>
+<li><a href="#1-start-with-a-bank-file">1. Start with a bank file</a></li>
+<li><a href="#2-or-start-with-crypto">2. Or start with crypto</a></li>
+<li><a href="#tor-starts-in-the-background">Tor starts in the background</a></li>
 <li><a href="#where-your-data-lives">Where your data lives</a></li></ul></aside>
 </div>
 </body>

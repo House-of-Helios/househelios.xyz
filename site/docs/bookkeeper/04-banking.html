@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banking · Bookkeeper docs · House of Helios</title>
+<meta name="description" content="Bookkeeper docs: Banking.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/bookeeper.png" alt="" width="28" height="28">Bookkeeper</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/bookkeeper/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Bookkeeper docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-banking.html" aria-current="page">Banking</a></li>
+<li><a href="05-crypto.html">Crypto</a></li>
+<li><a href="06-stocks.html">Stocks</a></li>
+<li><a href="07-privacy.html">Privacy</a></li>
+<li><a href="08-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="banking">Banking</h1>
+<p>Open <strong>Banking</strong> on the landing screen. It shows where your money came from and where it went, drawn from the bank files you give it.</p>
+<p><strong>Bookkeeper never connects to a bank and never asks for a bank login.</strong> You download a CSV export from your bank's website yourself and drop it in. Bookkeeper reads that file on your Mac. It does not go online for Banking at all.</p>
+<p><a class="shot" href="img/spending.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="Banking, Spending lens: rings by category and merchant, with the latest lines and the biggest categories beside them" src="img/spending.png" /></a></p>
+<h2 id="bring-in-a-file">Bring in a file</h2>
+<ol>
+<li>On your bank's website, export your transactions as a CSV.</li>
+<li>Drop the file anywhere on the Bookkeeper window. Or choose File, then <strong>Import CSV…</strong>, or press Shift-Command-I.</li>
+</ol>
+<p>Banking starts empty, with the invitation "Drop a bank CSV here". Settings, in Banking, also has an <strong>Import CSV…</strong> button.</p>
+<h2 id="three-lenses-income-spending-total">Three lenses: Income, Spending, Total</h2>
+<p>A switch under the ring picks what the ring counts. Every lens uses the same month bars across the top, the 1M to All range buttons, and the same layout.</p>
+<h3 id="spending">Spending</h3>
+<p>The default. Everyday spending: money out, <strong>without</strong> your fixed costs. The line under the switch says what was set aside ("fixed costs excluded"). Fixed costs are the categories Rent, Utilities, Taxes, Insurance and Loans. You can mark your own categories as fixed too. Inner ring: categories. Outer ring: merchants.</p>
+<h3 id="income">Income</h3>
+<p>Money in. Inner ring: kinds of income. Outer ring: who paid you. The centre reads "Total received".</p>
+<p><a class="shot" href="img/banking-income.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="Banking, Income lens: money received, in one ring by payer, with the latest paychecks beside it" src="img/banking-income.png" /></a></p>
+<h3 id="total">Total</h3>
+<p>All spending, with the fixed costs put back. Rent, utilities and the rest are in the ring, and the panel is headed "Total spending". The centre reads "Total spent".</p>
+<p><a class="shot" href="img/banking-total.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="Banking, Total lens: all spending with rent and other fixed costs included" src="img/banking-total.png" /></a></p>
+<p>Under the switch, every lens shows "transfers excluded" with the amount. See <a href="#transfers-and-card-payments-stay-out">Transfers</a> below.</p>
+<h2 id="open-a-category">Open a category</h2>
+<p>Click a slice, or a category in the list. The ring zooms into that category: its months as bars, its merchants as slices, its latest lines with the bank's own text under each name.</p>
+<p><a class="shot" href="img/spending-drill.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="One category opened: its months as bars, its merchants as slices, the latest lines with the bank's own text under each name" src="img/spending-drill.png" /></a></p>
+<h2 id="banks-it-already-knows">Banks it already knows</h2>
+<p>These need no teaching:</p>
+<ul>
+<li>Chase (card and checking)</li>
+<li>Bank of America (checking)</li>
+<li>Wells Fargo</li>
+<li>Capital One</li>
+<li>American Express</li>
+<li>Citi</li>
+<li>Discover</li>
+<li>Apple Card</li>
+</ul>
+<h2 id="a-bank-it-does-not-know">A bank it does not know</h2>
+<p>Drop a file from another bank and a screen headed "New bank shape — show me which column is which, once." appears.</p>
+<p><a class="shot" href="img/teach.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The teaching screen: each column of the file is given a role, with a live preview below" src="img/teach.png" /></a></p>
+<ol>
+<li>Above each column, pick what it is: Date, Description, Amount, or Ignore. If money out and money in have their own columns, pick those instead.</li>
+<li>Say how money out shows up: negative or positive.</li>
+<li>Check the format shown beside "Date looks like".</li>
+<li>Read the preview underneath. It re-reads the file live as you change things.</li>
+<li>Name the bank, then click <strong>Save recipe &amp; import</strong>. Or click <strong>Not now</strong> to leave the file alone.</li>
+</ol>
+<p>Next time a file of that shape arrives, Bookkeeper knows it.</p>
+<h2 id="overlapping-exports">Overlapping exports</h2>
+<p>Exports tend to overlap: last month's file and this month's share a few days. Drop them both. Lines Bookkeeper has already seen are not counted twice. After each import it tells you what happened, such as "212 new · 40 already here · 3 to review".</p>
+<p>Lines that look nearly the same, or look like transfers, wait in a <strong>To review</strong> queue until you answer them.</p>
+<h2 id="transfers-and-card-payments-stay-out">Transfers and card payments stay out</h2>
+<p>Paying your credit card from your checking account is not spending; the spending was on the card. A move to savings is not spending either. Bookkeeper marks these "Internal transfer": "Money moving between your own accounts — a card payment, a move to savings. Never counted as spending or income." Their total shows under the ring as "transfers excluded".</p>
+<p>If it gets one wrong, open the line and change what it <strong>Counts as</strong>.</p>
+<h2 id="rename-a-merchant-once">Rename a merchant once</h2>
+<p>Bank lines are shouted in capitals and padded with numbers. Open a line and give it a <strong>Name</strong>. You can also change its category. Then choose how far the change goes:</p>
+<ul>
+<li><strong>Just this one</strong>, or</li>
+<li>all the lines like it, which also covers future imports.</li>
+</ul>
+<p>The original text from the bank stays visible in the line's detail ("from the bank: …").</p>
+<h2 id="start-over">Start over</h2>
+<p>Settings, in Banking, has <strong>Start over…</strong>. It deletes every bank file, entry, name and rule on this Mac. Crypto is not touched. It cannot be undone.</p>
+    <footer class="turn"><a class="prev" href="03-first-run.html">‹ First run</a><a class="next" href="05-crypto.html">Crypto ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#bring-in-a-file">Bring in a file</a></li>
+<li><a href="#three-lenses-income-spending-total">Three lenses: Income, Spending, Total</a></li>
+<li><a href="#open-a-category">Open a category</a></li>
+<li><a href="#banks-it-already-knows">Banks it already knows</a></li>
+<li><a href="#a-bank-it-does-not-know">A bank it does not know</a></li>
+<li><a href="#overlapping-exports">Overlapping exports</a></li>
+<li><a href="#transfers-and-card-payments-stay-out">Transfers and card payments stay out</a></li>
+<li><a href="#rename-a-merchant-once">Rename a merchant once</a></li>
+<li><a href="#start-over">Start over</a></li></ul></aside>
+</div>
+</body>
+</html>

@@ -35,37 +35,22 @@
   <main>
 <h1 id="trials-and-profiles">Trials and profiles</h1>
 <p>Every Mac is different. So XMRange measures yours.</p>
+<p><img alt="A trial: hashrate divided by watts gives hashes per watt, measured for each core count, priority and Low Power Mode state; 4 minutes of warm-up, then 4 minutes measured" src="img/trial-math.png" /></p>
+<p><img alt="Each setting is measured for 8 minutes, then Quiet, Balanced and Max are picked from the results" src="img/trial-flow.png" /></p>
 <h2 id="run-trials">Run trials</h2>
-<p>Open the <strong>tuning</strong> tab. The seeker card shows the button: <strong>start trials</strong> the first time, <strong>continue trials</strong> if you stopped part way, and <strong>run trials again</strong> when all are done. If nothing is mining, it starts mining first.</p>
-<p>A trial is one setup, held and measured. Each one takes 8 minutes: 4 minutes of warm-up that is never scored, then 4 minutes of measuring. The card shows "trial N of M", the time left, and a time estimate for the whole run. Close other apps first for the best results.</p>
-<p>The set of trials covers:</p>
-<ul>
-<li>every core count, from 1 up to all of them;</li>
-<li>the higher core counts again at background priority;</li>
-<li>on Apple Silicon, the efficiency cores alone.</li>
-</ul>
-<p>Expect a few hours on a Mac with many cores. You can <strong>pause</strong>, <strong>stop</strong> and later <strong>continue</strong>. Finished trials are kept.</p>
-<p>While trials run, your temperature and battery limits do not apply. The trials need a steady Mac.</p>
-
+<p>Open the <strong>tuning</strong> tab. The seeker card shows the button: <strong>start trials</strong> the first time, <strong>continue trials</strong> if you stopped part way, <strong>run trials again</strong> when all are done. If nothing is mining, it starts mining first. Close other apps first.</p>
+<p>The card shows "trial N of M", the time left, and an estimate for the whole run. Expect a few hours on a Mac with many cores. You can <strong>pause</strong>, <strong>stop</strong> and later <strong>continue</strong>. Finished trials are kept. While trials run, your temperature and battery limits do not apply.</p>
 <p><a class="shot" href="img/tuning-trial.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The tuning tab mid-trial with the seeker log" src="img/tuning-trial.png" /></a></p>
 <h2 id="low-power-mode-on-laptops">Low Power Mode on laptops</h2>
-<p>On a laptop, the trials also run with Low Power Mode on and off, because it changes how the Mac runs CPU work. XMRange cannot switch it for you, since that needs administrator rights. So it asks, and shows "turn it on in battery settings" with <strong>skip</strong> and <strong>stop</strong> beside it.</p>
-<p>The <strong>low power</strong> card on the machine tab opens a short guide: <strong>open battery settings</strong>, select Low Power Mode, choose Always or Only on Power Adapter. A "detected" tick shows once macOS reports it on. After both states are measured, the card shows the change in h/w for the balanced profile.</p>
-<p>This needs macOS 12 or later. On a Mac without it, the cards are hidden.</p>
+<p>On a laptop, the trials also run with Low Power Mode on and off. XMRange cannot switch it for you, since that needs administrator rights. So it asks: "turn it on in battery settings", with <strong>skip</strong> and <strong>stop</strong> beside it.</p>
+<p>The <strong>low power</strong> card on the machine tab opens a short guide: <strong>open battery settings</strong>, select Low Power Mode, choose Always or Only on Power Adapter. A "detected" tick shows once macOS reports it on. Needs macOS 12 or later; on a Mac without it, the cards are hidden.</p>
 <h2 id="the-profiles">The profiles</h2>
-<p>When trials exist, the <strong>profile</strong> card offers three pills. Each shows its h/w and setup.</p>
-<ul>
-<li><strong>quiet:</strong> mines on the efficiency cores at background priority. Other apps get the CPU first. On a Mac without efficiency cores, a small band of cores at background priority.</li>
-<li><strong>balanced:</strong> about half of the cores. The rest stay free for you.</li>
-<li><strong>max:</strong> every core, for the most hashes.</li>
-</ul>
-<p>Before any trials, the pills are off and the card says "run trials first". If you set cores by hand, the card reads "manual · your own cores".</p>
-<p>The trials card lists every measured setup, best first. A row sets that setup directly.</p>
+<p>When trials exist, the <strong>profile</strong> card offers three pills, each with its h/w and setup. Before any trials the pills are off and the card says "run trials first". If you set cores by hand, it reads "manual · your own cores". The trials card lists every measured setup, best first. A row sets that setup directly.</p>
 <h2 id="limits">Limits</h2>
 <p>Both live in settings and apply to normal mining.</p>
 <ul>
-<li><strong>pause above:</strong> a CPU temperature in °F, from 100 to 230. Blank means off. Mining pauses after the CPU stays at or over it for 30 seconds. It resumes after the CPU stays a little under it for 60 seconds. The tape says "paused · over your temperature limit".</li>
-<li><strong>mine on:</strong> <strong>battery too</strong> (the default) or <strong>adapter only</strong>. With adapter only, mining pauses on battery with "paused · on battery" and resumes when you plug in. Desktop Macs do not show this row.</li>
+<li><strong>pause above:</strong> a CPU temperature in °F, from 100 to 230. Blank means off. Mining pauses after the CPU stays at or over it for 30 seconds, and resumes after it stays a little under for 60 seconds. The tape says "paused · over your temperature limit".</li>
+<li><strong>mine on:</strong> <strong>battery too</strong> (the default) or <strong>adapter only</strong>. With adapter only, mining pauses on battery ("paused · on battery") and resumes when you plug in. Desktop Macs do not show this row.</li>
 </ul>
 <p>If you press resume yourself during a limit pause, that overrides it until the condition clears.</p>
     <footer class="turn"><a class="prev" href="03-first-run.html">‹ First run</a><a class="next" href="05-default-wallet.html">The default wallet ›</a></footer>
