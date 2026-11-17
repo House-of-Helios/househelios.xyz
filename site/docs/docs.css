@@ -136,7 +136,7 @@ main th { font-family: Fraunces, Georgia, serif; color: var(--hue); }
   main h1 { font-size: 1.9rem; }
 }
 .doc-card .shot img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
-main p > img[src*="map"], main p > img[src*="trial-"] { display: block; margin: 1.2rem 0; border-radius: 0.8rem; border: 1px solid var(--line); }
+main p > img[src*="map"], main p > img[src*="trial-"], main p > img[src*="compare"] { display: block; margin: 1.2rem 0; border-radius: 0.8rem; border: 1px solid var(--line); }
 
 /* 🌗 The moon/sun bottom right (Scriptorium's ThemeToggle). */
 .theme-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 3; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.4); }

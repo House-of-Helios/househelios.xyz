@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problem reports · Bookkeeper docs · House of Helios</title>
+<meta name="description" content="Bookkeeper docs: Problem reports.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/bookeeper.png" alt="" width="28" height="28">Bookkeeper</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/bookkeeper/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Bookkeeper docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-banking.html">Banking</a></li>
+<li><a href="05-crypto.html">Crypto</a></li>
+<li><a href="06-stocks.html">Stocks</a></li>
+<li><a href="07-privacy.html">Privacy</a></li>
+<li><a href="08-updates.html">Updates</a></li>
+<li><a href="09-feedback.html" aria-current="page">Problem reports</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="problem-reports">Problem reports</h1>
+<p>Something wrong, or an idea? Bookkeeper can write the report for you, show you every word of it, and send it only if you say so.</p>
+<p><a class="shot" href="img/report-sheet.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The Send feedback sheet: a note, the full report underneath, and Copy, Save…, Cancel and Send" src="img/report-sheet.png" /></a></p>
+<h2 id="how-to-report-a-problem">How to report a problem</h2>
+<ol>
+<li>Open Settings and choose <strong>Send feedback…</strong>. If Bookkeeper closed unexpectedly, it offers the same sheet the next time it opens.</li>
+<li>Write what happened under <strong>What happened?</strong> The report below fills in as you type.</li>
+<li>Read the report. Change or delete anything you like.</li>
+<li>Press <strong>Send</strong>, or <strong>Copy</strong> or <strong>Save…</strong> to pass it on yourself. <strong>Cancel</strong> sends nothing.</li>
+</ol>
+<h2 id="what-a-report-holds">What a report holds</h2>
+<p>The Bookkeeper and macOS versions, the kind of Mac, the look, whether Tor is on, how many wallets and banks you have (counts only), the last 40 lines of Bookkeeper's own log (if it has written any), and your note.</p>
+<p>Before you see it, Bookkeeper takes out home folder names, wallet addresses, amounts, IP addresses, e-mail addresses and the names of your own machines. Bank lines are never put in. Names you type into the note yourself, such as a shop, are yours: the box shows them, and you can delete them before you press Send.</p>
+<h2 id="see-it-for-yourself">See it for yourself</h2>
+<p>Below is one report with a private thing of every kind planted in it: a wallet address, a bitcoin address, an amount, an e-mail address, a home folder, an IP address and a machine name. On the left is what the app saw. On the right is what Send hands the sender.</p>
+<p><img alt="One report before and after: the wallet, bitcoin address, amount, e-mail, home folder, IP address and machine name on the left are each replaced on the right by a stand-in such as [address] or [ip]" src="img/report-compare.png" /></p>
+<p>Bookkeeper's own code made both sides. The two files are in the repository, <a href="https://github.com/House-of-Helios/bookkeeper/blob/main/docs/site/examples/report-input.txt"><code>docs/site/examples/report-input.txt</code></a> and <a href="https://github.com/House-of-Helios/bookkeeper/blob/main/docs/site/examples/report-sent.txt"><code>report-sent.txt</code></a>. A test checks them against the code every time, and fails if either one is out of date.</p>
+<p><strong>What you see in the box is exactly what is sent, byte for byte.</strong> Nothing is added or changed after you press Send. The sender is <code>house-report</code>, and its source is public: <a href="https://github.com/House-of-Helios/xmrange/tree/main/crates/house-report">House-of-Helios/xmrange, crates/house-report</a>.</p>
+<h2 id="where-it-goes">Where it goes</h2>
+<p><strong>Send</strong> seals the report with a key that belongs to Bookkeeper alone, so only its makers can open it. It signs the report with a key made for that one report, and hands it through Tor to four public Nostr relays: <code>nos.lol</code>, <code>relay.primal.net</code>, <code>relay.snort.social</code> and <code>nostr.mom</code>. The relays hold sealed text for 30 days.</p>
+<p>There is no account, no e-mail and no server of the House's own, and your IP address is never seen. If Tor is not connected, or no relay takes it, the sheet says so and nothing is sent; <strong>Copy</strong> and <strong>Save…</strong> still work.</p>
+<p>Send is in version 2.0.23 and later. See <a href="07-privacy.html">Privacy</a> for everything else that leaves the Mac.</p>
+    <footer class="turn"><a class="prev" href="08-updates.html">‹ Updates</a><span></span></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#how-to-report-a-problem">How to report a problem</a></li>
+<li><a href="#what-a-report-holds">What a report holds</a></li>
+<li><a href="#see-it-for-yourself">See it for yourself</a></li>
+<li><a href="#where-it-goes">Where it goes</a></li></ul></aside>
+</div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
+</body>
+</html>

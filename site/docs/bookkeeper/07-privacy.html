@@ -32,6 +32,7 @@
 <li><a href="06-stocks.html">Stocks</a></li>
 <li><a href="07-privacy.html" aria-current="page">Privacy</a></li>
 <li><a href="08-updates.html">Updates</a></li>
+<li><a href="09-feedback.html">Problem reports</a></li>
     </ol></details>
   </nav>
   <main>
@@ -71,7 +72,7 @@
 </tr>
 <tr>
 <td><code>nos.lol</code>, <code>relay.primal.net</code>, <code>relay.snort.social</code>, <code>nostr.mom</code></td>
-<td>A problem report, only when you press <strong>Send</strong> (arriving in a coming version; see below)</td>
+<td>A problem report, only when you press <strong>Send</strong> (from version 2.0.23; see below)</td>
 <td>Nothing readable: the report is sealed so only the House can open it, from a one-time sender.</td>
 </tr>
 </tbody>
@@ -87,9 +88,9 @@
 <p>Bookkeeper keeps no automatic error log that leaves the Mac. Nothing about a crash or a problem is sent unless you send it.</p>
 <ul>
 <li><strong>When.</strong> Settings has <strong>Send feedback…</strong>. If Bookkeeper closed unexpectedly, it offers the same sheet the next time it opens. Close the sheet and nothing happens.</li>
-<li><strong>What it holds.</strong> The Bookkeeper version, the macOS version, the kind of Mac (Apple silicon or Intel), the look and whether Tor is on, how many wallets and banks you have (counts only), the last 40 lines of Bookkeeper's own log, and what you write. Before you see it, Bookkeeper takes out home folder names, wallet addresses, amounts, IP addresses, e-mail addresses and the names of your own machines. Bank lines are never put in at all.</li>
+<li><strong>What it holds.</strong> The Bookkeeper version, the macOS version, the kind of Mac (Apple silicon or Intel), the look and whether Tor is on, how many wallets and banks you have (counts only), the last 40 lines of Bookkeeper's own log, and what you write. Before you see it, Bookkeeper takes out home folder names, wallet addresses, amounts, IP addresses, e-mail addresses and the names of your own machines. Bank lines are never put in at all. <a href="09-feedback.html">Problem reports</a> shows a worked example, before and after.</li>
 <li><strong>You see all of it.</strong> The whole report is shown before anything happens, and you can edit or delete any of it.</li>
-<li><strong>Where it goes.</strong> <strong>Copy</strong> and <strong>Save…</strong> keep it with you, to pass on however you like. <strong>Send</strong> (arriving in a coming version; until then it is dimmed) seals the report so only the House of Helios can read it, signs it with a key made for that one report, and hands it through Tor to the four public Nostr relays above. The relays hold sealed text for 30 days. No account, no e-mail, no server of the House's own, and your IP address is never seen.</li>
+<li><strong>Where it goes.</strong> <strong>Copy</strong> and <strong>Save…</strong> keep it with you, to pass on however you like. <strong>Send</strong> (from version 2.0.23) seals the report so only Bookkeeper's makers can read it, with a key that belongs to Bookkeeper alone, signs it with a key made for that one report, and hands it through Tor to the four public Nostr relays above. The relays hold sealed text for 30 days. No account, no e-mail, no server of the House's own, and your IP address is never seen.</li>
 </ul>
 <h2 id="no-fallback-to-direct">No fallback to direct</h2>
 <p>If Tor cannot connect, nothing is fetched. Bookkeeper waits with the last prices it has. It does not quietly go direct.</p>
