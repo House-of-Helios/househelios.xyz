@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First run · Bookkeeper docs · House of Helios</title>
+<meta name="description" content="Bookkeeper docs: First run.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/bookeeper.png" alt="" width="28" height="28">Bookkeeper docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/bookkeeper/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Bookkeeper docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html" aria-current="page">First run</a></li>
+<li><a href="04-holdings.html">Holdings (Crypto)</a></li>
+<li><a href="05-spending.html">Spending (Banking)</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="first-run">First run</h1>
+<p>Here is what happens the first time you open Bookkeeper.</p>
+<ol>
+<li><strong>A beat of the mark.</strong> The window is see-through for a few seconds while a ring draws itself around the Bookkeeper mark. It is not loading anything; it is the old-fashioned way of saying hello.</li>
+<li><strong>The landing.</strong> The name, big, and three doors beneath it.</li>
+</ol>
+<ul>
+<li><strong>Banking</strong> opens the spending side. See <a href="05-spending.html">Spending</a>.</li>
+<li><strong>Crypto</strong> opens your holdings. See <a href="04-holdings.html">Holdings</a>.</li>
+<li><strong>Stocks</strong> is dimmed and says "Coming soon". It does not open.</li>
+</ul>
+<h2 id="tor-starts-in-the-background">Tor starts in the background</h2>
+<p>Prices and logos are fetched through Tor, which is bundled inside the app. On a first start Tor has to download its directory, which usually takes a few seconds and can take a minute. Bookkeeper waits for it before asking for anything. While it connects, Settings shows "Connecting to Tor · a first start can take a minute". When it is ready, it shows "Connected through Tor".</p>
+<p>Nothing is fetched until Tor is up. See <a href="06-privacy.html">Privacy</a>.</p>
+<h2 id="where-your-data-lives">Where your data lives</h2>
+<p>Everything is stored on your Mac, in:</p>
+<p><code>~/Library/Application Support/Bookkeeper/</code></p>
+<p>These are plain files you can read and back up. The crypto side keeps <code>wallets.txt</code>, <code>history.csv</code> and <code>quotes.json</code> there; spending lives in a <code>spending</code> folder beside them. Nothing is stored anywhere else.</p>
+<p>A fresh install is empty. Crypto starts with no wallets and Banking waits for its first file.</p>
+    <footer class="turn"><a class="prev" href="02-install.html">‹ Install</a><a class="next" href="04-holdings.html">Holdings (Crypto) ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#tor-starts-in-the-background">Tor starts in the background</a></li>
+<li><a href="#where-your-data-lives">Where your data lives</a></li></ul></aside>
+</div>
+</body>
+</html>

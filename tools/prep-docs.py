@@ -20,7 +20,7 @@ house = root.parent
 # room id: (name, folder, accent, dark, download link or None)
 ROOMS = {
     'xmrange': ('XMRange', 'XMRange', '#39ad7d', '#008344', 'https://github.com/House-of-Helios/xmrange/releases/latest'),
-    'bookkeeper': ('Bookkeeper', 'Bookkeeper', '#39ad7d', '#008344', None),
+    'bookkeeper': ('Bookkeeper', 'Bookkeeper', '#39ad7d', '#008344', 'https://github.com/House-of-Helios/bookkeeper/releases/latest'),
 }
 MARKS = {'xmrange': 'xmrange', 'bookkeeper': 'bookeeper'}   # site/rooms/<mark>.png
 

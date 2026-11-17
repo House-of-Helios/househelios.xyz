@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · Bookkeeper docs · House of Helios</title>
+<meta name="description" content="Bookkeeper docs: Privacy.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/bookeeper.png" alt="" width="28" height="28">Bookkeeper docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/bookkeeper/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Bookkeeper docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-holdings.html">Holdings (Crypto)</a></li>
+<li><a href="05-spending.html">Spending (Banking)</a></li>
+<li><a href="06-privacy.html" aria-current="page">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="privacy">Privacy</h1>
+<p>Bookkeeper has no account, no analytics, no ads and no AI. This page lists everything that leaves your Mac, and says what does not.</p>
+<h2 id="what-leaves-the-mac">What leaves the Mac</h2>
+<p>Every lookup goes through Tor, which is bundled inside the app (<a href="https://gitlab.torproject.org/tpo/core/arti">Arti</a>, the Tor Project's Rust client). The sites below see a Tor exit, not your IP address.</p>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>What for</th>
+<th>What it learns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>coins.llama.fi</code></td>
+<td>Prices and price history</td>
+<td>The coins being priced. Not which wallet, nor how much.</td>
+</tr>
+<tr>
+<td><code>token-icons.llamao.fi</code>, <code>icons.llamao.fi</code></td>
+<td>Token logos</td>
+<td>The tokens whose logos are fetched.</td>
+</tr>
+<tr>
+<td><code>api.coingecko.com</code></td>
+<td>A few long-tail prices and logos. Your demo key is sent here only if you added one.</td>
+<td>The few coins DefiLlama does not cover.</td>
+</tr>
+<tr>
+<td><code>github.com</code></td>
+<td>The update feed, and the download when you install an update</td>
+<td>That someone checked for or fetched a release.</td>
+</tr>
+</tbody>
+</table>
+<p>Prices refresh every 5 minutes while the app is open. Update checks are covered in <a href="07-updates.html">Updates</a>.</p>
+<h2 id="what-never-leaves">What never leaves</h2>
+<ul>
+<li><strong>Bank data.</strong> Your CSVs, lines, names and rules stay on the Mac. Banking never goes online, and the app says so in Settings.</li>
+<li><strong>Your wallets and amounts.</strong> You type them in yourself; no address is looked up and nothing is sent.</li>
+<li><strong>Keys.</strong> Bookkeeper never asks for a wallet key.</li>
+</ul>
+<h2 id="no-fallback-to-direct">No fallback to direct</h2>
+<p>If Tor cannot connect, nothing is fetched. Bookkeeper waits with the last prices it has. It does not quietly go direct.</p>
+<p>There is one switch, and it is yours. Settings in Crypto has a <strong>TOR</strong> section with "through Tor" and "direct" for prices and logos. It is on "through Tor" from the start. Choosing "direct" sends lookups straight from your connection, and the app then says that DefiLlama and CoinGecko can see your IP address.</p>
+<h2 id="where-things-are-kept">Where things are kept</h2>
+<p>Everything lives in <code>~/Library/Application Support/Bookkeeper/</code>, as plain files you can read and back up. See <a href="03-first-run.html">First run</a>.</p>
+    <footer class="turn"><a class="prev" href="05-spending.html">‹ Spending (Banking)</a><a class="next" href="07-updates.html">Updates ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#what-leaves-the-mac">What leaves the Mac</a></li>
+<li><a href="#what-never-leaves">What never leaves</a></li>
+<li><a href="#no-fallback-to-direct">No fallback to direct</a></li>
+<li><a href="#where-things-are-kept">Where things are kept</a></li></ul></aside>
+</div>
+</body>
+</html>

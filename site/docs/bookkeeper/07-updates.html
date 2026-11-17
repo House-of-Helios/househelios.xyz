@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Updates · Bookkeeper docs · House of Helios</title>
+<meta name="description" content="Bookkeeper docs: Updates.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/bookeeper.png" alt="" width="28" height="28">Bookkeeper docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/bookkeeper/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Bookkeeper docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-holdings.html">Holdings (Crypto)</a></li>
+<li><a href="05-spending.html">Spending (Banking)</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html" aria-current="page">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="updates">Updates</h1>
+<p>Bookkeeper updates itself from the project's GitHub releases. Nothing else is involved, and there is no update server.</p>
+<h2 id="how-it-checks">How it checks</h2>
+<p>While the app is open it looks at the latest GitHub release, through Tor, at most once an hour. If Tor is not up yet or the network is down, it simply tries again on a later pass.</p>
+<h2 id="how-it-trusts-an-update">How it trusts an update</h2>
+<p>An update from the internet is only as good as the checks on it. Each one passes two before anything is unpacked:</p>
+<ol>
+<li><strong>SHA-256.</strong> The download must match the fingerprint published with the release.</li>
+<li><strong>Ed25519 signature.</strong> The release is signed with the project's private key, kept off the internet. The matching public key is built into the app (see <code>BookkeeperCore/Sources/BookkeeperCore/ReleaseFeed.swift</code> in the source). A download that fails either check is thrown away, and the app says so.</li>
+</ol>
+<h2 id="installing">Installing</h2>
+<p>When a newer version is found, Bookkeeper fetches it quietly in the background. The landing screen then shows a card: "Bookkeeper X is ready" (X being the version), with the release notes.</p>
+<p><img alt="The landing screen with an update card reading &quot;Bookkeeper 2.0.1 is ready&quot; and an Install &amp; restart button" src="img/landing-update.png" /></p>
+<ol>
+<li>Click <strong>Install &amp; restart</strong>.</li>
+<li>Bookkeeper swaps in the new version and reopens.</li>
+</ol>
+<p>The pill at the top can also open a sheet with "What's new" for every version you have missed. It offers <strong>Later</strong> or <strong>Install &amp; restart</strong>.</p>
+<p>You can also ask by hand: Settings has a <strong>Check for updates</strong> button, with the current version beside it.</p>
+    <footer class="turn"><a class="prev" href="06-privacy.html">‹ Privacy</a><span></span></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#how-it-checks">How it checks</a></li>
+<li><a href="#how-it-trusts-an-update">How it trusts an update</a></li>
+<li><a href="#installing">Installing</a></li></ul></aside>
+</div>
+</body>
+</html>

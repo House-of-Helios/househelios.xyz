@@ -19,31 +19,35 @@ window.Home = (() => {
       rooms: ['workbench', 'house', 'lighthouse', 'deepthought', 'emissaries'],
     },
   };
-  // A room's card: mark (site/rooms/<mark>.png), name, tagline, a little more in grey, links.
+  // A room's card: mark (site/rooms/<mark>.png), name, tagline; on its own side a fuller account (`about`, from the
+  // room's README or docs), a screenshot when the room gives one (`shot`), its latest GitHub release (`repo`), links.
   const ROOMS = {
     artline: { mark: 'artline', name: 'Art Line NYC', tag: "All the city's art, in one place.",
-      more: 'New York art events from about a thousand venues, posted daily.',
-      links: [['Instagram', 'https://www.instagram.com/artline.nyc/']] },
+      about: ['New York art events from about a thousand venues, posted daily.'],
+      links: [['📷 Instagram', 'https://www.instagram.com/artline.nyc/']] },
     scriptorium: { mark: 'scriptorium', name: 'Scriptorium', tag: 'The most well-indexed quote database on the planet.',
-      more: 'Every quote is verified against its real source, carries its full context, and is scored.', links: [] },
-    bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'A quiet ledger for a Mac: what you hold in crypto, and where your money goes.',
-      more: 'Keeps your holdings without ever touching a wallet key.', links: [] },
+      about: ['Every quote is verified against its real source, carries its full context (the sentence before and after), is scored across two sets of dimensions, and is tagged with exactly two tones.'] },
+    bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'Local-first accounting.',
+      about: ['Bookkeeper keeps your holdings without ever touching a wallet key, reads the CSV your bank already lets you export, and draws the answers as rings you can touch.',
+        'It makes no account, takes no fee and sends no analytics. Every price lookup goes through Tor, and your bank lines never leave your Mac.'],
+      shot: 'docs/bookkeeper/img/card.png', repo: 'House-of-Helios/bookkeeper', arch: 'Apple silicon · macOS 14+', docs: 'docs/bookkeeper/' },
     xmrange: { mark: 'xmrange', name: 'XMRange', tag: "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.",
-      more: 'Runs on Apple silicon and Intel Macs, and needs no administrator password.',
-      links: [['Docs', 'docs/xmrange/'], ['Download', 'https://github.com/House-of-Helios/xmrange/releases/latest']] },
-    workbench: { mark: 'workbench', name: 'Workbench', tag: 'The one host app on both Macs.', more: "Every room's machinery plugs in as an app.", links: [] },
-    house: { mark: 'house', name: 'The House', tag: 'A native Mac HUD for the Claude agents at work across the House.',
-      more: 'Light, native SwiftUI. No web app.', links: [] },
-    lighthouse: { mark: 'lighthouse', name: 'The Lighthouse', tag: 'The Discord bots: Sensei, Hermes and Thoth.', more: 'Workbench keeps them running.', links: [] },
-    deepthought: { mark: 'deepthought', name: 'Deep Thought', tag: "Claude's own memory.", more: 'An Obsidian vault, and the healer jobs that tend it.', links: [] },
-    emissaries: { mark: 'emissaries', name: 'Emissaries', tag: 'The view from the hill.', more: 'Where every room stands, drawn for Helios.', links: [] },
+      about: ['It measures instead of guessing: trials try each setup on your own Mac and record the hashes per watt, and XMRange shows the electricity next to the earnings, so you can judge for yourself.',
+        'It runs on Apple silicon Macs, with a separate build for Intel. Everything stays on your Mac, and it never asks for an administrator password.'],
+      shot: 'docs/xmrange/img/card.png', repo: 'House-of-Helios/xmrange', docs: 'docs/xmrange/' },
+    workbench: { mark: 'workbench', name: 'Workbench', tag: 'The one host app on both Macs.', about: ["Every room's machinery plugs in as an app."] },
+    house: { mark: 'house', name: 'The House', tag: 'A native Mac HUD for the Claude agents.',
+      about: ['It shows the agents, healer loops and Deep Thought vault activity running across House of Helios. Light, native SwiftUI. No web app.'] },
+    lighthouse: { mark: 'lighthouse', name: 'The Lighthouse', tag: 'The Discord bots: Sensei, Hermes and Thoth.', about: ['Workbench keeps them running.'] },
+    deepthought: { mark: 'deepthought', name: 'Deep Thought', tag: "Claude's own memory.", about: ['An Obsidian vault, and the healer jobs that tend it.'] },
+    emissaries: { mark: 'emissaries', name: 'Emissaries', tag: 'The view from the hill.', about: ['Where every room stands, drawn for Helios.'] },
   };
   // 📜 About: opened from the House's round mark, on the same banner (netware's, re-dyed in the sun's amber). Words from
   // SOUL's "What the House is" and "What the House gives away".
   const ABOUT = {
     title: 'about', from: 'netware', edge: '#f0a830', dark: '#b06a12', about: true,
     card: { mark: 'helios', name: 'House of Helios', tag: 'One house, many rooms.',
-      body: ['House of Helios makes things for the public good: tools that help, data drawn for people who learn by seeing, sites that make a life a little larger, games and worlds to wander in.',
+      about: ['House of Helios makes things for the public good: tools that help, data drawn for people who learn by seeing, sites that make a life a little larger, games and worlds to wander in.',
         'Helios is an artist, an organizer, a friend and an architect. He sees in pictures and directs the vision. Claude does the building.',
         'What it gives away hangs here as three banners. Software: apps you install, free under GPL-3.0. Netware: networks and sites. Codeware: the tools that keep the House itself.',
         'A lesson learned in one room is light for all the others.'],
@@ -423,14 +427,39 @@ window.Home = (() => {
   const FLIP = 640;   // ms for the card to turn over
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   // A room's card (or About's): its mark at the head, name, tagline, a little more in grey, links.
-  const cardHtml = (c, back) => `
+  const GITHUB = '<img src="github.svg" alt="" width="26" height="26">';   // GitHub's mark, in its own file (path data reads like IP addresses to the leak scan)
+  // The download box: filled from the room's latest GitHub release (version, date, one button per zip). Until it
+  // answers, or if it never does, it still links to the releases page.
+  const getHtml = c => `
+    <div class="get" data-repo="${c.repo}" data-arch="${c.arch || ''}">
+      <a class="get-head" href="https://github.com/${c.repo}/releases/latest" target="_blank" rel="noopener">${GITHUB}<span><b>Download</b> <span class="get-ver">latest release on GitHub</span></span></a>
+      <ul class="get-files"><li></li><li></li></ul>
+    </div>`;
+  const fill = async el => {
+    const repo = el.dataset.repo, sizeMb = n => `${(n / 1048576).toFixed(1)} MB`;
+    try {
+      const r = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!r.ok) return;
+      const rel = await r.json();
+      const zips = rel.assets.filter(a => a.name.endsWith('.zip'));
+      const label = n => (/apple-silicon|arm64/i.test(n) ? 'Apple silicon' : /intel|x86/i.test(n) ? 'Intel' : el.dataset.arch || 'Mac');
+      el.querySelector('.get-ver').textContent = `${rel.tag_name} · ${new Date(rel.published_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
+      el.querySelector('.get-files').innerHTML = zips.map(a => `<li><a href="${a.browser_download_url}">${esc(label(a.name))}<small>${sizeMb(a.size)} · zip</small></a></li>`).join('');
+    } catch { /* offline or rate-limited: the head still links to the releases page */ }
+  };
+  // A room's card (or About's): its mark at the head, name, tagline, its fuller account, screenshot, download, links.
+  const cardHtml = (c, back) => {
+    const links = [...(c.docs ? [['📚 Docs', c.docs]] : []), ...(c.links || [])];
+    return `
     <img class="card-mark" src="rooms/${c.mark}.png" alt="">
     <h2 tabindex="-1">${esc(c.name)}</h2>
     <p class="card-tag">${esc(c.tag)}</p>
-    ${(c.body || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
-    ${c.more ? `<p class="card-more">${esc(c.more)}</p>` : ''}
-    ${c.links.length ? `<p class="card-links">${c.links.map(([t, u]) => `<a href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join(' · ')}</p>` : ''}
+    ${(c.about || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
+    ${c.shot ? `<img class="card-shot" src="${c.shot}" alt="${esc(c.name)} on screen">` : ''}
+    ${c.repo ? getHtml(c) : ''}
+    ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
     ${back ? '<button class="card-back" type="button">‹ back</button>' : ''}`;
+  };
   const unroll = b => {
     if (document.getElementById('ware')) return;
     const { ware } = b;
@@ -508,9 +537,8 @@ window.Home = (() => {
     };
     // The card starts where the icon's head is: the list leaves the painted icon its room above the words; a room's
     // card (or About) puts its own mark there instead.
-    let unit = 1, grown = 0;
+    let unit = 1;
     const draw = grow => {
-      grown = grow;
       lengthen(grow);
       pic.setAttribute('viewBox', `${all.x} ${all.y} ${all.width} ${all.height + grow}`);
       pic.style.height = `${(all.height + grow) * unit}px`;
@@ -520,20 +548,28 @@ window.Home = (() => {
       unit = banner.clientWidth / all.width;
       Object.assign(words.style, { left: `${(creamBox.x + 0.5 - all.x) * unit}px`, width: `${(creamBox.width - 1) * unit}px`, top: `${(ib.y - all.y) * unit}px` });
       if (front) front.style.paddingTop = `${(wordsTop - ib.y) * unit}px`;
-      card.style.setProperty('--mark', `${(ib.b - ib.y) * ICON * 0.8 * unit}px`);   // a room's mark: a touch smaller than the ware's icon
-      draw(need());
+      card.style.setProperty('--mark', `${(ib.b - ib.y) * ICON * 0.68 * unit}px`);   // a room's mark: smaller than the ware's icon, room for words (Helios)
+      // The banner keeps one length: as long as its tallest side (the list, or any room's card), measured once here.
+      let most = need();
+      if (front) {
+        const was = back.innerHTML, open = !back.hidden;
+        front.hidden = true; back.hidden = false;
+        for (const k of ware.rooms) { back.innerHTML = cardHtml(ROOMS[k], true); most = Math.max(most, need()); }
+        back.innerHTML = was; back.hidden = !open; front.hidden = open;
+      }
+      draw(most);
       Object.assign(close.style, { right: `${(all.x + all.width - (creamBox.x + creamBox.width) + 0.3) * unit}px`, top: `${(creamBox.y - all.y + 0.3) * unit}px` });
     };
     fit();
     // The painted icon, faded as one picture (its group, once reel() has made one).
     const iconEls = () => { const p = icon[0]?.parentNode; return p && p !== art ? [p] : icon; };
     // 🔄 The card turns over on its middle line: the side showing turns away to edge-on, the other side turns in. The
-    // cloth never moves; once the card is round, the banner's sides grow or shrink to the new side's length.
+    // cloth never moves, and neither does the banner's length.
     let turning = false, from = null;
     const turn = async (show, hide, focus) => {
       if (turning) return;
       turning = true;
-      const before = grown, ease = k => k * k * (3 - 2 * k);
+      const ease = k => k * k * (3 - 2 * k);
       const half = still ? 0 : FLIP / 2;
       const painted = iconEls(), toCard = show === back;
       await over(half, k => {
@@ -548,8 +584,6 @@ window.Home = (() => {
       });
       card.style.transform = '';
       if (!toCard) for (const el of painted) el.style.opacity = '';
-      const after = need();
-      await over(still ? 0 : 420, k => draw(before + (after - before) * ease(k)));
       focus?.focus({ preventScroll: true });
       turning = false;
     };
@@ -559,6 +593,8 @@ window.Home = (() => {
         if (!btn) return;
         from = btn;
         back.innerHTML = cardHtml(ROOMS[ware.rooms[+btn.dataset.room]], true);
+        const get = back.querySelector('.get');
+        if (get) fill(get);
         back.querySelector('.card-back').addEventListener('click', () => turn(front, back, from));
         turn(back, front, back.querySelector('h2'));
       });
