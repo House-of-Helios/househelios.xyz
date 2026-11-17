@@ -1,20 +1,42 @@
 /* 📚 A room's docs (rendered by tools/prep-docs.py): page list on the left, the page, its headings on the right.
-   The banner's cream and the room's own colours, so it reads as part of the House. */
+   The House's paper and ink are Scriptorium's (its global.css tokens), light and dark; each room brings its own
+   colour (--accent, --dark on <body>). Dark follows the OS unless the reader chose; the moon/sun bottom right flips it. */
 :root {
-  --cream: #fff6dd;
-  --ink: #30383f;
-  --soft: rgb(48 56 63 / 0.62);
-  --line: rgb(48 56 63 / 0.14);
+  color-scheme: light;
+  --bg: #f5f0e6; --bg-hi: #fbf8f0;
+  --paper: #fffdf8;
+  --ink: #211d16;
+  --soft: #8a8170;
+  --line: #e6dfce;
+  --bar: rgb(245 240 230 / 0.92);
+  --code: rgb(255 253 248 / 0.9);
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #15120d; --bg-hi: #1c1812; --paper: #211c15; --ink: #ece3d1; --soft: #998f7b; --line: #352f24;
+    --bar: rgb(21 18 13 / 0.92); --code: rgb(255 255 255 / 0.06);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #15120d; --bg-hi: #1c1812; --paper: #211c15; --ink: #ece3d1; --soft: #998f7b; --line: #352f24;
+  --bar: rgb(21 18 13 / 0.92); --code: rgb(255 255 255 / 0.06);
+}
+/* The room's colour for words: its deep shade by day, its bright one by night. */
+body { --hue: var(--dark); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body { --hue: var(--accent); } }
+:root[data-theme="dark"] body { --hue: var(--accent); }
 * { box-sizing: border-box; }
 html { scroll-padding-top: 4.5rem; }
 body {
   margin: 0;
-  background: var(--cream);
+  background: radial-gradient(ellipse at top, var(--bg-hi), var(--bg) 60%) fixed, var(--bg);
   color: var(--ink);
   font: 1.02rem/1.65 Georgia, 'Times New Roman', serif;
 }
-a { color: var(--dark); text-underline-offset: 3px; }
+a { color: var(--hue); text-underline-offset: 3px; }
 
 .top {
   position: sticky;
@@ -24,15 +46,15 @@ a { color: var(--dark); text-underline-offset: 3px; }
   align-items: center;
   gap: 1rem;
   padding: 0.6rem 16px;
-  background: rgb(255 246 221 / 0.94);
+  background: var(--bar);
   border-bottom: 3px solid var(--accent);
 }
 .top img { border-radius: 50%; vertical-align: middle; margin-right: 0.5rem; }
 .crumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.6rem; }
 .home, .room { font: 700 1rem/1.2 Fraunces, Georgia, serif; text-decoration: none; color: var(--ink); white-space: nowrap; }
-.home:hover, .room:hover { color: var(--dark); }
+.home:hover, .room:hover { color: var(--hue); }
 .sep { color: var(--soft); font-size: 1.2rem; }
-.room { color: var(--dark); }
+.room { color: var(--hue); }
 .get {
   margin-left: auto;
   padding: 0.35rem 1rem;
@@ -42,17 +64,17 @@ a { color: var(--dark); text-underline-offset: 3px; }
   font: 700 0.95rem/1.2 Fraunces, Georgia, serif;
   text-decoration: none;
 }
-.get.quiet { background: none; color: var(--dark); border: 1px solid var(--line); }
+.get.quiet { background: none; color: var(--hue); border: 1px solid var(--line); }
 
 /* 📚 The shelf: every room's docs as a card, its first picture on top. */
 .shelf { max-width: 60rem; margin: 0 auto; padding: 2.5rem 16px 4rem; }
-.shelf h1 { font: 700 2.6rem/1.1 Fraunces, Georgia, serif; color: var(--dark); margin: 0 0 0.5rem; }
+.shelf h1 { font: 700 2.6rem/1.1 Fraunces, Georgia, serif; color: var(--hue); margin: 0 0 0.5rem; }
 .lead { color: var(--soft); margin: 0 0 2rem; }
 .doc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.5rem; }
-.doc-card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; border-radius: 1rem; background: #fff; border: 1px solid var(--line); text-decoration: none; color: var(--ink); box-shadow: 0 18px 30px -26px rgb(40 30 10 / 0.6); transition: transform 0.15s ease; }
+.doc-card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; border-radius: 1rem; background: var(--paper); border: 1px solid var(--line); text-decoration: none; color: var(--ink); box-shadow: 0 18px 30px -26px rgb(40 30 10 / 0.6); transition: transform 0.15s ease; }
 .doc-card:hover { transform: translateY(-2px); }
 .doc-card .shot { margin: 0 0 0.4rem; box-shadow: 6px 8px 16px rgb(40 30 10 / 0.18); }
-.doc-name { display: flex; align-items: center; gap: 0.6rem; font: 700 1.35rem/1.2 Fraunces, Georgia, serif; color: var(--dark); }
+.doc-name { display: flex; align-items: center; gap: 0.6rem; font: 700 1.35rem/1.2 Fraunces, Georgia, serif; color: var(--hue); }
 .doc-name img { border-radius: 50%; }
 .doc-tag { color: var(--ink); }
 .doc-count { font: 0.68rem/1 ui-monospace, Menlo, monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); }
@@ -73,13 +95,13 @@ a { color: var(--dark); text-underline-offset: 3px; }
   color: var(--ink);
   text-decoration: none;
 }
-.pages a:hover, .toc a:hover { background: rgb(255 255 255 / 0.7); }
-.pages a[aria-current] { background: #fff; color: var(--dark); font-weight: 700; box-shadow: inset 3px 0 var(--accent); }
+.pages a:hover, .toc a:hover { background: var(--paper); }
+.pages a[aria-current] { background: var(--paper); color: var(--hue); font-weight: 700; box-shadow: inset 3px 0 var(--accent); }
 .pages, .toc { position: sticky; top: 4.5rem; align-self: start; }
 .toc p { margin: 0 0 0.4rem 0.7rem; font-size: 0.85rem; color: var(--soft); text-transform: lowercase; }
 .toc a { font-size: 0.92rem; color: var(--soft); }
 
-main h1, main h2, main h3 { font-family: Fraunces, Georgia, serif; color: var(--dark); line-height: 1.2; }
+main h1, main h2, main h3 { font-family: Fraunces, Georgia, serif; color: var(--hue); line-height: 1.2; }
 main h1 { font-size: 2.3rem; margin: 0 0 1rem; }
 main h2 { font-size: 1.45rem; margin: 2.2rem 0 0.6rem; padding-top: 1rem; border-top: 1px dashed var(--line); }
 main h3 { font-size: 1.15rem; margin: 1.6rem 0 0.4rem; }
@@ -91,13 +113,13 @@ main .shot img { display: block; width: 100%; }
 .shot-bar i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #ff5f57; }
 .shot-bar i:nth-child(2) { background: #febc2e; }
 .shot-bar i:nth-child(3) { background: #28c840; }
-main code { font: 0.9em ui-monospace, Menlo, monospace; background: rgb(255 255 255 / 0.75); padding: 0.1em 0.35em; border-radius: 0.3em; }
-main pre { overflow-x: auto; background: #fff; padding: 0.9rem 1rem; border-radius: 0.6rem; border: 1px solid var(--line); }
+main code { font: 0.9em var(--mono); background: var(--code); border: 1px solid var(--line); padding: 0.1em 0.35em; border-radius: 0.3em; }
+main pre { overflow-x: auto; background: var(--paper); padding: 0.9rem 1rem; border-radius: 0.6rem; border: 1px solid var(--line); }
 main pre code { background: none; padding: 0; }
-main blockquote { margin: 1rem 0; padding: 0.6rem 1rem; border-left: 3px solid var(--accent); background: rgb(255 255 255 / 0.6); border-radius: 0 0.5rem 0.5rem 0; }
+main blockquote { margin: 1rem 0; padding: 0.6rem 1rem; border-left: 3px solid var(--accent); background: var(--paper); border-radius: 0 0.5rem 0.5rem 0; }
 main table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; display: block; overflow-x: auto; }
 main th, main td { text-align: left; padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-main th { font-family: Fraunces, Georgia, serif; color: var(--dark); }
+main th { font-family: Fraunces, Georgia, serif; color: var(--hue); }
 .turn { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px dashed var(--line); }
 .turn a { font-family: Fraunces, Georgia, serif; font-weight: 700; text-decoration: none; }
 
@@ -109,9 +131,15 @@ main th { font-family: Fraunces, Georgia, serif; color: var(--dark); }
   .top { flex-wrap: wrap; gap: 0.4rem 1rem; }
   .wrap { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-top: 1rem; }
   .pages { position: static; }
-  .pages details { background: #fff; border-radius: 0.6rem; padding: 0.4rem; }
+  .pages details { background: var(--paper); border-radius: 0.6rem; padding: 0.4rem; }
   .pages summary { display: block; padding: 0.3rem 0.7rem; cursor: pointer; font-weight: 700; }
   main h1 { font-size: 1.9rem; }
 }
 .doc-card .shot img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
 main p > img[src*="map"], main p > img[src*="trial-"] { display: block; margin: 1.2rem 0; border-radius: 0.8rem; border: 1px solid var(--line); }
+
+/* 🌗 The moon/sun bottom right (Scriptorium's ThemeToggle). */
+.theme-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 3; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.4); }
+.theme-toggle svg { width: 1.1rem; height: 1.1rem; }
+.theme-toggle .ic-sun, .is-dark .theme-toggle .ic-moon { display: none; }
+.is-dark .theme-toggle .ic-sun { display: block; }

@@ -18,6 +18,8 @@ import markdown
 root = pathlib.Path(__file__).resolve().parent.parent
 house = root.parent
 # room id: (name, folder, accent, dark, download link or None)
+THEME_HEAD = "<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>"   # Scriptorium's no-flash theme resolver
+TOGGLE = '<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>\n<script>(function(){var r=document.documentElement,b=document.querySelector(\'.theme-toggle\'),mq=matchMedia(\'(prefers-color-scheme: dark)\');var eff=function(){return r.dataset.theme||(mq.matches?\'dark\':\'light\')};var sync=function(){r.classList.toggle(\'is-dark\',eff()===\'dark\')};sync();b.addEventListener(\'click\',function(){var n=eff()===\'dark\'?\'light\':\'dark\';r.dataset.theme=n;try{localStorage.setItem(\'theme\',n)}catch(e){}sync()});mq.addEventListener(\'change\',function(){if(!r.dataset.theme)sync()});})();</script>'   # Scriptorium's moon/sun toggle
 ROOMS = {
     'xmrange': ('XMRange', 'XMRange', '#39ad7d', '#008344', 'https://github.com/House-of-Helios/xmrange/releases/latest'),
     'bookkeeper': ('Bookkeeper', 'Bookkeeper', '#39ad7d', '#008344', 'https://github.com/House-of-Helios/bookkeeper/releases/latest'),
@@ -77,6 +79,7 @@ def build(room):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
 <link rel="stylesheet" href="../docs.css">
+{THEME_HEAD}
 </head>
 <body style="--accent:{accent};--dark:{dark}">
 <header class="top">
@@ -99,6 +102,7 @@ def build(room):
   </main>
   <aside class="toc" aria-label="On this page">{f"<p>On this page</p><ul>{toc}</ul>" if heads else ""}</aside>
 </div>
+{TOGGLE}
 </body>
 </html>
 '''
@@ -138,6 +142,7 @@ def index():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
 <link rel="stylesheet" href="docs.css">
+{THEME_HEAD}
 </head>
 <body style="--accent:#cb4142;--dark:#9f353b">
 <header class="top">
@@ -153,6 +158,7 @@ def index():
     {"".join(cards)}
   </div>
 </main>
+{TOGGLE}
 </body>
 </html>
 ''')

@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
 <link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
 </head>
 <body style="--accent:#39ad7d;--dark:#008344">
 <header class="top">
@@ -68,6 +69,11 @@
 <td>The update feed, and the download when you install an update</td>
 <td>That someone checked for or fetched a release.</td>
 </tr>
+<tr>
+<td><code>nos.lol</code>, <code>relay.primal.net</code>, <code>relay.snort.social</code>, <code>nostr.mom</code></td>
+<td>A problem report, only when you press <strong>Send</strong> (arriving in a coming version; see below)</td>
+<td>Nothing readable: the report is sealed so only the House can open it, from a one-time sender.</td>
+</tr>
 </tbody>
 </table>
 <p>Prices refresh every 5 minutes while the app is open. Update checks are covered in <a href="08-updates.html">Updates</a>.</p>
@@ -76,6 +82,14 @@
 <li><strong>Bank data.</strong> Your CSVs, lines, names and rules stay on the Mac. Banking never goes online, and the app says so in Settings. Bookkeeper has no bank login to leak, because it never asks for one.</li>
 <li><strong>Your wallets and amounts.</strong> You type them in yourself; no address is looked up and nothing is sent.</li>
 <li><strong>Keys.</strong> Bookkeeper never asks for a wallet key.</li>
+</ul>
+<h2 id="problem-reports">Problem reports</h2>
+<p>Bookkeeper keeps no automatic error log that leaves the Mac. Nothing about a crash or a problem is sent unless you send it.</p>
+<ul>
+<li><strong>When.</strong> Settings has <strong>Send feedback…</strong>. If Bookkeeper closed unexpectedly, it offers the same sheet the next time it opens. Close the sheet and nothing happens.</li>
+<li><strong>What it holds.</strong> The Bookkeeper version, the macOS version, the kind of Mac (Apple silicon or Intel), the look and whether Tor is on, how many wallets and banks you have (counts only), the last 40 lines of Bookkeeper's own log, and what you write. Before you see it, Bookkeeper takes out home folder names, wallet addresses, amounts, IP addresses, e-mail addresses and the names of your own machines. Bank lines are never put in at all.</li>
+<li><strong>You see all of it.</strong> The whole report is shown before anything happens, and you can edit or delete any of it.</li>
+<li><strong>Where it goes.</strong> <strong>Copy</strong> and <strong>Save…</strong> keep it with you, to pass on however you like. <strong>Send</strong> (arriving in a coming version; until then it is dimmed) seals the report so only the House of Helios can read it, signs it with a key made for that one report, and hands it through Tor to the four public Nostr relays above. The relays hold sealed text for 30 days. No account, no e-mail, no server of the House's own, and your IP address is never seen.</li>
 </ul>
 <h2 id="no-fallback-to-direct">No fallback to direct</h2>
 <p>If Tor cannot connect, nothing is fetched. Bookkeeper waits with the last prices it has. It does not quietly go direct.</p>
@@ -86,8 +100,11 @@
   </main>
   <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#what-leaves-the-mac">What leaves the Mac</a></li>
 <li><a href="#what-stays-on-the-mac">What stays on the Mac</a></li>
+<li><a href="#problem-reports">Problem reports</a></li>
 <li><a href="#no-fallback-to-direct">No fallback to direct</a></li>
 <li><a href="#where-things-are-kept">Where things are kept</a></li></ul></aside>
 </div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
 </body>
 </html>
