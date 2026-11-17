@@ -2,7 +2,8 @@
 # Before anything goes to GitHub: every file and every commit on the branch that leaves (default
 # `public`, built by tools/publish.sh; the local full history never leaves) must carry no private
 # data. Usage: tools/check-publish.sh [ref]. Looks for home-directory paths, e-mail addresses,
-# attribution lines and public IPv4 addresses (allowed: private and documentation ranges). Prints
+# attribution lines and public IPv4 addresses (allowed: private and documentation ranges; the House business
+# address on the About card). Prints
 # counts and where, never the matched text. Exit 1 on any finding.
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -15,7 +16,7 @@ report() { # <label> <text>
   local label="$1" text="$2" n
   n=$(grep -cE "/Users/$ME|$HOME" <<<"$text" || true)
   [ "$n" -gt 0 ] && { echo "FOUND: $label: $n line(s) with this Mac's home path or user name"; fail=1; }
-  n=$(grep -oiE '[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}' <<<"$text" | grep -viE '^git@|@example\.com$' | sort -u | wc -l | tr -d ' ')
+  n=$(grep -oiE '[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}' <<<"$text" | grep -viE '^git@|@example\.com$|^houseofhelios@proton\.me$' | sort -u | wc -l | tr -d ' ')
   [ "$n" -gt 0 ] && { echo "FOUND: $label: $n e-mail address(es)"; fail=1; }
   # The pattern is split ("co-author"+"ed-by") so this file never matches itself.
   n=$(grep -ciE "co-author""ed-by|generated with \[?claude" <<<"$text" || true)
