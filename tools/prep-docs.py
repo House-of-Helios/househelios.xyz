@@ -80,8 +80,11 @@ def build(room):
 </head>
 <body style="--accent:{accent};--dark:{dark}">
 <header class="top">
-  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
-  <span class="room"><img src="../../rooms/{MARKS[room]}.png" alt="" width="28" height="28">{name} docs</span>
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/{MARKS[room]}.png" alt="" width="28" height="28">{name}</a>
+  </nav>
   {get}
 </header>
 <div class="wrap">
@@ -104,5 +107,58 @@ def build(room):
     print(f'{room}: {len(meta)} pages → site/docs/{room}/')
 
 
+TAGS = {'xmrange': "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.", 'bookkeeper': 'Local-first accounting.'}
+
+
+def index():
+    """site/docs/index.html: every room's docs, one card each, with its first page's first picture."""
+    cards = []
+    for room, (name, folder, accent, dark, _) in ROOMS.items():
+        d = root / 'site' / 'docs' / room
+        pages = sorted(d.glob('[0-9][0-9]-*.html'))
+        if not pages:
+            continue
+        shot = re.search(r'src="(img/[^"]+)"', pages[0].read_text())
+        pic = f'<span class="shot"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img src="{room}/{shot.group(1)}" alt=""></span>' if shot else ''
+        cards.append(f'''<a class="doc-card" href="{room}/" style="--accent:{accent};--dark:{dark}">
+      {pic}
+      <span class="doc-name"><img src="../rooms/{MARKS[room]}.png" alt="" width="36" height="36">{name}</span>
+      <span class="doc-tag">{html.escape(TAGS.get(room, ''))}</span>
+      <span class="doc-count">{len(pages)} pages</span>
+    </a>''')
+    (root / 'site' / 'docs' / 'index.html').write_text(f'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · House of Helios</title>
+<meta name="description" content="Docs for the House of Helios apps: how to install them, use them, and what stays on your Mac.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="docs.css">
+</head>
+<body style="--accent:#cb4142;--dark:#9f353b">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="./" aria-current="page"><img src="../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+  </nav>
+  <a class="get quiet" href="../home.html">The Home</a>
+</header>
+<main class="shelf">
+  <h1>Docs</h1>
+  <p class="lead">How to install each of the House's apps, how to use it, and what stays on your Mac.</p>
+  <div class="doc-cards">
+    {"".join(cards)}
+  </div>
+</main>
+</body>
+</html>
+''')
+    print(f'docs index: {len(cards)} rooms')
+
+
 for r in (sys.argv[1:] or ROOMS):
     build(r)
+index()

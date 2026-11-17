@@ -475,7 +475,7 @@ window.Home = (() => {
     ${(c.about || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
     ${c.shot ? shotHtml(c) : ''}
     ${c.repo ? getHtml(c) : ''}
-    ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a class="pill" href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
+    ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a class="pill" href="${u}"${u.startsWith('http') || u.startsWith('docs/') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
 `;
   };
   const unroll = b => {

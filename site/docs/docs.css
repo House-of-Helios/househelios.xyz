@@ -28,7 +28,10 @@ a { color: var(--dark); text-underline-offset: 3px; }
   border-bottom: 3px solid var(--accent);
 }
 .top img { border-radius: 50%; vertical-align: middle; margin-right: 0.5rem; }
+.crumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.6rem; }
 .home, .room { font: 700 1rem/1.2 Fraunces, Georgia, serif; text-decoration: none; color: var(--ink); white-space: nowrap; }
+.home:hover, .room:hover { color: var(--dark); }
+.sep { color: var(--soft); font-size: 1.2rem; }
 .room { color: var(--dark); }
 .get {
   margin-left: auto;
@@ -39,6 +42,20 @@ a { color: var(--dark); text-underline-offset: 3px; }
   font: 700 0.95rem/1.2 Fraunces, Georgia, serif;
   text-decoration: none;
 }
+.get.quiet { background: none; color: var(--dark); border: 1px solid var(--line); }
+
+/* 📚 The shelf: every room's docs as a card, its first picture on top. */
+.shelf { max-width: 60rem; margin: 0 auto; padding: 2.5rem 16px 4rem; }
+.shelf h1 { font: 700 2.6rem/1.1 Fraunces, Georgia, serif; color: var(--dark); margin: 0 0 0.5rem; }
+.lead { color: var(--soft); margin: 0 0 2rem; }
+.doc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.5rem; }
+.doc-card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; border-radius: 1rem; background: #fff; border: 1px solid var(--line); text-decoration: none; color: var(--ink); box-shadow: 0 18px 30px -26px rgb(40 30 10 / 0.6); transition: transform 0.15s ease; }
+.doc-card:hover { transform: translateY(-2px); }
+.doc-card .shot { margin: 0 0 0.4rem; box-shadow: 6px 8px 16px rgb(40 30 10 / 0.18); }
+.doc-name { display: flex; align-items: center; gap: 0.6rem; font: 700 1.35rem/1.2 Fraunces, Georgia, serif; color: var(--dark); }
+.doc-name img { border-radius: 50%; }
+.doc-tag { color: var(--ink); }
+.doc-count { font: 0.68rem/1 ui-monospace, Menlo, monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); }
 
 .wrap {
   display: grid;
@@ -68,7 +85,7 @@ main h2 { font-size: 1.45rem; margin: 2.2rem 0 0.6rem; padding-top: 1rem; border
 main h3 { font-size: 1.15rem; margin: 1.6rem 0 0.4rem; }
 main img { max-width: 100%; height: auto; }
 /* 🖼️ A screenshot as a little Mac window; click for full size. */
-main .shot { display: block; margin: 1.2rem 0; border-radius: 0.7rem; overflow: hidden; background: #fff; box-shadow: 8px 10px 20px rgb(40 30 10 / 0.25); cursor: zoom-in; }
+.shot, main .shot { display: block; margin: 1.2rem 0; border-radius: 0.7rem; overflow: hidden; background: #fff; box-shadow: 8px 10px 20px rgb(40 30 10 / 0.25); cursor: zoom-in; }
 main .shot img { display: block; width: 100%; }
 .shot-bar { display: flex; gap: 0.42rem; padding: 0.55rem 0.7rem; background: #ece8e1; }
 .shot-bar i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #ff5f57; }
@@ -96,3 +113,4 @@ main th { font-family: Fraunces, Georgia, serif; color: var(--dark); }
   .pages summary { display: block; padding: 0.3rem 0.7rem; cursor: pointer; font-weight: 700; }
   main h1 { font-size: 1.9rem; }
 }
+.doc-card .shot img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
