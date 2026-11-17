@@ -54,7 +54,10 @@ def build(room):
         src_md = re.sub(r'^( +)(?=[-*] |\d+\. )', lambda m: m.group(1) * 2, p.read_text(), flags=re.M)
         body = md.convert(src_md)
         body = re.sub(r'href="(\d\d-[^".#]+)\.md(#[^"]*)?"', lambda m: f'href="{m.group(1)}.html{m.group(2) or ""}"', body)
-        body = re.sub(r'<!--.*?-->', '', body, flags=re.S)   # the room's notes to itself (where a screenshot will go)
+        body = re.sub(r'<!--.*?-->', '', body, flags=re.S)
+        # Screenshots sit in a little Mac window (red, yellow, green lights) and open full size on click; small
+        # pieces of the app (a pill, a badge) stay bare.
+        body = re.sub(r'<img ([^>]*?)src="(img/[^"]+)"([^>]*)>', lambda m: m.group(0) if 'pill' in m.group(2) else f'<a class="shot" href="{m.group(2)}" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img {m.group(1)}src="{m.group(2)}"{m.group(3)}></a>', body)   # the room's notes to itself (where a screenshot will go)
         heads = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body)
         nav = '\n'.join(f'<li><a href="{f}"{" aria-current=\"page\"" if f == file else ""}>{html.escape(t)}</a></li>' for _, t, f in meta)
         toc = '\n'.join(f'<li><a href="#{a}">{t}</a></li>' for a, t in heads)

@@ -30,11 +30,12 @@ window.Home = (() => {
     bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'Local-first accounting.',
       about: ['Bookkeeper keeps your holdings without ever touching a wallet key, reads the CSV your bank already lets you export, and draws the answers as rings you can touch.',
         'It makes no account, takes no fee and sends no analytics. Every price lookup goes through Tor, and your bank lines never leave your Mac.'],
-      shot: 'docs/bookkeeper/img/card.png', repo: 'House-of-Helios/bookkeeper', arch: 'Apple silicon · macOS 14+', docs: 'docs/bookkeeper/' },
+      shot: ['docs/bookkeeper/img/spending.png', 1440, 1150],   // the Banking screen (Helios)
+      repo: 'House-of-Helios/bookkeeper', arch: 'Apple silicon · macOS 14+', docs: 'docs/bookkeeper/' },
     xmrange: { mark: 'xmrange', name: 'XMRange', tag: "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.",
       about: ['It measures instead of guessing: trials try each setup on your own Mac and record the hashes per watt, and XMRange shows the electricity next to the earnings, so you can judge for yourself.',
         'It runs on Apple silicon Macs, with a separate build for Intel. Everything stays on your Mac, and it never asks for an administrator password.'],
-      shot: 'docs/xmrange/img/card.png', repo: 'House-of-Helios/xmrange', docs: 'docs/xmrange/' },
+      shot: ['docs/xmrange/img/card.png', 1440, 900], repo: 'House-of-Helios/xmrange', docs: 'docs/xmrange/' },
     workbench: { mark: 'workbench', name: 'Workbench', tag: 'The one host app on both Macs.', about: ["Every room's machinery plugs in as an app."] },
     house: { mark: 'house', name: 'The House', tag: 'A native Mac HUD for the Claude agents.',
       about: ['It shows the agents, healer loops and Deep Thought vault activity running across House of Helios. Light, native SwiftUI. No web app.'] },
@@ -426,6 +427,19 @@ window.Home = (() => {
   const BIG = { unroll: 1180, up: 0.015, close: 600, fade: 700, out: 220 };   // ms to unroll; half the small ones' spring; ms to roll back up; fade: icon and words in; out: before rolling up
   const FLIP = 640;   // ms for the card to turn over
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  // 🖼️ A screenshot sits in a little Mac window (the red, yellow and green lights in its bar); click it to see it big.
+  const WINDOW = '<span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span>';
+  const enlarge = btn => {
+    const view = document.createElement('div');
+    view.id = 'shot-view';
+    view.innerHTML = `<figure class="shot big">${WINDOW}${btn.querySelector('img').outerHTML}</figure>`;
+    document.body.appendChild(view);
+    const shut = () => { view.remove(); removeEventListener('keydown', key, true); btn.focus({ preventScroll: true }); };
+    const key = e => { if (e.key === 'Escape') { e.stopImmediatePropagation(); shut(); } };   // Escape closes the picture, not the banner
+    addEventListener('keydown', key, true);
+    view.addEventListener('click', shut);
+    fade([view], 0, 1, still ? 0 : 200);
+  };
   // A room's card (or About's): its mark at the head, name, tagline, a little more in grey, links.
   const GITHUB = '<img src="github.svg" alt="" width="26" height="26">';   // GitHub's mark, in its own file (path data reads like IP addresses to the leak scan)
   // The download box: filled from the room's latest GitHub release (version, date, one button per zip). Until it
@@ -455,7 +469,7 @@ window.Home = (() => {
     <h2 tabindex="-1">${esc(c.name)}</h2>
     <p class="card-tag">${esc(c.tag)}</p>
     ${(c.about || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
-    ${c.shot ? `<img class="card-shot" src="${c.shot}" alt="${esc(c.name)} on screen">` : ''}
+    ${c.shot ? `<button class="shot" type="button" aria-label="See ${esc(c.name)} bigger">${WINDOW}<img src="${c.shot[0]}" width="${c.shot[1]}" height="${c.shot[2]}" alt="${esc(c.name)} on screen"></button>` : ''}
     ${c.repo ? getHtml(c) : ''}
     ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
     ${back ? '<button class="card-back" type="button">‹ back</button>' : ''}`;
@@ -595,6 +609,7 @@ window.Home = (() => {
         back.innerHTML = cardHtml(ROOMS[ware.rooms[+btn.dataset.room]], true);
         const get = back.querySelector('.get');
         if (get) fill(get);
+        back.querySelector('.shot')?.addEventListener('click', e => enlarge(e.currentTarget));
         back.querySelector('.card-back').addEventListener('click', () => turn(front, back, from));
         turn(back, front, back.querySelector('h2'));
       });
