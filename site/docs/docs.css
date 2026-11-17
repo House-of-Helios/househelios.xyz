@@ -114,3 +114,4 @@ main th { font-family: Fraunces, Georgia, serif; color: var(--dark); }
   main h1 { font-size: 1.9rem; }
 }
 .doc-card .shot img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+main p > img[src*="map"] { display: block; margin: 1.2rem 0; border-radius: 0.8rem; border: 1px solid var(--line); }
