@@ -1,0 +1,11 @@
+version 2.0.23 · macOS 15.2 · arm64 · light · Tor on · wallets 3 · banks 2
+
+note:
+Balance showed $4,506.20 then 0. My e-mail is jane@example.com, wallet bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq.
+
+log:
+2026-11-17T12:01:03Z  launch 2.0.23
+2026-11-17T12:01:19Z  tor ready
+2026-11-17T12:02:44Z  price lookup for 0x52908400098527886E0F7030069857D2E4169EE7 failed
+2026-11-17T12:02:45Z  save failed: /Users/jane/Library/Application Support/Bookkeeper/wallets.txt
+2026-11-17T12:02:46Z  peer 192.168.1.23 on janes-macbook.local refused

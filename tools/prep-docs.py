@@ -42,8 +42,9 @@ def build(room):
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
-    if (src / 'img').is_dir():
-        shutil.copytree(src / 'img', out / 'img')
+    for sub in ('img', 'examples'):   # pictures, and example files a page links to
+        if (src / sub).is_dir():
+            shutil.copytree(src / sub, out / sub)
     meta = []
     for p in pages:
         text = p.read_text()

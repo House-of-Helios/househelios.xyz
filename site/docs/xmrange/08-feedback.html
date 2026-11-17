@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problem reports · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: Problem reports.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">What XMRange is</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-trials-and-profiles.html">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html">The default wallet</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+<li><a href="08-feedback.html" aria-current="page">Problem reports</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="problem-reports">Problem reports</h1>
+<p>Something wrong, or an idea? XMRange can write the report for you, show you every word of it, and send it only if you say so.</p>
+<p><a class="shot" href="img/report-sheet.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The feedback sheet: the kind, a note, the full report in an editable box, and close, copy, save as and send" src="img/report-sheet.png" /></a></p>
+<h2 id="how-to-report-a-problem">How to report a problem</h2>
+<ol>
+<li>Open settings and choose <strong>send feedback…</strong>. If XMRange closed unexpectedly, it offers the same sheet the next time it opens: <strong>send report…</strong> in a line under the tabs (the <strong>×</strong> dismisses it, and nothing is sent).</li>
+</ol>
+<p><a class="shot" href="img/crash-offer.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The one-time offer after an unexpected close" src="img/crash-offer.png" /></a></p>
+<ol start="2">
+<li>Pick the kind (problem, idea, or crash after an offer) and write what happened under <strong>your note</strong>. The report below fills in as you type.</li>
+<li>Read the report. Change or delete anything you like.</li>
+<li>Press <strong>send</strong>, or <strong>copy</strong> or <strong>save as…</strong> to pass it on yourself. <strong>close</strong> sends nothing.</li>
+</ol>
+<h2 id="what-a-report-holds">What a report holds</h2>
+<p>The XMRange and macOS versions, the kind of Mac (Apple silicon or Intel), the chip and model, the pool and whether Tor is on, how many cores are running, your cost inputs, the number of trials, the last lines of the log, the hourly figures, and your note.</p>
+<p>Before you see it, XMRange takes out your wallet address, IP addresses, your home folder (shown as <code>~</code>), the names of this Mac and your worker name. Names you type into the note yourself are removed only if they match this Mac's names. Anything else you typed is yours: the box shows it, and you can delete it before you press send.</p>
+<h2 id="see-it-for-yourself">See it for yourself</h2>
+<p>Below is one report with a private thing of every kind planted in it: a wallet address, two IP addresses, a computer name, a home folder and a worker name. On the left is what the app saw, struck through in red. On the right is what send hands the sender, with the stand-ins in green: <code>[wallet removed]</code>, <code>ip hidden</code>, <code>[private]</code> and <code>~</code>.</p>
+<p><img alt="One report before and after: the wallet, IP addresses, computer name, worker name and home folder on the left are each replaced on the right by a stand-in" src="img/report-compare.png" /></p>
+<p>XMRange's own code made both sides. The two files are in the repository, <a href="examples/report-input.txt">examples/report-input.txt</a> and <a href="examples/report-sent.txt">examples/report-sent.txt</a>. A test checks them against the code every time, and fails if either one is out of date.</p>
+<p><strong>What you see in the box is exactly what is sent, byte for byte.</strong> Nothing is added or changed after you press send. The sender is <code>house-report</code>, and its source is public: <a href="https://github.com/House-of-Helios/xmrange/tree/main/crates/house-report">crates/house-report</a>, with the cleaning in <a href="https://github.com/House-of-Helios/xmrange/blob/main/crates/xmrange-core/src/report.rs">crates/xmrange-core/src/report.rs</a>.</p>
+<h2 id="where-it-goes">Where it goes</h2>
+<p><strong>send</strong> seals the report with a key that belongs to XMRange alone, so only its makers can open it. It signs the report with a one-time key made for that one report, and hands it through Tor to four public Nostr relays: <code>nos.lol</code>, <code>relay.primal.net</code>, <code>relay.snort.social</code> and <code>nostr.mom</code>. The relays keep the sealed text for 30 days.</p>
+<p>There is no account, no e-mail and no server of the House's own, and your IP address is never seen. If Tor is not connected, or no relay takes it, the sheet says so and nothing is sent; <strong>copy</strong> and <strong>save as…</strong> still work.</p>
+<p>Send arrives in version 0.0.2. See <a href="06-privacy.html">Privacy</a> for everything else that leaves the Mac.</p>
+    <footer class="turn"><a class="prev" href="07-updates.html">‹ Updates</a><span></span></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#how-to-report-a-problem">How to report a problem</a></li>
+<li><a href="#what-a-report-holds">What a report holds</a></li>
+<li><a href="#see-it-for-yourself">See it for yourself</a></li>
+<li><a href="#where-it-goes">Where it goes</a></li></ul></aside>
+</div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
+</body>
+</html>

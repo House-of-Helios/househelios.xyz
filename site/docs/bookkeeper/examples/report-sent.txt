@@ -1,0 +1,18 @@
+# bookkeeper 2.0.23 — problem report
+
+## What happened
+Balance showed [amount] then 0. My e-mail is [email], wallet [address].
+
+## This Mac
+- macOS 15.2, arm64
+- Look: light · Tor: on
+- Wallets: 3 · Banks: 2
+
+## Last 5 log lines
+```
+2026-11-17T12:01:03Z  launch 2.0.23
+2026-11-17T12:01:19Z  tor ready
+2026-11-17T12:02:44Z  price lookup for [address] failed
+2026-11-17T12:02:45Z  save failed: ~/Library/Application Support/Bookkeeper/wallets.txt
+2026-11-17T12:02:46Z  peer [ip] on [host] refused
+```
