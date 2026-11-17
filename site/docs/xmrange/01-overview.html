@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What XMRange is · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: What XMRange is.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html" aria-current="page">What XMRange is</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-trials-and-profiles.html">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html">The default wallet</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="what-xmrange-is">What XMRange is</h1>
+<p>XMRange is a Mac app that mines Monero (XMR) on your CPU. It has one goal: the most hashes for every watt your Mac spends.</p>
+<p>It runs on Apple Silicon Macs. A separate build runs on Intel Macs. Everything stays on your Mac, and it never asks for an administrator password.</p>
+
+
+<h2 id="who-it-is-for">Who it is for</h2>
+<p>You have a Mac. You want to see what it can do, quietly, and you want to know what it costs you. XMRange shows the electricity next to the earnings, so you can judge for yourself.</p>
+<h2 id="what-it-does">What it does</h2>
+<ul>
+<li><strong>It measures instead of guessing.</strong> "run trials" tries each setup on your own Mac and records the hashes per watt. Results stay on the Mac.</li>
+<li><strong>It gives you three profiles from those trials.</strong><ul>
+<li><strong>quiet:</strong> a few cores at background priority.</li>
+<li><strong>balanced:</strong> about half of the cores, at the best hashes per watt.</li>
+<li><strong>max:</strong> every core.</li>
+</ul>
+</li>
+<li><strong>It offers two pools.</strong><ul>
+<li><strong>moneroocean:</strong> the simple way to start.</li>
+<li><strong>p2pool:</strong> no pool operator. It needs a Monero node, either the one the Monero GUI runs or one that XMRange runs for you.</li>
+</ul>
+</li>
+<li><strong>It uses Tor by default.</strong> The pool sees a Tor exit, not your IP address. You can turn this off.</li>
+<li><strong>It can pause itself.</strong> Above a CPU temperature you choose, or while the Mac is on battery.</li>
+</ul>
+<h2 id="what-is-on-the-screen">What is on the screen</h2>
+<p>Three tabs: <strong>mining</strong>, <strong>machine</strong> and <strong>tuning</strong>. A pool switch at the top. A gear for settings, and a button for light and dark.</p>
+<h2 id="what-it-does-not-do">What it does not do</h2>
+<p>It sends no telemetry and no crash reports. It does not use sudo. It is a native window, not a website.</p>
+<p>The license is GPL-3.0-or-later. The code is open.</p>
+<p>Next: <a href="02-install.html">Install</a>.</p>
+    <footer class="turn"><span></span><a class="next" href="02-install.html">Install ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#who-it-is-for">Who it is for</a></li>
+<li><a href="#what-it-does">What it does</a></li>
+<li><a href="#what-is-on-the-screen">What is on the screen</a></li>
+<li><a href="#what-it-does-not-do">What it does not do</a></li></ul></aside>
+</div>
+</body>
+</html>

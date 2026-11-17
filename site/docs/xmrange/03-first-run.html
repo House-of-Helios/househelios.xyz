@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First run · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: First run.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">What XMRange is</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html" aria-current="page">First run</a></li>
+<li><a href="04-trials-and-profiles.html">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html">The default wallet</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="first-run">First run</h1>
+<h2 id="the-notice">The notice</h2>
+<p>On first launch a short notice sits above the cards. It says two things.</p>
+<blockquote>
+<p>Your pool sees your wallet address, the worker name you typed and your hashrate. Tor is on, so it sees a Tor exit, not your IP address. Nothing else leaves this Mac.</p>
+<p>Mining pays the default wallet (GhostDrip dev wallet) until you add yours: <strong>use yours →</strong> on the wallet card.</p>
+</blockquote>
+<p>If you turned Tor off, the first line says the pool sees your IP address instead.</p>
+<p>The wallet line shows only while the default wallet is in use. The notice goes away when you press the <strong>×</strong>, or after you start mining.</p>
+
+
+<h2 id="1-add-your-wallet">1. Add your wallet</h2>
+<p>Find the <strong>wallet</strong> card on the mining tab. Click the address, or the pencil in its corner. A box opens with the hint "your monero address".</p>
+<ul>
+<li>Paste your address. The hint counts to 95 characters and says "format is correct" when it fits.</li>
+<li>Press <strong>save</strong>, or <strong>cancel</strong>.</li>
+<li>Later, <strong>use default</strong> returns to the default wallet.</li>
+</ul>
+<p>Until you save your own address, the card reads "default · ghostdrip dev wallet". See <a href="05-default-wallet.html">The default wallet</a>.</p>
+
+
+<h2 id="2-name-your-worker-optional">2. Name your worker (optional)</h2>
+<p>The <strong>worker</strong> card holds a name the pool shows next to your hashrate. Click it to change it. It is visible to the pool, so do not use your real name.</p>
+<h2 id="3-choose-a-pool">3. Choose a pool</h2>
+<p>At the top, pick <strong>moneroocean</strong> or <strong>p2pool</strong>.</p>
+<ul>
+<li><strong>moneroocean</strong> needs nothing else.</li>
+<li><strong>p2pool</strong> needs a Monero node. A guide opens from the node card: use the Monero GUI's local node, or let XMRange run its own. For its own node, open settings, set <strong>monero node</strong> to <strong>xmrange</strong>, then <strong>choose folder</strong> for the chain. The first sync takes a day or more.</li>
+</ul>
+<p>The pool you pick applies the next time you start.</p>
+<h2 id="4-start">4. Start</h2>
+<p>On the <strong>hashrate</strong> card press <strong>start</strong>. While it runs the same button reads <strong>pause</strong>, and there is a <strong>stop</strong> beside it.</p>
+<h2 id="the-cards">The cards</h2>
+<p><strong>mining tab</strong>
+- <strong>hashrate:</strong> the live rate, with the run buttons.
+- <strong>h/w:</strong> hashes per watt. In settings, <strong>watts counted</strong> chooses <strong>whole mac</strong> or <strong>cpu only</strong>.
+- <strong>cores:</strong> how many cores mine. You can change the number by hand.
+- <strong>earned</strong> and <strong>cost:</strong> earnings and electricity for a day, week or month. Click to change the period. Cost uses the rate you set in settings, per kWh.
+- <strong>wallet</strong> and <strong>worker:</strong> as above.
+- <strong>uptime:</strong> time since you opened the app.
+- <strong>shares:</strong> accepted and rejected.
+- <strong>difficulty:</strong> set by the pool. (On p2pool, <strong>node</strong> and <strong>payouts</strong> take the place of shares and difficulty.)
+- <strong>logs:</strong> a running tape of what happens.</p>
+<p><strong>machine tab:</strong> power, chip, cpu, temperature (in °F), thermal state, memory, awake, and low power.</p>
+<p><strong>tuning tab:</strong> profile, seeker, core curve, trials, low power, watts counted. See <a href="04-trials-and-profiles.html">Trials and profiles</a>.</p>
+
+
+<h2 id="settings">Settings</h2>
+<p>The gear opens settings: electricity rate, theme, watts counted, tor, p2pool chain, monero node, xmr price, pause above, mine on, network, wallet and diagnostics. The privacy page explains the network ones.</p>
+    <footer class="turn"><a class="prev" href="02-install.html">‹ Install</a><a class="next" href="04-trials-and-profiles.html">Trials and profiles ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#the-notice">The notice</a></li>
+<li><a href="#1-add-your-wallet">1. Add your wallet</a></li>
+<li><a href="#2-name-your-worker-optional">2. Name your worker (optional)</a></li>
+<li><a href="#3-choose-a-pool">3. Choose a pool</a></li>
+<li><a href="#4-start">4. Start</a></li>
+<li><a href="#the-cards">The cards</a></li>
+<li><a href="#settings">Settings</a></li></ul></aside>
+</div>
+</body>
+</html>

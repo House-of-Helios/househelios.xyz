@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: Install.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">What XMRange is</a></li>
+<li><a href="02-install.html" aria-current="page">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-trials-and-profiles.html">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html">The default wallet</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="install">Install</h1>
+<h2 id="1-download">1. Download</h2>
+<p>Go to the releases page: https://github.com/House-of-Helios/xmrange/releases</p>
+<p>Each release has two zips. Pick the one that matches your Mac.</p>
+<ul>
+<li><code>XMRange-&lt;version&gt;-apple-silicon.zip</code> for Macs with an Apple chip (M1 and later).</li>
+<li><code>XMRange-&lt;version&gt;-intel.zip</code> for Macs with an Intel processor.</li>
+</ul>
+<p>The two apps are separate. Each one only updates to its own kind.</p>
+<h3 id="which-mac-do-i-have">Which Mac do I have?</h3>
+<p>Open the Apple menu and choose <strong>About This Mac</strong>.</p>
+<ul>
+<li>If you see <strong>Chip</strong> followed by a name like "Apple M2", take apple-silicon.</li>
+<li>If you see <strong>Processor</strong> followed by a name like "Intel Core i5", take intel.</li>
+</ul>
+
+
+<h2 id="2-check-the-download-optional">2. Check the download (optional)</h2>
+<p>Beside each zip sits a file with the same name ending in <code>.sha256</code>. It holds the zip's checksum. In Terminal, <code>shasum -a 256 &lt;the zip&gt;</code> prints the checksum of your copy. The two should match.</p>
+<h2 id="3-move-it-to-applications">3. Move it to Applications</h2>
+<p>Unzip the file. Drag <code>XMRange.app</code> into your Applications folder.</p>
+<h2 id="4-open-it-the-first-time">4. Open it the first time</h2>
+<p>Apple has not signed XMRange, so macOS stops the first open. This is expected. The app is ad-hoc signed, and you can read its source.</p>
+<p><strong>macOS 15 and later</strong></p>
+<ol>
+<li>Open XMRange once. macOS will refuse.</li>
+<li>Open System Settings, then Privacy &amp; Security.</li>
+<li>Scroll to the message about XMRange and click <strong>Open Anyway</strong>.</li>
+</ol>
+<p><strong>macOS 14 and earlier</strong></p>
+<ol>
+<li>Control-click XMRange in Applications.</li>
+<li>Choose <strong>Open</strong>, then confirm.</li>
+</ol>
+
+
+<p>You only do this once. Later updates arrive from inside the app (see <a href="07-updates.html">Updates</a>).</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Apple Silicon: macOS 11.3 or later.</li>
+<li>Intel: macOS 10.15 or later.</li>
+<li>Low Power Mode guidance needs macOS 12 or later.</li>
+<li>About 2.5 GB of free memory while mining.</li>
+<li>Only if you let XMRange run its own Monero node: about 140 GB of disk, on an APFS or Mac OS Extended drive. An external drive is fine.</li>
+</ul>
+<p>Next: <a href="03-first-run.html">First run</a>.</p>
+    <footer class="turn"><a class="prev" href="01-overview.html">‹ What XMRange is</a><a class="next" href="03-first-run.html">First run ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#1-download">1. Download</a></li>
+<li><a href="#2-check-the-download-optional">2. Check the download (optional)</a></li>
+<li><a href="#3-move-it-to-applications">3. Move it to Applications</a></li>
+<li><a href="#4-open-it-the-first-time">4. Open it the first time</a></li>
+<li><a href="#requirements">Requirements</a></li></ul></aside>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The default wallet · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: The default wallet.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">What XMRange is</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-trials-and-profiles.html">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html" aria-current="page">The default wallet</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="the-default-wallet">The default wallet</h1>
+<p>Until you add your own wallet, XMRange mines to the GhostDrip dev wallet. It is not an XMRange wallet. It belongs to the developer, and the app says so.</p>
+<p>You see it three places:</p>
+<ul>
+<li>the first-run notice;</li>
+<li>the wallet card, which reads "default · ghostdrip dev wallet";</li>
+<li>settings, on the wallet row.</li>
+</ul>
+<p>It exists so the app can run the moment you open it. If you leave it in place, your mining pays the developer.</p>
+<h2 id="use-your-own">Use your own</h2>
+<p>Click the address on the wallet card, paste your Monero address, press <strong>save</strong>. The address is 95 characters and starts with 4 or 8. The hint tells you when the format is right.</p>
+<p>To go back, edit the card and press <strong>use default</strong>.</p>
+<h2 id="where-your-wallet-lives">Where your wallet lives</h2>
+<p>Your address is plain text in the app's settings file. The pool sees it anyway. XMRange never passes it on a command line, and it does not use the macOS Keychain, so no password prompt appears.</p>
+    <footer class="turn"><a class="prev" href="04-trials-and-profiles.html">‹ Trials and profiles</a><a class="next" href="06-privacy.html">Privacy ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#use-your-own">Use your own</a></li>
+<li><a href="#where-your-wallet-lives">Where your wallet lives</a></li></ul></aside>
+</div>
+</body>
+</html>

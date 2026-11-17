@@ -4,28 +4,50 @@
 window.Home = (() => {
   const { NS, rand, still } = Kit;
 
-  // 🪧 What each banner opens onto. Words drawn from the House's own account of its wares (SOUL); Helios's own
-  // text, links and screenshots take their place when they come.
+  // 🪧 What each banner opens onto. Each ware's line is the House's own account of it (SOUL). Each room is described the
+  // way it describes itself: its tagline from its own README or landing page (Art Line's page, XMRange's session), and
+  // where a room has none yet, its line in SOUL's room table, until Helios gives his own.
   const WARES = {
-    software: {
-      title: 'software', edge: '#39ad7d', dark: '#008344',
-      line: 'Apps you install. Free, under GPL-3.0.',
-      rooms: [['bookeeper', 'Bookeeper', 'A Mac tracker for crypto holdings and spending, keyless, through Tor.'],
-        ['xmrange', 'XMRange', 'The best hashes per watt from CPU Monero mining on Macs, fully local.']],
-    },
+    software: { title: 'software', edge: '#39ad7d', dark: '#008344', line: 'Apps you install. Free, under GPL-3.0.', rooms: ['bookkeeper', 'xmrange'] },
     netware: {
       title: 'netware', edge: '#42aae0', dark: '#0789c7',
       line: 'Networks and sites. Every quote names its edition, every event its venue. A page here is readable by people and by agents.',
-      rooms: [['artline', 'Art Line NYC', 'New York art events, gathered from about a thousand venues and posted daily at @artline.nyc.'],
-        ['scriptorium', 'Scriptorium', 'Verified quotes, each grounded in its real public-domain text.']],
+      rooms: ['artline', 'scriptorium'],
     },
     codeware: {
-      title: 'codeware', edge: '#cb4142', dark: '#9f353b',
-      line: 'The tools that keep the House itself.',
-      rooms: [['workbench', 'Workbench', 'The one host app on both Macs.'], ['house', 'The House', 'A Mac HUD that watches the agents.'],
-        ['lighthouse', 'The Lighthouse', 'The Discord bots.'], ['deepthought', 'Deep Thought', 'A memory that carries lessons from room to room.'],
-        ['emissaries', 'Emissaries', 'The view from the hill.']],
+      title: 'codeware', edge: '#cb4142', dark: '#9f353b', line: 'The tools that keep the House itself.',
+      rooms: ['workbench', 'house', 'lighthouse', 'deepthought', 'emissaries'],
     },
+  };
+  // A room's card: mark (site/rooms/<mark>.png), name, tagline, a little more in grey, links.
+  const ROOMS = {
+    artline: { mark: 'artline', name: 'Art Line NYC', tag: "All the city's art, in one place.",
+      more: 'New York art events from about a thousand venues, posted daily.',
+      links: [['Instagram', 'https://www.instagram.com/artline.nyc/']] },
+    scriptorium: { mark: 'scriptorium', name: 'Scriptorium', tag: 'The most well-indexed quote database on the planet.',
+      more: 'Every quote is verified against its real source, carries its full context, and is scored.', links: [] },
+    bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'A quiet ledger for a Mac: what you hold in crypto, and where your money goes.',
+      more: 'Keeps your holdings without ever touching a wallet key.', links: [] },
+    xmrange: { mark: 'xmrange', name: 'XMRange', tag: "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.",
+      more: 'Runs on Apple silicon and Intel Macs, and needs no administrator password.',
+      links: [['Docs', 'docs/xmrange/'], ['Download', 'https://github.com/House-of-Helios/xmrange/releases/latest']] },
+    workbench: { mark: 'workbench', name: 'Workbench', tag: 'The one host app on both Macs.', more: "Every room's machinery plugs in as an app.", links: [] },
+    house: { mark: 'house', name: 'The House', tag: 'A native Mac HUD for the Claude agents at work across the House.',
+      more: 'Light, native SwiftUI. No web app.', links: [] },
+    lighthouse: { mark: 'lighthouse', name: 'The Lighthouse', tag: 'The Discord bots: Sensei, Hermes and Thoth.', more: 'Workbench keeps them running.', links: [] },
+    deepthought: { mark: 'deepthought', name: 'Deep Thought', tag: "Claude's own memory.", more: 'An Obsidian vault, and the healer jobs that tend it.', links: [] },
+    emissaries: { mark: 'emissaries', name: 'Emissaries', tag: 'The view from the hill.', more: 'Where every room stands, drawn for Helios.', links: [] },
+  };
+  // 📜 About: opened from the House's round mark, on the same banner (netware's, re-dyed in the sun's amber). Words from
+  // SOUL's "What the House is" and "What the House gives away".
+  const ABOUT = {
+    title: 'about', from: 'netware', edge: '#f0a830', dark: '#b06a12', about: true,
+    card: { mark: 'helios', name: 'House of Helios', tag: 'One house, many rooms.',
+      body: ['House of Helios makes things for the public good: tools that help, data drawn for people who learn by seeing, sites that make a life a little larger, games and worlds to wander in.',
+        'Helios is an artist, an organizer, a friend and an architect. He sees in pictures and directs the vision. Claude does the building.',
+        'What it gives away hangs here as three banners. Software: apps you install, free under GPL-3.0. Netware: networks and sites. Codeware: the tools that keep the House itself.',
+        'A lesson learned in one room is light for all the others.'],
+      links: [['houseofhelios@proton.me', 'mailto:houseofhelios@proton.me']] },
   };
   // Banners left to right: software, netware (hung higher, in the middle), codeware.
   const ORDER = ['software', 'netware', 'codeware'];
@@ -369,9 +391,22 @@ window.Home = (() => {
         Object.assign(door.style, { left: `${m.a * reach.x + m.e}px`, top: `${m.d * reach.y + m.f}px`, width: `${m.a * (reach.r - reach.x)}px`, height: `${m.d * (reach.b - reach.y)}px` });
       }
     };
+    // 📜 The House's round mark (the one squarish piece of the Text layer) opens About, on netware's banner re-dyed.
+    const mark = names.map(n => ({ n, r: n.getBBox() })).filter(({ r }) => Math.abs(r.width - r.height) < 1.5).sort((a, c) => c.r.width - a.r.width)[0];
+    if (mark) {
+      const door = document.createElement('button');
+      door.type = 'button';
+      door.className = 'ware-door';
+      door.textContent = 'About House of Helios';
+      doors.appendChild(door);
+      const net = list.find(x => x.ware.title === ABOUT.from);
+      const a = { g: mark.n, art: net.art, door, ware: ABOUT, reach: { x: mark.r.x, y: mark.r.y, r: mark.r.x + mark.r.width, b: mark.r.y + mark.r.height } };
+      door.addEventListener('click', () => unroll(a));
+      list.push(a);
+    }
     addEventListener('resize', place);
     // One, two, three: netware, software, codeware, a second apart.
-    const open = () => Promise.all(list.map(b => wait(UNROLL_ORDER.indexOf(b.ware.title) * STAGGER).then(async () => {
+    const open = () => Promise.all(list.filter(b => b.reel).map(b => wait(UNROLL_ORDER.indexOf(b.ware.title) * STAGGER).then(async () => {
       b.door.hidden = false;
       if (!still) await unfurl(b.reel, SETTLE.up, UNROLL, [b.name].filter(Boolean));
     })));
@@ -385,24 +420,40 @@ window.Home = (() => {
   const ICON = 0.7;         // the icon at the head of the big banner, against its painted size
   const SHADE = 0.49;   // how grey the clearing goes behind a big banner
   const BIG = { unroll: 1180, up: 0.015, close: 600, fade: 700, out: 220 };   // ms to unroll; half the small ones' spring; ms to roll back up; fade: icon and words in; out: before rolling up
+  const FLIP = 640;   // ms for the card to turn over
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  // A room's card (or About's): its mark at the head, name, tagline, a little more in grey, links.
+  const cardHtml = (c, back) => `
+    <img class="card-mark" src="rooms/${c.mark}.png" alt="">
+    <h2 tabindex="-1">${esc(c.name)}</h2>
+    <p class="card-tag">${esc(c.tag)}</p>
+    ${(c.body || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
+    ${c.more ? `<p class="card-more">${esc(c.more)}</p>` : ''}
+    ${c.links.length ? `<p class="card-links">${c.links.map(([t, u]) => `<a href="${u}"${u.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join(' · ')}</p>` : ''}
+    ${back ? '<button class="card-back" type="button">‹ back</button>' : ''}`;
   const unroll = b => {
     if (document.getElementById('ware')) return;
     const { ware } = b;
     const box = document.createElement('div');
     box.id = 'ware';
     box.innerHTML = `
-      <div class="ware-banner" role="dialog" aria-modal="true" aria-labelledby="ware-title" style="--dark:${ware.dark}">
+      <div class="ware-banner" role="dialog" aria-modal="true" aria-label="${ware.about ? 'About House of Helios' : ware.title}" style="--dark:${ware.dark}">
         <svg class="ware-art" aria-hidden="true"></svg>
-        <div class="ware-text">
-          <h2 id="ware-title">${ware.title}</h2>
-          <p class="ware-line">${ware.line}</p>
-          <ul>${ware.rooms.map(([mark, n, d]) => `<li><img src="rooms/${mark}.png" alt="" width="48" height="48"><div><b>${n}</b> ${d}</div></li>`).join('')}</ul>
-        </div>
+        <div class="ware-text"><div class="ware-card">
+          ${ware.about ? `<section class="face card">${cardHtml(ware.card, false)}</section>` : `
+          <section class="face front">
+            <h2>${ware.title}</h2>
+            <p class="ware-line">${ware.line}</p>
+            <ul>${ware.rooms.map(k => ROOMS[k]).map((r, i) => `<li><button type="button" data-room="${i}"><img src="rooms/${r.mark}.png" alt="" width="48" height="48"><span><b>${esc(r.name)}</b> ${esc(r.tag)}</span><i aria-hidden="true">›</i></button></li>`).join('')}</ul>
+          </section>
+          <section class="face card" hidden></section>`}
+        </div></div>
         <button class="ware-close" type="button" aria-label="Roll it back up">×</button>
       </div>`;
     document.body.appendChild(box);
     freeze();
     const banner = box.querySelector('.ware-banner'), pic = box.querySelector('.ware-art'), words = box.querySelector('.ware-text');
+    const card = box.querySelector('.ware-card'), front = box.querySelector('.front'), back = box.querySelector('.face.card');
     const close = box.querySelector('.ware-close');
     // The clearing dims itself (see VEIL). The old grey sheet stays as a test: a layer of its own beside the scrolling box,
     // one solid colour see-through by its opacity (#ware-shade in splash.css).
@@ -423,20 +474,31 @@ window.Home = (() => {
     const rod = kids.filter(k => { const r = k.getBBox(); return r.height < 1.3 && r.y < hook + 0.5; });
     const cloth = kids.filter(k => !rod.includes(k));
     const top = Math.min(...cloth.map(k => k.getBBox().y)), split = top + SPLIT;
-    const icon = cloth.filter(k => { const r = k.getBBox(); return k.getAttribute('fill') !== '#c2d5db' && r.y > top + 1 && r.width < all.width * 0.8; });
+    let icon = cloth.filter(k => { const r = k.getBBox(); return k.getAttribute('fill') !== '#c2d5db' && r.y > top + 1 && r.width < all.width * 0.8; });
     const cream = cloth.find(k => k.getAttribute('fill') === '#ffe5ae');
     const creamBox = cream.getBBox();
-    const ib = icon.map(k => k.getBBox()).reduce((a, r) => ({ x: Math.min(a.x, r.x), y: Math.min(a.y, r.y), r: Math.max(a.r, r.x + r.width), b: Math.max(a.b, r.y + r.height) }), { x: Infinity, y: Infinity, r: -Infinity, b: -Infinity });
+    const ib = union(icon);
     const icx = (ib.x + ib.r) / 2;
     for (const k of icon) k.setAttribute('transform', `translate(${icx} ${ib.y}) scale(${ICON}) translate(${-icx} ${-ib.y})`);
     const wordsTop = ib.y + (ib.b - ib.y) * ICON + 0.4;
+    // About borrows netware's banner: its painted icon comes off (the House's mark heads the card instead) and its
+    // colours are re-dyed amber.
+    if (ware.about) {
+      for (const k of icon) k.remove();
+      icon = [];
+      const src = WARES[ware.from];
+      for (const k of art.querySelectorAll('[fill]')) {
+        const f = k.getAttribute('fill');
+        if (f === src.edge) k.setAttribute('fill', ware.edge); else if (f === src.dark) k.setAttribute('fill', ware.dark);
+      }
+    }
     // Where the cream's straight sides end and its point begins.
     const ys = cream.getAttribute('points').trim().split(/[\s,]+/).filter((_, i) => i % 2).map(Number);
     const pointStart = [...new Set(ys)].sort((a, c) => c - a)[1];
     // Lengthen: every corner below the split line moves down; every piece wholly below it (tassels) moves down whole.
     const lengthen = grow => {
       for (const k of cloth) {
-        if (icon.includes(k)) continue;
+        if (icon.includes(k) || !k.isConnected) continue;
         if (!k.dataset.points && k.hasAttribute('points')) k.dataset.points = k.getAttribute('points');
         if (k.dataset.points) {
           const v = k.dataset.points.trim().split(/[\s,]+/).map(Number);
@@ -444,17 +506,63 @@ window.Home = (() => {
         } else if (k.getBBox().y > split) k.setAttribute('transform', `translate(0 ${grow})`);
       }
     };
-    const fit = () => {
-      lengthen(0);
-      const w = banner.clientWidth, unit = w / all.width;
-      Object.assign(words.style, { left: `${(creamBox.x + 0.5 - all.x) * unit}px`, width: `${(creamBox.width - 1) * unit}px`, top: `${(wordsTop - all.y) * unit}px` });
-      const grow = Math.max(0, words.offsetHeight / unit - (pointStart - wordsTop) + 0.6);
+    // The card starts where the icon's head is: the list leaves the painted icon its room above the words; a room's
+    // card (or About) puts its own mark there instead.
+    let unit = 1, grown = 0;
+    const draw = grow => {
+      grown = grow;
       lengthen(grow);
       pic.setAttribute('viewBox', `${all.x} ${all.y} ${all.width} ${all.height + grow}`);
       pic.style.height = `${(all.height + grow) * unit}px`;
+    };
+    const need = () => Math.max(0, words.offsetHeight / unit - (pointStart - ib.y) + 0.6);
+    const fit = () => {
+      unit = banner.clientWidth / all.width;
+      Object.assign(words.style, { left: `${(creamBox.x + 0.5 - all.x) * unit}px`, width: `${(creamBox.width - 1) * unit}px`, top: `${(ib.y - all.y) * unit}px` });
+      if (front) front.style.paddingTop = `${(wordsTop - ib.y) * unit}px`;
+      card.style.setProperty('--mark', `${(ib.b - ib.y) * ICON * 0.8 * unit}px`);   // a room's mark: a touch smaller than the ware's icon
+      draw(need());
       Object.assign(close.style, { right: `${(all.x + all.width - (creamBox.x + creamBox.width) + 0.3) * unit}px`, top: `${(creamBox.y - all.y + 0.3) * unit}px` });
     };
     fit();
+    // The painted icon, faded as one picture (its group, once reel() has made one).
+    const iconEls = () => { const p = icon[0]?.parentNode; return p && p !== art ? [p] : icon; };
+    // 🔄 The card turns over on its middle line: the side showing turns away to edge-on, the other side turns in. The
+    // cloth never moves; once the card is round, the banner's sides grow or shrink to the new side's length.
+    let turning = false, from = null;
+    const turn = async (show, hide, focus) => {
+      if (turning) return;
+      turning = true;
+      const before = grown, ease = k => k * k * (3 - 2 * k);
+      const half = still ? 0 : FLIP / 2;
+      const painted = iconEls(), toCard = show === back;
+      await over(half, k => {
+        card.style.transform = `perspective(900px) rotateY(${(90 * ease(k)).toFixed(2)}deg)`;
+        if (toCard) for (const el of painted) el.style.opacity = (1 - ease(k)).toFixed(3);
+      });
+      hide.hidden = true;
+      show.hidden = false;
+      await over(half, k => {
+        card.style.transform = `perspective(900px) rotateY(${(-90 * (1 - ease(k))).toFixed(2)}deg)`;
+        if (!toCard) for (const el of painted) el.style.opacity = ease(k).toFixed(3);
+      });
+      card.style.transform = '';
+      if (!toCard) for (const el of painted) el.style.opacity = '';
+      const after = need();
+      await over(still ? 0 : 420, k => draw(before + (after - before) * ease(k)));
+      focus?.focus({ preventScroll: true });
+      turning = false;
+    };
+    if (front) {
+      front.addEventListener('click', e => {
+        const btn = e.target.closest('button[data-room]');
+        if (!btn) return;
+        from = btn;
+        back.innerHTML = cardHtml(ROOMS[ware.rooms[+btn.dataset.room]], true);
+        back.querySelector('.card-back').addEventListener('click', () => turn(front, back, from));
+        turn(back, front, back.querySelector('h2'));
+      });
+    }
     // It unrolls the way the small ones do, its words and close mark fading in with the icon.
     const time = still ? 0 : 1;
     shade(0);
@@ -470,15 +578,17 @@ window.Home = (() => {
     opened.then(() => addEventListener('resize', fit));
     close.focus({ preventScroll: true });
     let closing = false;
-    // Closing fades the icon and the words first, then rolls it back up onto its rod.
+    // Closing fades the icon (if it shows) and the words first, then rolls it back up onto its rod.
     const shut = async () => {
       if (closing) return;
       closing = true;
       await opened;
+      while (turning) await wait(50);
       removeEventListener('keydown', key);
       removeEventListener('resize', fit);
       const r = still ? null : reel(art, ware);
-      await fade([...(r ? r.icon : []), ...late], 1, 0, BIG.out * time);
+      const showing = r && (!back || back.hidden || !front) ? r.icon : [];
+      await fade([...showing, ...late], 1, 0, BIG.out * time);
       over(BIG.close * time, k => shade(1 - k * k * (3 - 2 * k)));
       if (r) await over(BIG.close, k => r.set(1 - (k * k * (3 - 2 * k))));
       box.remove();

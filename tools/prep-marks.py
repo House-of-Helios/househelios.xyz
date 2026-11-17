@@ -20,6 +20,7 @@ MARKS = {
     'lighthouse': 'Lighthouse_Round.png',
     'deepthought': 'Deep Thought.png',
     'emissaries': 'Emissary_V1.png',
+    'helios': 'Glyph_V2_Round.png',   # the House's own mark, for About
 }
 out = root / 'site' / 'rooms'
 out.mkdir(exist_ok=True)

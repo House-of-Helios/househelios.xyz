@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trials and profiles · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: Trials and profiles.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">What XMRange is</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-trials-and-profiles.html" aria-current="page">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html">The default wallet</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="trials-and-profiles">Trials and profiles</h1>
+<p>Every Mac is different. So XMRange measures yours.</p>
+<h2 id="run-trials">Run trials</h2>
+<p>Open the <strong>tuning</strong> tab. The seeker card shows the button: <strong>start trials</strong> the first time, <strong>continue trials</strong> if you stopped part way, and <strong>run trials again</strong> when all are done. If nothing is mining, it starts mining first.</p>
+<p>A trial is one setup, held and measured. Each one takes 8 minutes: 4 minutes of warm-up that is never scored, then 4 minutes of measuring. The card shows "trial N of M", the time left, and a time estimate for the whole run. Close other apps first for the best results.</p>
+<p>The set of trials covers:</p>
+<ul>
+<li>every core count, from 1 up to all of them;</li>
+<li>the higher core counts again at background priority;</li>
+<li>on Apple Silicon, the efficiency cores alone.</li>
+</ul>
+<p>Expect a few hours on a Mac with many cores. You can <strong>pause</strong>, <strong>stop</strong> and later <strong>continue</strong>. Finished trials are kept.</p>
+<p>While trials run, your temperature and battery limits do not apply. The trials need a steady Mac.</p>
+
+
+<h2 id="low-power-mode-on-laptops">Low Power Mode on laptops</h2>
+<p>On a laptop, the trials also run with Low Power Mode on and off, because it changes how the Mac runs CPU work. XMRange cannot switch it for you, since that needs administrator rights. So it asks, and shows "turn it on in battery settings" with <strong>skip</strong> and <strong>stop</strong> beside it.</p>
+<p>The <strong>low power</strong> card on the machine tab opens a short guide: <strong>open battery settings</strong>, select Low Power Mode, choose Always or Only on Power Adapter. A "detected" tick shows once macOS reports it on. After both states are measured, the card shows the change in h/w for the balanced profile.</p>
+<p>This needs macOS 12 or later. On a Mac without it, the cards are hidden.</p>
+<h2 id="the-profiles">The profiles</h2>
+<p>When trials exist, the <strong>profile</strong> card offers three pills. Each shows its h/w and setup.</p>
+<ul>
+<li><strong>quiet:</strong> mines on the efficiency cores at background priority. Other apps get the CPU first. On a Mac without efficiency cores, a small band of cores at background priority.</li>
+<li><strong>balanced:</strong> about half of the cores. The rest stay free for you.</li>
+<li><strong>max:</strong> every core, for the most hashes.</li>
+</ul>
+<p>Before any trials, the pills are off and the card says "run trials first". If you set cores by hand, the card reads "manual · your own cores".</p>
+<p>The trials card lists every measured setup, best first. A row sets that setup directly.</p>
+<h2 id="limits">Limits</h2>
+<p>Both live in settings and apply to normal mining.</p>
+<ul>
+<li><strong>pause above:</strong> a CPU temperature in °F, from 100 to 230. Blank means off. Mining pauses after the CPU stays at or over it for 30 seconds. It resumes after the CPU stays a little under it for 60 seconds. The tape says "paused · over your temperature limit".</li>
+<li><strong>mine on:</strong> <strong>battery too</strong> (the default) or <strong>adapter only</strong>. With adapter only, mining pauses on battery with "paused · on battery" and resumes when you plug in. Desktop Macs do not show this row.</li>
+</ul>
+<p>If you press resume yourself during a limit pause, that overrides it until the condition clears.</p>
+    <footer class="turn"><a class="prev" href="03-first-run.html">‹ First run</a><a class="next" href="05-default-wallet.html">The default wallet ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#run-trials">Run trials</a></li>
+<li><a href="#low-power-mode-on-laptops">Low Power Mode on laptops</a></li>
+<li><a href="#the-profiles">The profiles</a></li>
+<li><a href="#limits">Limits</a></li></ul></aside>
+</div>
+</body>
+</html>

@@ -165,16 +165,49 @@ body.held #home *, body.held #home-lifted canvas { animation-play-state: paused 
 }
 .ware-line { margin: 0 auto 1rem; }
 .ware-banner ul { list-style: none; margin: 0; padding: 0; text-align: left; }
-.ware-banner li {
+.ware-banner li { border-top: 1px dashed rgb(48 56 63 / 0.2); }
+/* Each room is a button: its round mark (site/rooms/, from ../_Graphics), its words, and a ›: click to turn the card. */
+.ware-banner li button {
   display: grid;
-  grid-template-columns: 3rem 1fr;   /* each room's round mark (site/rooms/, from ../_Graphics), then its words */
+  grid-template-columns: 3rem 1fr auto;
   gap: 0.85rem;
   align-items: center;
-  padding: 0.55rem 0;
-  border-top: 1px dashed rgb(48 56 63 / 0.2);
+  width: 100%;
+  padding: 0.55rem 0.3rem;
+  border: 0;
+  border-radius: 0.6rem;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
+.ware-banner li button:hover, .ware-banner li button:focus-visible { background: rgb(255 255 255 / 0.45); outline: none; }
 .ware-banner li img { display: block; width: 3rem; height: 3rem; border-radius: 50%; }
 .ware-banner li b { display: block; font: 700 1.05rem/1.3 Fraunces, Georgia, serif; color: var(--dark); }
+.ware-banner li i { font: 1.6rem/1 Georgia, serif; font-style: normal; color: var(--dark); opacity: 0.6; }
+
+/* 🔄 The card inside the banner turns over (home.js steps the turn); a room's side, or About. */
+.ware-card { transform-origin: 50% 50%; }
+.face[hidden] { display: none; }
+.card-mark { display: block; width: var(--mark, 4rem); height: var(--mark, 4rem); margin: 0 auto 0.6rem; border-radius: 50%; }
+.card .card-tag { margin: 0 auto 0.6rem; font-size: 1.08rem; }
+.card-body { margin: 0 auto 0.7rem; text-align: left; }
+.card-more { margin: 0 auto 0.8rem; font-size: 0.9rem; color: rgb(48 56 63 / 0.62); }
+.card-links { margin: 0 auto 0.8rem; }
+.card-links a { color: var(--dark); font-weight: 700; text-underline-offset: 3px; }
+.card h2:focus { outline: none; }
+.card-back {
+  margin: 0.2rem auto 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px dashed rgb(48 56 63 / 0.3);
+  border-radius: 999px;
+  background: none;
+  font: 0.95rem/1.2 Georgia, serif;
+  color: var(--dark);
+  cursor: pointer;
+}
+.card-back:hover, .card-back:focus-visible { background: rgb(255 255 255 / 0.45); outline: none; }
 .ware-close {
   position: absolute;
   z-index: 2;

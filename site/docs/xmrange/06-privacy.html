@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: Privacy.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">What XMRange is</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-trials-and-profiles.html">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html">The default wallet</a></li>
+<li><a href="06-privacy.html" aria-current="page">Privacy</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="privacy">Privacy</h1>
+<p>XMRange connects only to the pool you select. It never uses both pools at once. It sends no telemetry and no crash reports.</p>
+<h2 id="what-leaves-your-mac">What leaves your Mac</h2>
+<table>
+<thead>
+<tr>
+<th>You choose</th>
+<th>XMRange connects to</th>
+<th>They see</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>moneroocean</td>
+<td>the MoneroOcean pool</td>
+<td>your wallet address, your worker name and your hashrate. Your IP address only if Tor is off.</td>
+</tr>
+<tr>
+<td>p2pool</td>
+<td>p2pool peers</td>
+<td>your shares. Your payout address is public on the p2pool share chain. Your IP address only if Tor is off.</td>
+</tr>
+<tr>
+<td>p2pool with XMRange's own node</td>
+<td>p2pool peers and Monero peers</td>
+<td>the same as above. Monero peers see that you run a node.</td>
+</tr>
+<tr>
+<td>Tor on (the default)</td>
+<td>the Tor network</td>
+<td>a Tor connection, nothing more</td>
+</tr>
+<tr>
+<td>xmr price <strong>fetch</strong> (off by default)</td>
+<td>Kraken, then Yahoo Finance, through Tor</td>
+<td>one price request each hour</td>
+</tr>
+<tr>
+<td>update checks</td>
+<td>GitHub, through Tor</td>
+<td>a request for the latest release, at launch and every 6 hours. Nothing about you or your mining.</td>
+</tr>
+</tbody>
+</table>
+<p>The price fetch asks you first, and it always goes through Tor, even if you mine directly.</p>
+<h2 id="tor">Tor</h2>
+<p>The bundled Tor client is Arti, from the Tor Project. In settings, the <strong>tor</strong> row switches between <strong>through tor</strong> (the default) and <strong>direct</strong>. With Tor on, the pool or the p2pool peers see a Tor exit instead of your IP address.</p>
+<h2 id="show-connections">Show connections</h2>
+<p>Settings, <strong>network</strong>, <strong>show connections</strong>. It lists what is connected now and what this setup allows. It shows counts and ports only. XMRange does not show or keep an address.</p>
+
+
+<h2 id="what-is-stored-on-your-mac">What is stored on your Mac</h2>
+<ul>
+<li><strong>Your IP address</strong> is not saved.</li>
+<li><strong>Trial results</strong> are in an encrypted database. Its key is a private file in the app's data folder, not the Keychain. XMRange keeps trials only, not a second-by-second history.</li>
+<li><strong>Your wallet and worker name</strong> are plain text in the settings file, since the pool sees them.</li>
+<li><strong>Diagnostics</strong> are off until you save one. <strong>save as</strong> writes a text report where you choose, with no wallet, no IPs and no names.</li>
+</ul>
+<h2 id="never">Never</h2>
+<p>No telemetry. No crash reports. No sudo. Nothing from your Mac goes to anyone but the places in the table.</p>
+    <footer class="turn"><a class="prev" href="05-default-wallet.html">‹ The default wallet</a><a class="next" href="07-updates.html">Updates ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#what-leaves-your-mac">What leaves your Mac</a></li>
+<li><a href="#tor">Tor</a></li>
+<li><a href="#show-connections">Show connections</a></li>
+<li><a href="#what-is-stored-on-your-mac">What is stored on your Mac</a></li>
+<li><a href="#never">Never</a></li></ul></aside>
+</div>
+</body>
+</html>

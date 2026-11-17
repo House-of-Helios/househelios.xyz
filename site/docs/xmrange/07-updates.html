@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Updates · XMRange docs · House of Helios</title>
+<meta name="description" content="XMRange docs: Updates.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <a class="home" href="../../home.html"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios</a>
+  <span class="room"><img src="../../rooms/xmrange.png" alt="" width="28" height="28">XMRange docs</span>
+  <a class="get" href="https://github.com/House-of-Helios/xmrange/releases/latest">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="XMRange docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">What XMRange is</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-run.html">First run</a></li>
+<li><a href="04-trials-and-profiles.html">Trials and profiles</a></li>
+<li><a href="05-default-wallet.html">The default wallet</a></li>
+<li><a href="06-privacy.html">Privacy</a></li>
+<li><a href="07-updates.html" aria-current="page">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="updates">Updates</h1>
+<p>XMRange updates itself from GitHub releases. You do not need to visit the page again.</p>
+<h2 id="when-it-checks">When it checks</h2>
+<p>At launch, then every 6 hours. If a check fails, for example when Tor or GitHub cannot be reached, it tries again in an hour.</p>
+<p>Every check goes through Tor. GitHub sees a Tor exit and asks for one thing: the latest release. Nothing about you or your mining is sent.</p>
+<h2 id="the-update-pill">The update pill</h2>
+<p>When a newer release is ready for your kind of Mac, a pill appears at the top left: <strong>update 0.0.2 → restart</strong> (with the new version number). Click it.</p>
+
+
+<p>The pill then reads "update 0.0.2 · downloading", and the app does the rest. If mining was on, it stops cleanly, the new app takes its place, XMRange reopens, and mining resumes.</p>
+<p>If something goes wrong, the pill stays and the logs say why. Your current app is left as it was.</p>
+<h2 id="the-checks-before-anything-installs">The checks before anything installs</h2>
+<ol>
+<li><strong>A signature.</strong> The release list is signed. XMRange checks the signature before it downloads anything. It also checks that the file is the one expected for your Mac, and that the version is newer.</li>
+<li><strong>A checksum.</strong> After the download, the file's SHA-256 must match the signed value. A wrong file is deleted.</li>
+<li><strong>Unpack and copy.</strong> The new app is copied beside the old one under a temporary name. Mining goes on meanwhile.</li>
+<li><strong>A codesign check.</strong> The copy must pass macOS's <code>codesign</code> check and carry the XMRange bundle identifier.</li>
+<li><strong>The swap.</strong> Only now does mining stop and the new app replace the old. If the swap fails, the old one is put back.</li>
+</ol>
+<p>Apple and Intel builds never install each other's file.</p>
+<h2 id="nothing-about-you-is-sent">Nothing about you is sent</h2>
+<p>The request is the same for everyone. GitHub learns that a Tor user asked for the latest release.</p>
+    <footer class="turn"><a class="prev" href="06-privacy.html">‹ Privacy</a><span></span></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#when-it-checks">When it checks</a></li>
+<li><a href="#the-update-pill">The update pill</a></li>
+<li><a href="#the-checks-before-anything-installs">The checks before anything installs</a></li>
+<li><a href="#nothing-about-you-is-sent">Nothing about you is sent</a></li></ul></aside>
+</div>
+</body>
+</html>
