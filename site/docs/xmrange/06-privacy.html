@@ -49,7 +49,7 @@
 <tbody>
 <tr>
 <td>moneroocean</td>
-<td>the MoneroOcean pool</td>
+<td>the MoneroOcean pool, <code>gulf.moneroocean.stream</code></td>
 <td>your wallet address, your worker name and your hashrate. Your IP address only if Tor is off.</td>
 </tr>
 <tr>
@@ -69,13 +69,18 @@
 </tr>
 <tr>
 <td>xmr price <strong>fetch</strong> (off by default)</td>
-<td>Kraken, then Yahoo Finance, through Tor</td>
+<td><code>api.kraken.com</code>, then <code>query1.finance.yahoo.com</code>, through Tor</td>
 <td>one price request each hour</td>
 </tr>
 <tr>
 <td>update checks</td>
-<td>GitHub, through Tor</td>
+<td><code>github.com</code>, through Tor</td>
 <td>a request for the latest release, at launch and every 6 hours. Nothing about you or your mining.</td>
+</tr>
+<tr>
+<td>a problem report, only when you press <strong>Send</strong></td>
+<td>Nostr relays <code>nos.lol</code>, <code>relay.primal.net</code>, <code>relay.snort.social</code>, <code>nostr.mom</code>, through Tor</td>
+<td>a sealed message from a one-time key. Only House of Helios can open it.</td>
 </tr>
 </tbody>
 </table>
@@ -93,14 +98,30 @@
 <li><strong>Your wallet and worker name</strong> are plain text in the settings file, since the pool sees them.</li>
 <li><strong>Diagnostics</strong> are off until you save one. <strong>save as</strong> writes a text report where you choose, with no wallet, no IPs and no names.</li>
 </ul>
+<h2 id="problem-reports">Problem reports</h2>
+<p>XMRange never sends a crash or problem report by itself. From version 0.0.2, when something goes wrong, it offers one, and you decide.</p>
+<ul>
+<li><strong>When:</strong> settings, <strong>send feedback</strong>, at any time; or an offer at the next launch after XMRange closed unexpectedly. Close the sheet and nothing happens.</li>
+<li><strong>What it holds:</strong> the XMRange version, the macOS version, the kind of Mac (Apple silicon or Intel), the last error lines, and your note if you write one. Your wallet, IP address, computer name and folder paths are removed.</li>
+<li><strong>You see all of it:</strong> the whole report is on screen, and you can edit it, before anything happens.</li>
+<li><strong>Where it goes:</strong> <strong>Copy</strong> or <strong>Save</strong> keeps it with you. <strong>Send</strong> seals it so only House of Helios can read it, signs it with a key made for that one report, and sends it through Tor to the four Nostr relays in the table. They hold it 30 days. No account, no e-mail, no House server, and no one sees your IP address.</li>
+</ul>
+<h2 id="how-to-report-a-problem">How to report a problem</h2>
+<ol>
+<li>After a crash, XMRange asks at the next launch whether to send a report. Or open settings, <strong>send feedback</strong>, at any time: a crash, a problem or an idea.</li>
+<li>Read the report. Add a note if you like.</li>
+<li>Press <strong>Send</strong>. If no relay answers, press <strong>Copy</strong> and keep it.</li>
+</ol>
 <h2 id="what-never-leaves">What never leaves</h2>
-<p>No telemetry. No crash reports. No sudo. Nothing from your Mac goes to anyone but the places in the table.</p>
+<p>No telemetry. Nothing sent on its own. No sudo. Nothing from your Mac goes anywhere but the places in the table, and a problem report only when you send it.</p>
     <footer class="turn"><a class="prev" href="05-default-wallet.html">‹ The default wallet</a><a class="next" href="07-updates.html">Updates ›</a></footer>
   </main>
   <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#what-leaves-the-mac">What leaves the Mac</a></li>
 <li><a href="#tor">Tor</a></li>
 <li><a href="#show-connections">Show connections</a></li>
 <li><a href="#where-things-are-kept">Where things are kept</a></li>
+<li><a href="#problem-reports">Problem reports</a></li>
+<li><a href="#how-to-report-a-problem">How to report a problem</a></li>
 <li><a href="#what-never-leaves">What never leaves</a></li></ul></aside>
 </div>
 <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
