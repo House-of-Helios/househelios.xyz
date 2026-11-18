@@ -22,11 +22,15 @@ window.Home = (() => {
   // A room's card: mark (site/rooms/<mark>.png), name, tagline; on its own side a fuller account (`about`, from the
   // room's README or docs), a screenshot when the room gives one (`shot`), its latest GitHub release (`repo`), links.
   const ROOMS = {
-    artline: { mark: 'artline', name: 'Art Line NYC', tag: "All the city's art, in one place.",
-      about: ['New York art events from about a thousand venues, posted daily.'],
+    artline: { mark: 'artline', name: 'Art Line NYC', tag: "All the city's art, in one place",   // Helios's words, verbatim
+      about: ['Art Line finds the openings, talks, screenings and workshops happening across New York City this week and next, and puts them on one board. Every event names its venue, its date and time, and its price, with a picture from the venue itself.',
+        'It reads the calendars of about 1,000 NYC galleries, museums and art centers, twice a day. A review board keeps only the real, one-time events: a show\'s opening night, not every day of its run. Each weekday, @artline.nyc posts the picks for that day\'s theme as a carousel.'],
+      shot: ['shots/artline-landing.png', 1440, 900],
       links: [['📷 instagram', 'https://www.instagram.com/artline.nyc/']] },
     scriptorium: { mark: 'scriptorium', name: 'Scriptorium', tag: 'The most well-indexed quote database on the planet.',
-      about: ['Every quote is verified against its real source, carries its full context (the sentence before and after), is scored across two sets of dimensions, and is tagged with exactly two tones.'] },
+      about: ['Every quote here was found in its real public-domain source, word for word. A script checks it against the text and stamps its place. A quote that does not match is a misquote, and it stays out. Each quote names its edition and keeps the sentences before and after it, so you read it the way its author set it down.',
+        'Each quote also carries fourteen scores: seven for what it is about, seven for how it feels. Those scores draw two small radars and give the quote a tone, such as Introspection or Awe. Readers can wander by author, subject or feel, and every quote they meet can be checked against the source.'],
+      shot: ['shots/scriptorium-home-light.png', 1440, 900] },   // no public link yet (Scriptorium, 2026-11-18)
     bookkeeper: { mark: 'bookeeper', name: 'Bookkeeper', tag: 'Local-first accounting.',
       about: ['Bookkeeper reads the CSV your bank already lets you export and draws your income and spending as rings you can touch. It never connects to your bank. It also keeps your crypto holdings, without ever touching a wallet key.',
         'It makes no account, takes no fee and sends no analytics. Every price lookup goes through Tor, and your bank lines never leave your Mac.'],
@@ -48,10 +52,16 @@ window.Home = (() => {
   const ABOUT = {
     title: 'about', from: 'netware', edge: '#f0a830', dark: '#b06a12', about: true,
     card: { mark: 'helios', name: 'House of Helios', tag: 'One house, many rooms.',
-      about: ['House of Helios makes things for the public good: tools that help, data drawn for people who learn by seeing, sites that make a life a little larger, games and worlds to wander in.',
-        'Helios is an artist, an organizer, a friend and an architect. He sees in pictures and directs the vision. Claude does the building.',
-        'What it gives away hangs here as three banners. Software: apps you install, free under GPL-3.0. Netware: networks and sites. Codeware: the tools that keep the House itself.',
-        'A lesson learned in one room is light for all the others.'],
+      about: ['House of Helios is a small studio that makes things for the public good: tools that help, data drawn for people who learn by seeing, sites that make a life a little larger, games and worlds to wander in.',
+        'Helios is an artist, an organizer, a friend and an architect. He sees in pictures and directs the vision. Claude does the building. Each project is a room, and the three banners in this clearing hold what the rooms give away: software, netware and codeware.'],
+      values: [
+        ['Given away', 'The apps are free, and their code is open under GPL-3.0.'],
+        ['Yours stays yours', 'What you keep in our apps stays on your Mac. Nothing is sent unless you choose to send it.'],
+        ['Plain about the seams', 'We say what a thing does and what it costs. Our apps are not notarized by Apple, so every download carries the plain steps to open it anyway. Every quote names its edition, every event its venue.'],
+        ['Measured, not guessed', 'Hashes per watt are tried on your own Mac; quotes are checked against their real source.'],
+        ['Cared for', 'The test for every screen: would a person feel cared for reading this?'],
+        ['One lesson, every room', 'A lesson learned in one room is light for all the others.'],
+      ],
       links: [['houseofhelios@proton.me', 'mailto:houseofhelios@proton.me']] },
   };
   // Banners left to right: software, netware (hung higher, in the middle), codeware.
@@ -473,11 +483,16 @@ window.Home = (() => {
     <h2 tabindex="-1">${esc(c.name)}</h2>
     <p class="card-tag">${esc(c.tag)}</p>
     ${(c.about || []).map(t => `<p class="card-body">${esc(t)}</p>`).join('')}
+    ${c.values ? `<p class="card-label">What we keep to</p><dl class="card-values">${c.values.map(([t, d]) => `<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join('')}</dl>` : ''}
     ${c.shot ? shotHtml(c) : ''}
     ${c.repo ? getHtml(c) : ''}
     ${links.length ? `<p class="card-links">${links.map(([t, u]) => `<a class="pill" href="${u}"${u.startsWith('http') || u.startsWith('docs/') ? ' target="_blank" rel="noopener"' : ''}>${esc(t)}</a>`).join('')}</p>` : ''}
 `;
   };
+  // A ware's own side: its name, its line, and a row per room.
+  const listHtml = ware => `<h2>${ware.title}</h2>
+            <p class="ware-line">${ware.line}</p>
+            <ul>${ware.rooms.map(k => ROOMS[k]).map((r, i) => `<li><button type="button" data-room="${i}"><img src="rooms/${r.mark}.png" alt="" width="48" height="48"><span><b>${esc(r.name)}</b> ${esc(r.tag)}</span><i class="cue"><svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i></button></li>`).join('')}</ul>`;
   const unroll = b => {
     if (document.getElementById('ware')) return;
     const { ware } = b;
@@ -489,9 +504,7 @@ window.Home = (() => {
         <div class="ware-text"><div class="ware-card">
           ${ware.about ? `<section class="face card">${cardHtml(ware.card, false)}</section>` : `
           <section class="face front">
-            <h2>${ware.title}</h2>
-            <p class="ware-line">${ware.line}</p>
-            <ul>${ware.rooms.map(k => ROOMS[k]).map((r, i) => `<li><button type="button" data-room="${i}"><img src="rooms/${r.mark}.png" alt="" width="48" height="48"><span><b>${esc(r.name)}</b> ${esc(r.tag)}</span><i class="cue"><svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i></button></li>`).join('')}</ul>
+            ${listHtml(ware)}
           </section>
           <section class="face card" hidden></section>`}
         </div></div>
@@ -567,15 +580,20 @@ window.Home = (() => {
       Object.assign(words.style, { left: `${(creamBox.x + 0.5 - all.x) * unit}px`, width: `${(creamBox.width - 1) * unit}px`, top: `${(ib.y - all.y) * unit}px` });
       if (front) front.style.paddingTop = `${(wordsTop - ib.y) * unit}px`;
       card.style.setProperty('--mark', `${(ib.b - ib.y) * ICON * 0.68 * unit}px`);   // a room's mark: smaller than the ware's icon, room for words (Helios)
-      // The banner keeps one length: as long as its tallest side (the list, or any room's card), measured once here.
-      let most = need();
-      if (front) {
-        const was = back.innerHTML, open = !back.hidden;
-        front.hidden = true; back.hidden = false;
-        for (const k of ware.rooms) { back.innerHTML = cardHtml(ROOMS[k], true); most = Math.max(most, need()); }
-        back.innerHTML = was; back.hidden = !open; front.hidden = open;
-      }
+      // Every banner keeps one length, the same for all (Helios): as long as the longest ware list, measured once here
+      // on a hidden probe. A room's card or About that runs longer scrolls inside the cloth.
+      words.style.maxHeight = '';
+      const shown = [...card.children].filter(c => !c.hidden);
+      for (const c of shown) c.hidden = true;
+      const probe = card.appendChild(document.createElement('section'));
+      probe.className = 'face';
+      probe.style.paddingTop = `${(wordsTop - ib.y) * unit}px`;
+      let most = 0;
+      for (const w of Object.values(WARES)) { probe.innerHTML = listHtml(w); most = Math.max(most, need()); }
+      probe.remove();
+      for (const c of shown) c.hidden = false;
       draw(most);
+      words.style.maxHeight = `${(pointStart - ib.y + most - 0.6) * unit}px`;
       Object.assign(close.style, { right: `${(all.x + all.width - (creamBox.x + creamBox.width) + 0.3) * unit}px`, top: `${(creamBox.y - all.y + 0.3) * unit}px` });
     };
     fit();
@@ -596,6 +614,7 @@ window.Home = (() => {
       });
       hide.hidden = true;
       show.hidden = false;
+      words.scrollTop = 0;
       await over(half, k => {
         card.style.transform = `perspective(900px) rotateY(${(-90 * (1 - ease(k))).toFixed(2)}deg)`;
         if (!toCard) for (const el of painted) el.style.opacity = ease(k).toFixed(3);

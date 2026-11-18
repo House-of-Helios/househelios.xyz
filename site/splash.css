@@ -157,7 +157,7 @@ body.held #home *, body.held #home-lifted canvas { animation-play-state: paused 
   color: #30383f;
 }
 .ware-art { display: block; width: 100%; overflow: visible; }   /* rolled, the hem and the roll sit above the rod's top */
-.ware-text { position: absolute; text-align: center; }
+.ware-text { position: absolute; text-align: center; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgb(48 56 63 / 0.25) transparent; }   /* one banner length for all; a longer card scrolls inside the cloth */
 .ware-banner h2 {
   margin: 0 0 0.3rem;
   font: 700 2.1rem/1.1 Fraunces, Georgia, serif;
@@ -255,3 +255,10 @@ body.held #home *, body.held #home-lifted canvas { animation-play-state: paused 
   cursor: pointer;
 }
 .ware-close:hover, .ware-close:focus-visible { background: rgb(255 255 255 / 0.5); outline: none; }
+
+/* 📜 About's values: a mono label, then each value's name in the banner's ink and its line beneath. */
+.card-label { margin: 1.1rem 0 0.4rem; font: 0.68rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: rgb(48 56 63 / 0.6); text-align: left; }
+.card-values { margin: 0 0 1rem; text-align: left; }
+.card-values dt { padding-top: 0.5rem; border-top: 1px dashed rgb(48 56 63 / 0.2); font: 700 1.02rem/1.3 Fraunces, Georgia, serif; color: var(--dark); }
+.card-values dd { margin: 0.15rem 0 0.5rem; }
+.ware-banner h2:focus { outline: none; }   /* focused by script on a turn, for screen readers; no ring */
