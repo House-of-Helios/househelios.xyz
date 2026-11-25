@@ -48,6 +48,7 @@
 <li>Read the report. Change or delete anything you like.</li>
 <li>Press <strong>send</strong>, or <strong>copy</strong> or <strong>save as…</strong> to pass it on yourself. <strong>close</strong> sends nothing.</li>
 </ol>
+<p>If XMRange stopped on a panic, it keeps one scrubbed file, <code>last-crash.txt</code>, in its data folder, so the crash report can show what happened just before. XMRange deletes the file once the report is sent, closed or dismissed, or after 7 days.</p>
 <h2 id="what-a-report-holds">What a report holds</h2>
 <p>The XMRange and macOS versions, the kind of Mac (Apple silicon or Intel), the chip and model, the pool and whether Tor is on, how many cores are running, your cost inputs, the number of trials, the last lines of the log, the hourly figures, and your note.</p>
 <p>Before you see it, XMRange takes out your wallet address, IP addresses, your home folder (shown as <code>~</code>), the names of this Mac and your worker name. Names you type into the note yourself are removed only if they match this Mac's names. Anything else you typed is yours: the box shows it, and you can delete it before you press send.</p>

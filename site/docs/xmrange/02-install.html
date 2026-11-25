@@ -38,11 +38,12 @@
 <h1 id="install">Install</h1>
 <h2 id="1-download">1. Download</h2>
 <p>Go to the releases page: https://github.com/House-of-Helios/xmrange/releases</p>
-<p>Each release has two zips. Pick the one that matches your Mac.</p>
+<p>Each release has two disk images. Pick the one that matches your Mac.</p>
 <ul>
-<li><code>XMRange-&lt;version&gt;-apple-silicon.zip</code> for Macs with an Apple chip (M1 and later).</li>
-<li><code>XMRange-&lt;version&gt;-intel.zip</code> for Macs with an Intel processor.</li>
+<li><code>XMRange-apple-silicon.dmg</code> for Macs with an Apple chip (M1 and later).</li>
+<li><code>XMRange-intel.dmg</code> for Macs with an Intel processor.</li>
 </ul>
+<p>The zips beside them are for the app's own updater. You don't need them.</p>
 <p>The two apps are separate. Each one only updates to its own kind.</p>
 <h3 id="which-mac-do-i-have">Which Mac do I have?</h3>
 <p>Open the Apple menu and choose <strong>About This Mac</strong>.</p>
@@ -53,9 +54,9 @@
 
 <p><img alt="About This Mac on an Apple silicon Mac (Chip line) and on an Intel Mac (Processor line)" src="img/about-this-mac.png" /></p>
 <h2 id="2-check-the-download-optional">2. Check the download (optional)</h2>
-<p>Beside each zip sits a file with the same name ending in <code>.sha256</code>. It holds the zip's checksum. In Terminal, <code>shasum -a 256 &lt;the zip&gt;</code> prints the checksum of your copy. The two should match.</p>
+<p>Beside each disk image sits a file with the same name ending in <code>.sha256</code>. It holds the disk image's checksum. In Terminal, <code>shasum -a 256 &lt;the .dmg&gt;</code> prints the checksum of your copy. The two should match.</p>
 <h2 id="3-move-it-to-applications">3. Move it to Applications</h2>
-<p>Unzip the file. Drag <code>XMRange.app</code> into your Applications folder.</p>
+<p>Open the disk image. Drag XMRange onto the Applications folder beside it. Then eject the disk image.</p>
 <h2 id="4-why-macos-hesitates">4. Why macOS hesitates</h2>
 <p>Apple has not signed XMRange, so macOS stops the first open. This is expected. The app is ad-hoc signed, and you can read its source.</p>
 <p><strong>macOS 15 and later</strong></p>
