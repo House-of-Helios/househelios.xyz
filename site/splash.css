@@ -12,6 +12,13 @@ html, body {
   display: grid;
   place-items: center;
 }
+/* On a phone the browser's bars come and go, and the page's 100% is the smaller viewport: the painting stopped short
+   and a strip of the meadow showed below it (Helios, 2026-11-25). So the painting is sized to the largest viewport
+   and the overflow is clipped; the bars hide a little of its foot when they are up. */
+#scene, #home, #lifted, #home-lifted {
+  height: 100vh;
+  height: 100lvh;
+}
 
 #scene svg,
 #scene img,

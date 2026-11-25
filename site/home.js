@@ -273,7 +273,7 @@ window.Home = (() => {
   // resting place, wound over a yellow roll ROLL thick; the sides grow to full length while the point keeps its shape,
   // and the roll thins away as the cloth comes down. At the bottom it springs back up a touch and sinks slowly to rest;
   // then the icon comes on. After that it hangs still for good.
-  const UNROLL = 1080, STAGGER = 1000;             // ms to unroll, ms between banners
+  const UNROLL = 800, STAGGER = 600;               // ms to unroll, ms between banners (quicker, Helios 2026-11-25)
   const UNROLL_ORDER = ['netware', 'software', 'codeware'];
   const ROLL_UP = 0.56, ROLL = 2.23, ROLL_GONE = 0.5;   // painting units; the share of the unroll by which the roll is gone
   const SETTLE = { up: 0.03, rise: 220, sink: 700 };   // the bounce: share of the length it springs back, ms up, ms down
@@ -425,7 +425,7 @@ window.Home = (() => {
       list.push(a);
     }
     addEventListener('resize', place);
-    // One, two, three: netware, software, codeware, a second apart.
+    // One, two, three: netware, software, codeware, STAGGER apart.
     const open = () => Promise.all(list.filter(b => b.reel).map(b => wait(UNROLL_ORDER.indexOf(b.ware.title) * STAGGER).then(async () => {
       b.door.hidden = false;
       if (!still) await unfurl(b.reel, SETTLE.up, UNROLL, [b.name].filter(Boolean));

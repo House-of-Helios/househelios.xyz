@@ -10,11 +10,25 @@
   // ☁️ The page opens in the clouds. They glide off to the left. A breath after the last one clears the sign,
   // the way in fades up and stays.
   const clouds = svg.getElementById('Clouds');
-  const CLOUDS = 4800, BREATH = 1000, FADE = 2000;
+  const CLOUDS = 2400, BREATH = 500, FADE = 1000;   // Helios (2026-11-25): the opening felt slow, so all three halved
   const prompt = svg.getElementById('Fade_In');
   if (prompt) {
     prompt.removeAttribute('display');
     prompt.style.opacity = 0;
+    // The painted words say "(click to enter)"; Helios wants them softer for a thumb (2026-11-25). The glyphs are
+    // outlines in the art, so they are hidden and the words are set in text over the same spot, same red.
+    const box = prompt.getBBox();
+    for (const glyphs of prompt.children) glyphs.setAttribute('display', 'none');
+    const words = document.createElementNS(NS, 'text');
+    words.setAttribute('x', (box.x + box.width / 2).toFixed(3));
+    words.setAttribute('y', (box.y + box.height / 2).toFixed(3));
+    words.setAttribute('font-size', (box.height * 0.92).toFixed(3));
+    words.setAttribute('font-family', 'Helvetica Neue, Helvetica, Arial, sans-serif');
+    words.setAttribute('fill', '#cb4142');
+    words.setAttribute('text-anchor', 'middle');
+    words.setAttribute('dominant-baseline', 'central');
+    words.textContent = '(tap to enter)';
+    prompt.appendChild(words);
   }
   let drift = [];
   // The clouds part to the left: a slow start, then away. Each cloud travels just far enough.
@@ -27,7 +41,7 @@
   // Entering: the whole bank sweeps across in one steady pass, in from the right and out to the left,
   // quicker than the opening and its parting together. Every cloud moves at the same speed and is
   // timed to reach its place at the same moment, so the screen is fully covered once, mid-pass.
-  const PASS = (CLOUDS * 2) / 1.05 / 1.25;   // Helios: 25% quicker again
+  const PASS = (CLOUDS * 2) / 1.05 / 1.25;   // Helios: 25% quicker again; then halved with CLOUDS (2026-11-25)
   const pass = () => {
     drift.forEach(({ pic }) => { pic.style.visibility = ''; });
     const legs = drift.map(({ pic }) => ({ pic, inn: innerWidth - edges(pic).left + 20, out: edges(pic).right + 20 }));
@@ -133,7 +147,7 @@
   ];
   const CRUISE = 4, KICK = 5.5, SETTLE = 2.8, R = 3.8, FLAT = 1.4, AWAY = 2.5;
   const HURRY = 9, EASE_IN = 22;   // the way in runs at HURRY until EASE_IN units short of the tap
-  const FIRST_TAP = 3.5;           // seconds after the page opens
+  const FIRST_TAP = 1.75;          // seconds after the page opens (halved with the clouds, 2026-11-25)
 
   const routes = ROUTES.map(pts => Kit.way(defs, pts));
 
@@ -291,7 +305,7 @@
   const FLIGHT = {
     route: [[292, 80], [276, 81], [262, 83], [238, 87], [214, 89], [190, 92], [166, 95], [146, 98]],
     cypress: [246, 82], branching: [170, 75], willow: [140, 100],   // a point on each tree, to find it
-    speed: 17, rest: 22, first: 6.5,   // first: seconds in, after the first lotus tap
+    speed: 17, rest: 22, first: 3.25,   // first: seconds in, after the first lotus tap (halved with the clouds)
     birds: [[0, 0, 0], [3.5, -2, 0.12], [6.5, 1.5, 0.24], [9.5, -1, 0.36], [12.5, 1, 0.48]],   // behind, above, s later
   };
   const trees = svg.getElementById('_02');
