@@ -23,8 +23,9 @@ TOGGLE = '<button class="theme-toggle" type="button" aria-label="Switch colour t
 ROOMS = {
     'xmrange': ('XMRange', 'XMRange', '#39ad7d', '#008344', 'https://github.com/House-of-Helios/xmrange/releases/latest'),
     'bookkeeper': ('Bookkeeper', 'Bookkeeper', '#39ad7d', '#008344', 'https://github.com/House-of-Helios/bookkeeper/releases/latest'),
+    'archivist': ('Archivist', 'Archivist', '#39ad7d', '#008344', 'https://github.com/House-of-Helios/archivist/releases/latest/download/Archivist.dmg'),
 }
-MARKS = {'xmrange': 'xmrange', 'bookkeeper': 'bookeeper'}   # site/rooms/<mark>.png
+MARKS = {'xmrange': 'xmrange', 'bookkeeper': 'bookeeper', 'archivist': 'archivist'}   # site/rooms/<mark>.png
 
 
 def slug(t):
@@ -112,7 +113,7 @@ def build(room):
     print(f'{room}: {len(meta)} pages → site/docs/{room}/')
 
 
-TAGS = {'xmrange': "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.", 'bookkeeper': 'Local-first accounting.'}
+TAGS = {'xmrange': "Mines Monero on your Mac's CPU for the most hashes per watt, fully local.", 'bookkeeper': 'Local-first accounting.', 'archivist': 'Backs up any drive or folders to any other drive, every file written whole.'}
 
 
 def index():

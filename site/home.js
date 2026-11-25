@@ -8,7 +8,7 @@ window.Home = (() => {
   // way it describes itself: its tagline from its own README or landing page (Art Line's page, XMRange's session), and
   // where a room has none yet, its line in SOUL's room table, until Helios gives his own.
   const WARES = {
-    software: { title: 'software', edge: '#39ad7d', dark: '#008344', line: 'Apps you install. Free, under GPL-3.0.', rooms: ['bookkeeper', 'xmrange'] },
+    software: { title: 'software', edge: '#39ad7d', dark: '#008344', line: 'Apps you install. Free, under GPL-3.0.', rooms: ['bookkeeper', 'xmrange', 'archivist'] },
     netware: {
       title: 'netware', edge: '#42aae0', dark: '#0789c7',
       line: 'Networks and sites. Every quote names its edition, every event its venue. A page here is readable by people and by agents.',
@@ -40,6 +40,11 @@ window.Home = (() => {
       about: ['It measures instead of guessing: trials try each setup on your own Mac and record the hashes per watt, and XMRange shows the electricity next to the earnings, so you can judge for yourself.',
         'It runs on Apple silicon Macs, with a separate build for Intel. Everything stays on your Mac, and it never asks for an administrator password.'],
       shot: ['docs/xmrange/img/card-light.png', 1440, 900], dark: ['docs/xmrange/img/card.png', 1440, 900], repo: 'House-of-Helios/xmrange', docs: 'docs/xmrange/' },
+    archivist: { mark: 'archivist', name: 'Archivist', tag: 'Backs up any drive or folders to any other drive, every file written whole.',
+      about: ['Drop folders or a whole drive on the left, the destination on the right, and start. Each drive is copied the way it moves best, and every file is written whole, so a backup you open is a backup you can read.',
+        'Earlier versions wait in a dated _📚archive folder beside the backup, and nothing at the destination is ever deleted. Schedules run it for you, and updates come from GitHub. Free, under GPL-3.0, for Apple silicon and Intel Macs on macOS 14 and up.'],
+      shot: ['shots/archivist-light.png', 860, 580], dark: ['shots/archivist-dark.png', 860, 580],   // from Archivist/_devdata/snap (Archivist session, 2026-11-25)
+      repo: 'House-of-Helios/archivist', arch: 'Apple silicon + Intel · macOS 14+' },
     workbench: { mark: 'workbench', name: 'Workbench', tag: 'The one host app on both Macs.', about: ["Every room's machinery plugs in as an app."] },
     house: { mark: 'house', name: 'The House', tag: 'A native Mac HUD for the Claude agents.',
       about: ['It shows the agents, healer loops and Deep Thought vault activity running across House of Helios. Light, native SwiftUI. No web app.'] },
@@ -455,7 +460,7 @@ window.Home = (() => {
   };
   // A room's card (or About's): its mark at the head, name, tagline, a little more in grey, links.
   const GITHUB = '<img src="github.svg" alt="" width="26" height="26">';   // GitHub's mark, in its own file (path data reads like IP addresses to the leak scan)
-  // The download box: filled from the room's latest GitHub release (version, date, one button per zip). Until it
+  // The download box: filled from the room's latest GitHub release (version, date, one button per DMG, or per zip). Until it
   // answers, or if it never does, it still links to the releases page.
   const getHtml = c => `
     <div class="get" data-repo="${c.repo}" data-arch="${c.arch || ''}">
@@ -469,7 +474,8 @@ window.Home = (() => {
       const r = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
       if (!r.ok) return;
       const rel = await r.json();
-      const zips = rel.assets.filter(a => a.name.endsWith('.zip'));
+      const dmgs = rel.assets.filter(a => a.name.endsWith('.dmg'));   // a room that ships a DMG also posts a zip for its updater: show the DMG only
+      const zips = dmgs.length ? dmgs : rel.assets.filter(a => a.name.endsWith('.zip'));
       const label = n => (/apple-silicon|arm64/i.test(n) ? 'Apple silicon' : /intel|x86/i.test(n) ? 'Intel' : el.dataset.arch || 'Mac');
       el.querySelector('.get-ver').textContent = `${rel.tag_name} · ${new Date(rel.published_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
       el.querySelector('.get-files').innerHTML = zips.map(a => `<a class="pill solid" href="${a.browser_download_url}">${DOWN} ${esc(label(a.name))} <small>${sizeMb(a.size)}</small></a>`).join('');

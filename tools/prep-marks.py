@@ -15,6 +15,7 @@ MARKS = {
     'scriptorium': 'Scriptorium V1_Round-D.png',
     'bookeeper': 'Bookeeper_Round.png',
     'xmrange': 'XMRanger.png',
+    'archivist': 'Archivist_circle.png',
     'workbench': 'Workbench_circle.png',
     'house': 'House_Round.png',
     'lighthouse': 'Lighthouse_Round.png',
