@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full Disk Access · Archivist docs · House of Helios</title>
+<meta name="description" content="Archivist docs: Full Disk Access.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/archivist.png" alt="" width="28" height="28">Archivist</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/archivist/releases/latest/download/Archivist.dmg">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Archivist docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-backup.html">Your first backup</a></li>
+<li><a href="04-settings.html">Settings</a></li>
+<li><a href="05-earlier-versions.html">Earlier versions</a></li>
+<li><a href="06-full-disk-access.html" aria-current="page">Full Disk Access</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="full-disk-access">Full Disk Access</h1>
+<p>macOS lets an app read your Desktop, Documents and Downloads only after you say so, and it keeps some folders (Mail, Messages, Safari, Photos libraries) behind a further gate called Full Disk Access. To back up a whole drive or your home folder, Archivist needs that gate open.</p>
+<p><a class="shot" href="img/window.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="A whole-drive source needs Full Disk Access before every file can be read" src="img/window.png" /></a></p>
+<h2 id="turn-it-on">Turn it on</h2>
+<ol>
+<li>Open <strong>System Settings → Privacy &amp; Security → Full Disk Access</strong>.</li>
+<li>Click <strong>+</strong>, choose <strong>Archivist</strong> in Applications, and turn its switch on.</li>
+<li>Quit and reopen Archivist.</li>
+</ol>
+<h2 id="without-it">Without it</h2>
+<p>Archivist still copies everything it can reach. Any file it was not allowed to read is listed by name under the progress bar when the backup finishes, with "Permission denied". Nothing is silently skipped.</p>
+<h2 id="removable-and-network-drives">Removable and network drives</h2>
+<p>The first time Archivist writes to an external drive or a shared folder, macOS asks whether to allow it. Say yes once; because every release of Archivist carries the same signature, macOS remembers the answer across updates.</p>
+<p>Next: <a href="07-updates.html">Updates</a>.</p>
+    <footer class="turn"><a class="prev" href="05-earlier-versions.html">‹ Earlier versions</a><a class="next" href="07-updates.html">Updates ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#turn-it-on">Turn it on</a></li>
+<li><a href="#without-it">Without it</a></li>
+<li><a href="#removable-and-network-drives">Removable and network drives</a></li></ul></aside>
+</div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
+</body>
+</html>

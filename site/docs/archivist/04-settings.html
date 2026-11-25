@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · Archivist docs · House of Helios</title>
+<meta name="description" content="Archivist docs: Settings.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/archivist.png" alt="" width="28" height="28">Archivist</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/archivist/releases/latest/download/Archivist.dmg">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Archivist docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-backup.html">Your first backup</a></li>
+<li><a href="04-settings.html" aria-current="page">Settings</a></li>
+<li><a href="05-earlier-versions.html">Earlier versions</a></li>
+<li><a href="06-full-disk-access.html">Full Disk Access</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="settings">Settings</h1>
+<p>The ⚙️ at the top right of the Destination panel opens the settings of the selected backup.</p>
+<p><a class="shot" href="img/settings.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The settings sheet: name, picture, colour, schedule, earlier versions" src="img/settings.png" /></a></p>
+<h2 id="name-picture-colour">Name, picture, colour</h2>
+<p>The name is the backup's title in the tabs along the top. The picture and colour mark it everywhere: on its tab, on the destination, on the folder it writes. Pick any of the animals and any of the colours.</p>
+<h2 id="schedule">Schedule</h2>
+<ul>
+<li><strong>Manually</strong>: only when you press Start backup.</li>
+<li><strong>When connected</strong>: each time the backup drive is plugged in or the shared folder comes back.</li>
+<li><strong>Once an hour</strong>, at the minute you choose.</li>
+<li><strong>Once a day</strong>, at the time you choose.</li>
+<li><strong>Once a week</strong>, on the day and at the time you choose.</li>
+</ul>
+<p>Scheduled backups run in the background without a window, through a small helper that macOS starts for you. The first time you choose a schedule, macOS asks you to allow Archivist in <strong>System Settings → General → Login Items &amp; Extensions</strong>. If a scheduled backup skips files, you get a notification.</p>
+<p>A scheduled backup that finds the drive unplugged does nothing and tries again at the next slot. A Mac that was asleep at the scheduled time runs the backup when it wakes.</p>
+<h2 id="earlier-versions">Earlier versions</h2>
+<ul>
+<li><strong>Keep deleted files</strong>: a file that disappears from the source is moved into the archive, not removed from the backup.</li>
+<li><strong>Keep earlier versions of changed files</strong>: before a changed file is replaced, the old copy is moved into the archive.</li>
+<li><strong>Remove after</strong>: how long archived versions stay (30 days, 90 days, 1 year, or never).</li>
+<li><strong>Make room when the drive is nearly full</strong>: when the backup drive runs short, the oldest archived days are removed first. The newest day is never removed.</li>
+</ul>
+<p>See <a href="05-earlier-versions.html">Earlier versions</a> for what the archive looks like on disk.</p>
+<h2 id="destination-drive-type">Destination drive type</h2>
+<p>Archivist reads the kind of drive from the system. A USB enclosure can hide what is inside it; if the kind shown is wrong, set it here. It only changes how fast Archivist tries to copy, never what it copies.</p>
+<h2 id="appearance">Appearance</h2>
+<p>Light, dark, or follow the Mac. The switch at the top right of the window does the same.</p>
+<h2 id="delete-this-backup">Delete this backup</h2>
+<p>Removes the backup from Archivist. The files at the destination stay exactly where they are.</p>
+<p>Next: <a href="05-earlier-versions.html">Earlier versions</a>.</p>
+    <footer class="turn"><a class="prev" href="03-first-backup.html">‹ Your first backup</a><a class="next" href="05-earlier-versions.html">Earlier versions ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#name-picture-colour">Name, picture, colour</a></li>
+<li><a href="#schedule">Schedule</a></li>
+<li><a href="#earlier-versions">Earlier versions</a></li>
+<li><a href="#destination-drive-type">Destination drive type</a></li>
+<li><a href="#appearance">Appearance</a></li>
+<li><a href="#delete-this-backup">Delete this backup</a></li></ul></aside>
+</div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
+</body>
+</html>

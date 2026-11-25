@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your first backup · Archivist docs · House of Helios</title>
+<meta name="description" content="Archivist docs: Your first backup.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/archivist.png" alt="" width="28" height="28">Archivist</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/archivist/releases/latest/download/Archivist.dmg">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Archivist docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-backup.html" aria-current="page">Your first backup</a></li>
+<li><a href="04-settings.html">Settings</a></li>
+<li><a href="05-earlier-versions.html">Earlier versions</a></li>
+<li><a href="06-full-disk-access.html">Full Disk Access</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="your-first-backup">Your first backup</h1>
+<p>A backup has sources (what to copy), a destination (where it goes), and one button.</p>
+<p><a class="shot" href="img/empty.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="A new backup, waiting for its sources and destination" src="img/empty.png" /></a></p>
+<h2 id="1-sources">1. Sources</h2>
+<p>Drop folders, or a whole drive, on the left side, or click the dashed box and choose. Each source gets its own picture and colour, a size, and a line saying where it stands: "not backed up yet", "2 changes to back up (12 MB)", "up to date".</p>
+<p>The <strong>⋯</strong> menu on a source row:</p>
+<ul>
+<li><strong>Pause</strong>: keep the source in the list but don't copy it until you choose Resume.</li>
+<li><strong>Skip a folder inside…</strong>: choose folders inside this source to leave out.</li>
+<li><strong>Skip junk files</strong>: leave out caches, temp files and <code>node_modules</code>.</li>
+<li><strong>Copy everything again</strong>: ignore what is already there and copy the whole source afresh.</li>
+<li><strong>Show in Finder</strong>.</li>
+</ul>
+<p>The <strong>ⓧ</strong> removes the source from the backup. Nothing at the destination is touched by that.</p>
+<h2 id="2-destination">2. Destination</h2>
+<p>Drop the folder where the backup should live on the right side, or click to choose. Archivist shows the drive it is on, its kind (SSD, spinning disk, network), how much space is free, and how much this backup needs.</p>
+<p>The backup lands in a folder named after the backup inside the folder you chose, with one folder per source inside that.</p>
+<h2 id="3-start-backup">3. Start backup</h2>
+<p>Press <strong>Start backup</strong>. The bar along the bottom shows one chunk per source in its colour, and the time left below it. <strong>Stop</strong> finishes the files in flight and stops; nothing half-copied is kept.</p>
+<p><a class="shot" href="img/running.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="A backup running: the bar fills source by source" src="img/running.png" /></a></p>
+<p>When it is done, the destination panel shows "Last backup: today at 09:42, 701 MB".</p>
+<h2 id="whole-drives-and-the-home-folder">Whole drives and the home folder</h2>
+<p>To back up a whole drive, drop the drive itself. To back up everything in your home folder, drop your home folder. Both need Full Disk Access: see <a href="06-full-disk-access.html">Full Disk Access</a>.</p>
+<h2 id="when-the-drive-is-not-there">When the drive is not there</h2>
+<p>If the backup drive is unplugged, Archivist says so and waits. Nothing happens to the backup until the drive is back.</p>
+<p><a class="shot" href="img/drive-missing.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The backup drive is not connected" src="img/drive-missing.png" /></a></p>
+<p>Next: <a href="04-settings.html">Settings</a>.</p>
+    <footer class="turn"><a class="prev" href="02-install.html">‹ Install</a><a class="next" href="04-settings.html">Settings ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#1-sources">1. Sources</a></li>
+<li><a href="#2-destination">2. Destination</a></li>
+<li><a href="#3-start-backup">3. Start backup</a></li>
+<li><a href="#whole-drives-and-the-home-folder">Whole drives and the home folder</a></li>
+<li><a href="#when-the-drive-is-not-there">When the drive is not there</a></li></ul></aside>
+</div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
+</body>
+</html>

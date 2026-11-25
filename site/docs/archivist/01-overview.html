@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview · Archivist docs · House of Helios</title>
+<meta name="description" content="Archivist docs: Overview.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/archivist.png" alt="" width="28" height="28">Archivist</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/archivist/releases/latest/download/Archivist.dmg">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Archivist docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html" aria-current="page">Overview</a></li>
+<li><a href="02-install.html">Install</a></li>
+<li><a href="03-first-backup.html">Your first backup</a></li>
+<li><a href="04-settings.html">Settings</a></li>
+<li><a href="05-earlier-versions.html">Earlier versions</a></li>
+<li><a href="06-full-disk-access.html">Full Disk Access</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="overview">Overview</h1>
+<p>Archivist copies any drive, or any folders, to any other drive. It is a free, open-source Mac app from House of Helios.</p>
+<p><a class="shot" href="img/window.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The Archivist window: sources on the left, the destination on the right, the progress bar along the bottom" src="img/window.png" /></a></p>
+<h2 id="what-it-does">What it does</h2>
+<ul>
+<li><strong>Any source, any destination.</strong> Folders, a whole drive, or your home folder, copied to an external disk, another Mac's shared folder, or any folder you choose.</li>
+<li><strong>Only what changed.</strong> A second backup copies the files that are new or different and leaves the rest alone. A backup where nothing changed takes well under a second.</li>
+<li><strong>Each drive copied the way it moves best.</strong> An SSD takes many files at once. A spinning disk takes one stream, with small files read in the order they sit on the platter. A shared folder over the network keeps many files in flight to hide the round trips.</li>
+<li><strong>Every file arrives whole.</strong> A file is written under a temporary name and renamed into place only when it is complete. A power cut or a stop mid-copy never leaves a half file where a good one was.</li>
+<li><strong>Nothing is lost.</strong> A file you changed or deleted is moved into a dated <code>_📚archive</code> folder beside the backup, never deleted. See <a href="05-earlier-versions.html">Earlier versions</a>.</li>
+<li><strong>Every Mac detail kept.</strong> Tags, custom icons, permissions, dates, resource forks, symbolic links, hard links.</li>
+<li><strong>Schedules.</strong> Once an hour, once a day, once a week, or whenever the backup drive is plugged in. See <a href="04-settings.html">Settings</a>.</li>
+<li><strong>Updates itself</strong> from GitHub, each release signed. See <a href="07-updates.html">Updates</a>.</li>
+</ul>
+<h2 id="what-it-is-not">What it is not</h2>
+<p>Archivist is not a bootable clone maker, not a cloud service, and does not encrypt or deduplicate. It keeps a plain copy of your files that you can open in the Finder on any Mac, with no Archivist needed to read it back.</p>
+<h2 id="requirements">Requirements</h2>
+<p>macOS 14 Sonoma or later. Runs on Apple silicon and Intel Macs. The app is 1.2 MB.</p>
+<p>Next: <a href="02-install.html">Install</a>.</p>
+    <footer class="turn"><span></span><a class="next" href="02-install.html">Install ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#what-it-does">What it does</a></li>
+<li><a href="#what-it-is-not">What it is not</a></li>
+<li><a href="#requirements">Requirements</a></li></ul></aside>
+</div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
+</body>
+</html>

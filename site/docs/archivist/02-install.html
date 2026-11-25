@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install · Archivist docs · House of Helios</title>
+<meta name="description" content="Archivist docs: Install.">
+<meta property="og:image" content="https://househelios.xyz/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,0,1&display=swap">
+<link rel="stylesheet" href="../docs.css">
+<script>(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')r.dataset.theme=t;}catch(e){}r.classList.toggle('is-dark',r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches);})();</script>
+</head>
+<body style="--accent:#39ad7d;--dark:#008344">
+<header class="top">
+  <nav class="crumbs" aria-label="Where you are">
+    <a class="home" href="../"><img src="../../rooms/helios.png" alt="" width="28" height="28">House of Helios docs</a>
+    <span class="sep" aria-hidden="true">›</span>
+    <a class="room" href="./"><img src="../../rooms/archivist.png" alt="" width="28" height="28">Archivist</a>
+  </nav>
+  <a class="get" href="https://github.com/House-of-Helios/archivist/releases/latest/download/Archivist.dmg">Download</a>
+</header>
+<div class="wrap">
+  <nav class="pages" aria-label="Archivist docs pages">
+    <details open><summary>Pages</summary><ol>
+<li><a href="01-overview.html">Overview</a></li>
+<li><a href="02-install.html" aria-current="page">Install</a></li>
+<li><a href="03-first-backup.html">Your first backup</a></li>
+<li><a href="04-settings.html">Settings</a></li>
+<li><a href="05-earlier-versions.html">Earlier versions</a></li>
+<li><a href="06-full-disk-access.html">Full Disk Access</a></li>
+<li><a href="07-updates.html">Updates</a></li>
+    </ol></details>
+  </nav>
+  <main>
+<h1 id="install">Install</h1>
+<p><img alt="The Archivist icon: Thoth, the keeper of records, with his scroll" src="img/icon.png" /></p>
+<h2 id="1-download">1. Download</h2>
+<p>Get <strong>Archivist.dmg</strong> from the releases page: https://github.com/House-of-Helios/archivist/releases/latest</p>
+<p>The green "Code" button on the repository page gives you the source code, not the app. The app is under Releases.</p>
+<h2 id="2-drag-to-applications">2. Drag to Applications</h2>
+<p>Open the DMG. Drag <strong>Archivist</strong> onto the <strong>Applications</strong> shortcut beside it. Then eject the DMG.</p>
+<h2 id="3-first-open-archivist-can-t-be-opened">3. First open: "Archivist can't be opened"</h2>
+<p>House of Helios does not pay Apple for a developer account, so macOS does not know the maker and refuses the first open. This happens once.</p>
+<ol>
+<li>Open Archivist from Applications. macOS says it can't check the app. Click <strong>Done</strong>.</li>
+<li>Open <strong>System Settings → Privacy &amp; Security</strong> and scroll down to the Security section.</li>
+<li>Next to "Archivist was blocked", click <strong>Open Anyway</strong>.</li>
+<li>Confirm with <strong>Open</strong>, and enter your password if asked.</li>
+</ol>
+<p>From then on Archivist opens like any other app. Updates installed through the app do not ask again, because every release carries the same signature.</p>
+<h2 id="checking-the-download-optional">Checking the download (optional)</h2>
+<p>Every release carries a signed <code>appcast.json</code> with the SHA-256 of the zip, and the app checks that signature before it installs an update. For the DMG you can compare its checksum with the one shown on the release page:</p>
+<pre><code>shasum -a 256 ~/Downloads/Archivist.dmg
+</code></pre>
+<p>Next: <a href="03-first-backup.html">Your first backup</a>.</p>
+    <footer class="turn"><a class="prev" href="01-overview.html">‹ Overview</a><a class="next" href="03-first-backup.html">Your first backup ›</a></footer>
+  </main>
+  <aside class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#1-download">1. Download</a></li>
+<li><a href="#2-drag-to-applications">2. Drag to Applications</a></li>
+<li><a href="#3-first-open-archivist-can-t-be-opened">3. First open: "Archivist can't be opened"</a></li>
+<li><a href="#checking-the-download-optional">Checking the download (optional)</a></li></ul></aside>
+</div>
+<button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
+<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle'),mq=matchMedia('(prefers-color-scheme: dark)');var eff=function(){return r.dataset.theme||(mq.matches?'dark':'light')};var sync=function(){r.classList.toggle('is-dark',eff()==='dark')};sync();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});mq.addEventListener('change',function(){if(!r.dataset.theme)sync()});})();</script>
+</body>
+</html>

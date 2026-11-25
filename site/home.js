@@ -44,7 +44,7 @@ window.Home = (() => {
       about: ['Drop folders or a whole drive on the left, the destination on the right, and start. Each drive is copied the way it moves best, and every file is written whole, so a backup you open is a backup you can read.',
         'Earlier versions wait in a dated _📚archive folder beside the backup, and nothing at the destination is ever deleted. Schedules run it for you, and updates come from GitHub. Free, under GPL-3.0, for Apple silicon and Intel Macs on macOS 14 and up.'],
       shot: ['shots/archivist-light.png', 860, 580], dark: ['shots/archivist-dark.png', 860, 580],   // from Archivist/_devdata/snap (Archivist session, 2026-11-25)
-      repo: 'House-of-Helios/archivist', arch: 'Apple silicon + Intel · macOS 14+' },
+      repo: 'House-of-Helios/archivist', arch: 'Apple silicon + Intel · macOS 14+', docs: 'docs/archivist/' },
     workbench: { mark: 'workbench', name: 'Workbench', tag: 'The one host app on both Macs.', about: ["Every room's machinery plugs in as an app."] },
     house: { mark: 'house', name: 'The House', tag: 'A native Mac HUD for the Claude agents.',
       about: ['It shows the agents, healer loops and Deep Thought vault activity running across House of Helios. Light, native SwiftUI. No web app.'] },
