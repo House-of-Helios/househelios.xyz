@@ -38,14 +38,12 @@
 <p>A backup has sources (what to copy), a destination (where it goes), and one button.</p>
 <p><a class="shot" href="img/empty.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="A new backup, waiting for its sources and destination" src="img/empty.png" /></a></p>
 <h2 id="1-sources">1. Sources</h2>
-<p>Drop folders, or a whole drive, on the left side, or click the dashed box and choose. Each source gets its own picture and colour, a size, and a line saying where it stands: "not backed up yet", "2 changes to back up (12 MB)", "up to date".</p>
-<p>The <strong>⋯</strong> menu on a source row:</p>
+<p>Drop folders, or a whole drive, on the left side, or click the dashed box and choose. Each source gets its own picture and colour, a size, and a line saying where it stands: "not backed up yet", "12 MB not backed up yet", "up to date".</p>
+<p>On the right of each source, a menu says what happens to that folder:</p>
 <ul>
-<li><strong>Pause</strong>: keep the source in the list but don't copy it until you choose Resume.</li>
-<li><strong>Skip a folder inside…</strong>: choose folders inside this source to leave out.</li>
-<li><strong>Skip junk files</strong>: leave out caches, temp files and <code>node_modules</code>.</li>
-<li><strong>Copy everything again</strong>: ignore what is already there and copy the whole source afresh.</li>
-<li><strong>Show in Finder</strong>.</li>
+<li><strong>Skip junk</strong> (the default): copy the folder, but leave out caches, temp files, and build folders that rebuild from the code beside them, such as <code>node_modules</code>, or <code>target</code> next to a <code>Cargo.toml</code>.</li>
+<li><strong>Include</strong>: copy every file in the folder.</li>
+<li><strong>Exclude</strong>: do not copy this folder. To leave a folder out of a bigger one, drop both in: the big folder as Skip junk or Include, the folder inside it (a Dropbox folder, say) as Exclude.</li>
 </ul>
 <p>The <strong>ⓧ</strong> removes the source from the backup. Nothing at the destination is touched by that.</p>
 <h2 id="2-destination">2. Destination</h2>

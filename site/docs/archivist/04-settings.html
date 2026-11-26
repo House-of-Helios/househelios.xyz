@@ -35,7 +35,7 @@
   </nav>
   <main>
 <h1 id="settings">Settings</h1>
-<p>The ⚙️ at the top right of the Destination panel opens the settings of the selected backup.</p>
+<p>The ⚙️ at the top right of the Destination panel, or the <strong>Scheduled backup</strong> line under it, opens the settings of the selected backup. Click outside the panel to close it.</p>
 <p><a class="shot" href="img/settings.png" target="_blank" rel="noopener"><span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></span><img alt="The settings sheet: name, picture, colour, schedule, earlier versions" src="img/settings.png" /></a></p>
 <h2 id="name-picture-colour">Name, picture, colour</h2>
 <p>The name is the backup's title in the tabs along the top. The picture and colour mark it everywhere: on its tab, on the destination, on the folder it writes. Pick any of the animals and any of the colours.</p>
@@ -47,8 +47,8 @@
 <li><strong>Once a day</strong>, at the time you choose.</li>
 <li><strong>Once a week</strong>, on the day and at the time you choose.</li>
 </ul>
-<p>Scheduled backups run in the background without a window, through a small helper that macOS starts for you. The first time you choose a schedule, macOS asks you to allow Archivist in <strong>System Settings → General → Login Items &amp; Extensions</strong>. If a scheduled backup skips files, you get a notification.</p>
-<p>A scheduled backup that finds the drive unplugged does nothing and tries again at the next slot. A Mac that was asleep at the scheduled time runs the backup when it wakes.</p>
+<p>Scheduled backups run while Archivist is open. Closing the window keeps Archivist running; quitting it stops the schedule until you open it again. A backup that was due while Archivist was closed runs when you open it.</p>
+<p>A scheduled backup that finds the drive unplugged does nothing and tries again at the next slot. A Mac that was asleep at the scheduled time runs the backup when it wakes, if Archivist is open.</p>
 <h2 id="earlier-versions">Earlier versions</h2>
 <ul>
 <li><strong>Keep deleted files</strong>: a file that disappears from the source is moved into the archive, not removed from the backup.</li>
